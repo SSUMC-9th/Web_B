@@ -1,6 +1,6 @@
 # 🌐 Web A
 
-SSUMC 8기 Web 스터디 A조
+SSUMC 8기 Web 스터디 B조
 
 ## 👥 Member
 
