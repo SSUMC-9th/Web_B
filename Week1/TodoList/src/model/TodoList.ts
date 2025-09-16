@@ -8,4 +8,12 @@ class TodoList {
     const newTodo = new Todo(this.nextId++, title);
     this.todos.push(newTodo);
   }
+
+  removeTodo(id: number): void {
+    this.todos = this.todos.filter(todo => todo.id !== id);
+  }
+
+  getTodos(): Todo[] {
+    return this.todos;
+  }
 }
