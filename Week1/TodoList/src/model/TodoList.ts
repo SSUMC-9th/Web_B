@@ -1,7 +1,8 @@
 import type { Todo } from './Todo';
 
 export class TodoList {
-  private todos: Todo[] = [];
+  private activeTodos: Todo[] = [];
+  private completedTodos: Todo[] = [];
   private nextId: number = 1;
 
   addTodo(title: string): void {
@@ -10,21 +11,34 @@ export class TodoList {
       title,
       completed: false
     };
-    this.todos.push(newTodo);
+    this.activeTodos.push(newTodo);
   }
 
-  removeTodo(id: number): void {
-    this.todos = this.todos.filter(todo => todo.id !== id);
+  deleteTodo(id: number): void {
+    this.completedTodos = this.completedTodos.filter(todo => todo.id !== id);
   }
 
-  toggleTodo(id: number): void {
-    this.todos = this.todos.map(todo =>
-      // 스프레드 연산자: 기존 객체의 모든 속성을 복사함.
-      todo.id === id ? { ...todo, completed: !todo.completed } : todo
-    );
+  completeTodo(id: number): void {
+    const todo = this.activeTodos.find(t => t.id === id);
+    if (todo) {
+      const completedTodo: Todo = {
+        // 스프레드 연산자: 객체의 모든 속성을 복사
+        ...todo,
+        // completed를 true로 덮어쓰기
+        completed: true
+      };
+      // completedTodos에 추가
+      this.completedTodos.push(completedTodo);
+      // activeTodos에서 제거
+      this.activeTodos = this.activeTodos.filter(t => t.id !== id);
+    }
   }
 
-  getTodos(): Todo[] {
-    return this.todos;
+  getActiveTodos(): Todo[] {
+    return this.activeTodos;
+  }
+
+  getCompletedTodos(): Todo[] {
+    return this.completedTodos;
   }
 }
