@@ -4,17 +4,17 @@ import type { TodoController } from "../controller/TodoController.ts";
 export class TodoView {
   private todoInput: HTMLInputElement;
   private todoForm: HTMLFormElement;
-  private todoList: HTMLUListElement;
-  private doneList: HTMLUListElement;
+  private activeList: HTMLUListElement;
+  private completedList: HTMLUListElement;
   private controller?: TodoController;
 
   constructor() {
     this.todoInput = document.getElementById('todo-input') as HTMLInputElement;
     this.todoForm = document.getElementById('todo-form') as HTMLFormElement;
-    this.todoList = document.getElementById('todo-list') as HTMLUListElement;
-    this.doneList = document.getElementById('done-list') as HTMLUListElement;
+    this.activeList = document.getElementById('todo-list') as HTMLUListElement;
+    this.completedList = document.getElementById('done-list') as HTMLUListElement;
   }
-
+  
   setController(controller: TodoController): void {
     this.controller = controller;
     this.initFormListener();
@@ -37,18 +37,18 @@ export class TodoView {
   }
 
   private renderActiveTodos(todos: Todo[]): void {
-    this.todoList.innerHTML = '';
+    this.activeList.innerHTML = '';
     todos.forEach(todo => {
       const li = this.createTodoElement(todo, false);
-      this.todoList.appendChild(li);
+      this.activeList.appendChild(li);
     });
   }
 
   private renderCompletedTodos(todos: Todo[]): void {
-    this.doneList.innerHTML = '';
+    this.completedList.innerHTML = '';
     todos.forEach(todo => {
       const li = this.createTodoElement(todo, true);
-      this.doneList.appendChild(li);
+      this.completedList.appendChild(li);
     });
   }
 
