@@ -6,6 +6,7 @@ export class TodoView {
   private todoForm: HTMLFormElement;
   private activeList: HTMLUListElement;
   private completedList: HTMLUListElement;
+  // 생성자에서 컨트롤러가 초기화되지 않기 때문에 옵셔널 선언
   private controller?: TodoController;
 
   constructor() {
