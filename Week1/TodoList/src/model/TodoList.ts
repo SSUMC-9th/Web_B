@@ -1,4 +1,4 @@
-import { Todo } from './Todo';
+import type { Todo } from './Todo';
 
 export class TodoList {
   private todos: Todo[] = [];
@@ -24,11 +24,7 @@ export class TodoList {
     );
   }
 
-  getActiveTodos(): Todo[] {
-    return this.todos.filter(todo => !todo.completed);
-  }
-
-  getCompletedTodos(): Todo[] {
-    return this.todos.filter(todo => todo.completed);
+  getTodos(): Todo[] {
+    return this.todos;
   }
 }
