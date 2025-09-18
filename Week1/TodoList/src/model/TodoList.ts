@@ -19,7 +19,7 @@ export class TodoList {
 
   completeTodo(id: number): void {
     const todo = this.todos.find(t => t.id === id);
-    todo && todo.completed;
+    todo && (todo.completed = true);
   }
 
   getActiveTodos(): Todo[] {
