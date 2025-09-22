@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="b2f400c6-011c-40f3-baf2-11dfa1555932" name="변경" comment="">
+      <change afterPath="$PROJECT_DIR$/Andy/Week2/Practice/src/App.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Andy/Week2/Practice/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Week1/Practice/array.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Andy/Week1/Practice/array.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Week1/Practice/boolean.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Andy/Week1/Practice/boolean.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Week1/Practice/function.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Andy/Week1/Practice/function.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Week1/Practice/literal_type.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Andy/Week1/Practice/literal_type.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Week1/Practice/null.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Andy/Week1/Practice/null.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Week1/Practice/number.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Andy/Week1/Practice/number.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Week1/Practice/string.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Andy/Week1/Practice/string.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Week1/Practice/tuple.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Andy/Week1/Practice/tuple.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Week1/TodoList/bun.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Andy/Week1/TodoList/bun.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Week1/TodoList/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/Andy/Week1/TodoList/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Week1/TodoList/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/Andy/Week1/TodoList/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Week1/TodoList/src/controller/TodoController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Andy/Week1/TodoList/src/controller/TodoController.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Week1/TodoList/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Andy/Week1/TodoList/src/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Week1/TodoList/src/model/Todo.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Andy/Week1/TodoList/src/model/Todo.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Week1/TodoList/src/model/TodoList.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Andy/Week1/TodoList/src/model/TodoList.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Week1/TodoList/src/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/Andy/Week1/TodoList/src/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Week1/TodoList/src/util/TodoUtil.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Andy/Week1/TodoList/src/util/TodoUtil.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Week1/TodoList/src/view/TodoView.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Andy/Week1/TodoList/src/view/TodoView.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Week1/TodoList/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/Andy/Week1/TodoList/tsconfig.json" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+        <option value="TypeScript File" />
+        <option value="TypeScript JSX File" />
+        <option value="CSS File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;AndyH0ng&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/SSUMC-9th/Web_B.git&quot;,
+    &quot;accountId&quot;: &quot;bdb3ba55-51fa-4a5b-82fb-8cf70e5607e6&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1
+}</component>
+  <component name="ProjectId" id="32lRirSHTRszppyrvvmHH6mAxyN" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Bun.array.ts.executor": "Run",
+    "Bun.null.ts.executor": "Run",
+    "Bun.number.ts.executor": "Run",
+    "Bun.string.ts.executor": "Run",
+    "Bun.tuple.ts.executor": "Run",
+    "Bun.type.ts.executor": "Run",
+    "DefaultHtmlFileTemplate": "HTML File",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "andy/#1",
+    "last_opened_file_path": "/Users/joonwoo/Developer/Web_B",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_interpreter_path": "node",
+    "nodejs_package_manager_path": "/opt/homebrew/bin/bun",
+    "settings.editor.selected.configurable": "preferences.sourceCode.HTML",
+    "ts.external.directory.path": "/Users/joonwoo/Developer/Web_B/Andy/Week1/TodoList/node_modules/typescript/lib",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Andy/Week2/Practice/src" />
+      <recent name="$PROJECT_DIR$/Andy/Week2/Practice" />
+      <recent name="$PROJECT_DIR$/Andy" />
+      <recent name="$PROJECT_DIR$/Week1/TodoList/src/model" />
+    </key>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-9c94529fcfe0-JavaScript-WS-252.26199.162" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="디폴트 작업">
+      <changelist id="b2f400c6-011c-40f3-baf2-11dfa1555932" name="변경" comment="" />
+      <created>1757993303532</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1757993303532</updated>
+      <workItem from="1757993304944" duration="1498000" />
+      <workItem from="1757994859374" duration="1363000" />
+      <workItem from="1757997452121" duration="1848000" />
+      <workItem from="1758013068882" duration="16532000" />
+      <workItem from="1758071077105" duration="6968000" />
+      <workItem from="1758099657887" duration="5377000" />
+      <workItem from="1758105054990" duration="2027000" />
+      <workItem from="1758107690624" duration="5541000" />
+      <workItem from="1758186969894" duration="3010000" />
+      <workItem from="1758197881997" duration="29000" />
+      <workItem from="1758468217932" duration="9000" />
+      <workItem from="1758468239225" duration="2178000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
