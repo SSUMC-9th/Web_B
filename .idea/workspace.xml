@@ -5,27 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b2f400c6-011c-40f3-baf2-11dfa1555932" name="변경" comment="">
-      <change afterPath="$PROJECT_DIR$/Andy/Week2/Practice/src/App.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Andy/Week2/Practice/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Week1/Practice/array.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Andy/Week1/Practice/array.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Week1/Practice/boolean.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Andy/Week1/Practice/boolean.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Week1/Practice/function.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Andy/Week1/Practice/function.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Week1/Practice/literal_type.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Andy/Week1/Practice/literal_type.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Week1/Practice/null.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Andy/Week1/Practice/null.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Week1/Practice/number.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Andy/Week1/Practice/number.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Week1/Practice/string.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Andy/Week1/Practice/string.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Week1/Practice/tuple.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Andy/Week1/Practice/tuple.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Week1/TodoList/bun.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Andy/Week1/TodoList/bun.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Week1/TodoList/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/Andy/Week1/TodoList/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Week1/TodoList/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/Andy/Week1/TodoList/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Week1/TodoList/src/controller/TodoController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Andy/Week1/TodoList/src/controller/TodoController.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Week1/TodoList/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Andy/Week1/TodoList/src/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Week1/TodoList/src/model/Todo.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Andy/Week1/TodoList/src/model/Todo.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Week1/TodoList/src/model/TodoList.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Andy/Week1/TodoList/src/model/TodoList.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Week1/TodoList/src/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/Andy/Week1/TodoList/src/styles.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Week1/TodoList/src/util/TodoUtil.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Andy/Week1/TodoList/src/util/TodoUtil.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Week1/TodoList/src/view/TodoView.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Andy/Week1/TodoList/src/view/TodoView.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Week1/TodoList/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/Andy/Week1/TodoList/tsconfig.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Andy/Week2/Practice/src/components/List.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Andy/Week2/Practice/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Andy/Week2/Practice/src/App.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,8 +19,8 @@
       <list>
         <option value="HTML File" />
         <option value="TypeScript File" />
-        <option value="TypeScript JSX File" />
         <option value="CSS File" />
+        <option value="TypeScript JSX File" />
       </list>
     </option>
   </component>
@@ -83,7 +65,7 @@
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "andy/#1",
+    "git-widget-placeholder": "andy/#2",
     "last_opened_file_path": "/Users/joonwoo/Developer/Web_B",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
@@ -92,13 +74,17 @@
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_interpreter_path": "node",
     "nodejs_package_manager_path": "/opt/homebrew/bin/bun",
-    "settings.editor.selected.configurable": "preferences.sourceCode.HTML",
+    "settings.editor.selected.configurable": "discord-application",
     "ts.external.directory.path": "/Users/joonwoo/Developer/Web_B/Andy/Week1/TodoList/node_modules/typescript/lib",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Andy/Week2" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Andy/Week2" />
       <recent name="$PROJECT_DIR$/Andy/Week2/Practice/src" />
       <recent name="$PROJECT_DIR$/Andy/Week2/Practice" />
       <recent name="$PROJECT_DIR$/Andy" />
@@ -131,6 +117,11 @@
       <workItem from="1758197881997" duration="29000" />
       <workItem from="1758468217932" duration="9000" />
       <workItem from="1758468239225" duration="2178000" />
+      <workItem from="1758534397304" duration="1744000" />
+      <workItem from="1758545408959" duration="2405000" />
+      <workItem from="1758589712424" duration="511000" />
+      <workItem from="1758617555003" duration="80000" />
+      <workItem from="1758617651782" duration="1232000" />
     </task>
     <servers />
   </component>
