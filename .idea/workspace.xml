@@ -5,9 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b2f400c6-011c-40f3-baf2-11dfa1555932" name="변경" comment="">
-      <change afterPath="$PROJECT_DIR$/Andy/Week2/Practice/src/components/List.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Andy/Week2/Practice/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Andy/Week2/Practice/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Andy/Week2/TodoList/src/assets/react.svg" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,7 +64,7 @@
     "RunOnceActivity.git.unshallow": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "andy/#2",
-    "last_opened_file_path": "/Users/joonwoo/Developer/Web_B",
+    "last_opened_file_path": "/Users/joonwoo/Developer/Web_B/Andy/Week2",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -121,7 +119,8 @@
       <workItem from="1758545408959" duration="2405000" />
       <workItem from="1758589712424" duration="511000" />
       <workItem from="1758617555003" duration="80000" />
-      <workItem from="1758617651782" duration="1232000" />
+      <workItem from="1758617651782" duration="5899000" />
+      <workItem from="1758629528231" duration="10811000" />
     </task>
     <servers />
   </component>
