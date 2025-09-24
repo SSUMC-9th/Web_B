@@ -1,39 +1,24 @@
-import { useState } from 'react'
 import './App.css'
-import List from './components/List'
-import Input from './components/Input'
-import type { TodoItem } from './types/todo'
+import TodoContainer from './components/TodoContainer.tsx'
+import { TodoProvider } from './providers/TodoProvider.tsx'
 
-function App() {
-  const [todos, setTodos] = useState<TodoItem[]>([/* 초기값은 빈 배열 */])
-
-  const addTodo = (text: string) => {
-    const newTodo: TodoItem = {
-      id: Date.now(),
-      text,
-      done: false
-    }
-    setTodos([...todos, newTodo])
-  }
-
-  const toggleTodo = (id: number) => {
-    setTodos(todos.map(todo =>
-      todo.id === id ? { ...todo, done: !todo.done } : todo
-    ))
-  }
-
-  const deleteTodo = (id: number) => {
-    setTodos(todos.filter(todo => todo.id !== id))
-  }
+function AppContent() {
 
   return (
-    <>
+    <TodoProvider>
       <div className="todo-container">
-        <h1 className="todo-container__header">할 일 목록</h1>
-        <Input onAddTodo={addTodo} />
-        <List todos={todos} onToggleTodo={toggleTodo} onDeleteTodo={deleteTodo} />
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
+          <h1 className="todo-container__header">할 일 목록</h1>
+        </div>
+        <TodoContainer />
       </div>
-    </>
+    </TodoProvider>
+  );
+}
+
+function App() {
+  return (
+    <AppContent />
   )
 }
 

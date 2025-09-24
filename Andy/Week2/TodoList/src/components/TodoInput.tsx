@@ -1,20 +1,19 @@
 import { useState, type FormEvent } from "react";
+import { useTodoContext } from "../hooks/useTodo";
 
-interface InputProps {
-  onAddTodo: (text: string) => void
-}
-
-const Input = ({ onAddTodo }: InputProps) => {
+const TodoInput = () => {
   const [inputValue, setInputValue] = useState<string>("");
+  const { addTodo } = useTodoContext();
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const text = inputValue.trim();
     if (text) {
-      onAddTodo(text)
+      addTodo(text)
       setInputValue("");
     }
   }
+
   return (
     <form id="todo-form" className="todo-container__form" onSubmit={handleSubmit}>
       <input
@@ -33,4 +32,4 @@ const Input = ({ onAddTodo }: InputProps) => {
   )
 }
 
-export default Input;
+export default TodoInput;
