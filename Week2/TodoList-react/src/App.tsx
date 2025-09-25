@@ -2,13 +2,10 @@ import './App.css'
 import { useState } from 'react';
 import type { FormEvent } from 'react'; //타입 전용 import, verbaatimModuleSyntax에러 해결
 import InputForm from './components/inputForm'
+import type { Todo } from './types/todo'
+import ListGroup from './components/ListGroup';
 
 function App() {
-
-  interface Todo {
-    text: string;
-    id: number;
-  }
 
   const [todos, setTodos] = useState<Todo[]>([]);
   const [completedTasks, setCompletedTasks] = useState<Todo[]>([]);
@@ -47,49 +44,12 @@ function App() {
           input={input}
           setInput={setInput}
         />
-        {/*할일목록*/}
-        <div className="task-lists">
-          <div className="task-list">
-            <h2 className="task-list__title">할 일</h2>
-            <ul className="task-list__items">
-              {/* <li className="task-list__item">
-                <span></span>
-                <button className="task-list__button">완료</button>
-              </li> */}
-              {todos.map((todo) => (
-                <li className="task-list__item">
-                  <span>{todo.text}</span>
-                  <button 
-                    // onClick = {handleCompleted(todo)} 렌더링 시점에 함수 실행 
-                    onClick = {() => handleCompleted(todo)} //클릭 시점에 실행 
-                    className="task-list__button">
-                    완료
-                  </button>
-                </li>
-              ))} 
-            </ul>
-          </div>
-        {/*완료목록*/}
-          <div className="task-list">
-            <h2 className="task-list__title">완료</h2>
-            <ul className="task-list__items">
-              {/* <li className="task-list__item">
-                <span></span>
-                <button className="task-list__button--delete">삭제</button>
-              </li> */}
-              {completedTasks.map((completedTask) => (
-                <li className="task-list__item">
-                  <span>{completedTask.text}</span>
-                  <button 
-                    onClick = {() => handleDelete(completedTask)}
-                    className="task-list__button--delete">
-                    삭제
-                  </button>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
+        <ListGroup
+          todos = {todos}
+          completedTasks={completedTasks}
+          handleCompleted={handleCompleted}
+          handleDelete={handleDelete}
+        />
       </div>
     </div>
   )
