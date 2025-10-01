@@ -1,5 +1,6 @@
-import type {Movie} from "../types/movie.ts";
-import {useState} from "react";
+import type { Movie } from "../types/movie.ts";
+import { useState } from "react";
+import {useNavigate, useParams} from "react-router-dom";
 
 interface MovieCardProps {
   movie: Movie;
@@ -7,12 +8,19 @@ interface MovieCardProps {
 
 export default function MovieCard({ movie }: MovieCardProps) {
   const [isHovered, setIsHovered] = useState(false);
+  const navigate = useNavigate();
+  const params = useParams<{ category: string }>();
+
+  const handleClick = () => {
+    navigate(`/movie/${movie.id}`);
+  };
 
   return (
     <div
       className="relative"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      onClick={handleClick}
     >
       <img
         src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}

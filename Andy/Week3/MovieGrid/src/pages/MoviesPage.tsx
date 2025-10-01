@@ -1,13 +1,13 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import type { Movie, MovieResponse } from "../types/movie.ts";
+import type { Movie } from "../types/movie.ts";
 import { LoadingSpinner } from "../components/LoadingSpinner.tsx";
 import MovieCard from "../components/MovieCard.tsx";
 import Button from "../components/Button.tsx";
+import { fetchMovies } from "../api/movies.ts";
 
 
-export default function MoviePage() {
+export default function MoviesPage() {
   const [movies, setMovies] = useState<Movie[]>([]);
 
   const [isPending, setIsPending] = useState(false);
@@ -18,26 +18,18 @@ export default function MoviePage() {
   }>();
 
   useEffect(() => {
-    const fetchMovies = async() => {
+    const getMovies = async() => {
       setIsPending(true);
       try {
-        const response = await axios.get<MovieResponse>(
-          `https://api.themoviedb.org/3/movie/${params.category}?include_adult=false&include_video=false&language=ko-KR&page=${page}&sort_by=popularity.desc`,
-          {
-            headers: {
-              Authorization: `Bearer ${import.meta.env.VITE_TMDB_API_KEY}`,
-              accept: 'application/json',
-            }
-          }
-        );
-        setMovies(response.data.results);
+        const data = await fetchMovies(params.category!, page);
+        setMovies(data.results);
       } catch {
         setError(true);
       } finally {
         setIsPending(false);
       }
     }
-    fetchMovies();
+    getMovies();
   }, [page, params.category]);
 
   useEffect(() => {
