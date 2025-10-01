@@ -1,15 +1,110 @@
-import React from 'react'
-import { useParams } from 'react-router-dom';
+import React, { useEffect, useState, type JSX } from "react";
+import axios from "axios";
+import { useParams, Link } from "react-router-dom";
 
-const MovieDetailPage=() => {
-    const params =useParams();
+import LoadingSpinner from "../components/LoadingSpinner";
+import MovieDetailHero from "../components/MovieDetailHero";
+import MovieFacts from "../components/MovieFacts";
+import CompanyChips from "../components/CompanyChips";
+import type { MovieDetail } from "../types/MovieDetail";
 
-    console.log(params);
+export default function MovieDetailPage(): JSX.Element {
+
+
+  const { movieId } = useParams<{ movieId: string }>();
+
+  const [detail, setDetail] = useState<MovieDetail | null>(null);
+  const [isPending, setIsPending] = useState<boolean>(false);
+  const [isError, setIsError] = useState<boolean>(false);
+
+  useEffect((): void => {
+    if (!movieId) return;
+
+    const fetchDetail = async (): Promise<void> => {
+      setIsPending(true);
+      
+
+      try {
+        const { data } = await axios.get<MovieDetail>(
+          `https://api.themoviedb.org/3/movie/${movieId}?language=ko-KR`,
+          {
+            headers: {
+              Authorization: `Bearer ${import.meta.env.VITE_TMDB_KEY}`,
+            },
+          }
+        );
+        setDetail(data);
+      } catch (e) {
+        setIsError(true);
+      } finally {
+        setIsPending(false);
+      }
+    };
+
+    fetchDetail();
+  }, [movieId]);
+
+  if (isError) {
+    return (
+      <div className="p-6">
+        <span className="text-red-500 text-2xl">에러가 발생했습니다.</span>
+        <div className="mt-4">
+          <Link
+            to={-1 as any}
+            className="inline-block bg-gray-200 px-4 py-2 rounded-md hover:bg-gray-300"
+          >
+            뒤로가기
+          </Link>
+        </div>
+      </div>
+    );
+  }
+
+  if (isPending || !detail) {
+    return (
+      <div className="flex items-center justify-center h-dvh">
+        <LoadingSpinner />
+      </div>
+    );
+  }
 
   return (
-    <div>
-      무비디테일페이지임{params.movieId}
+    <div className="p-6 max-w-6xl mx-auto">
+      {/* 상단 히어로 영역 (포스터 + 제목/태그라인/평점) */}
+      <MovieDetailHero detail={detail} />
+
+      {/* 핵심 정보 (개봉일, 런타임, 장르 등) */}
+      <MovieFacts detail={detail} className="mt-8" />
+
+      {/* 개요 */}
+      {detail.overview && (
+        <section className="mt-10">
+          <h2 className="text-xl font-semibold mb-3">Overview</h2>
+          <p className="leading-7 text-gray-800">{detail.overview}</p>
+        </section>
+      )}
+
+      {/* 제작사 Chips */}
+      {detail.production_companies?.length > 0 && (
+        <section className="mt-10">
+          <h2 className="text-xl font-semibold mb-3">Production Companies</h2>
+          <CompanyChips companies={detail.production_companies} />
+        </section>
+      )}
+
+      {/* 공식 사이트 */}
+      {detail.homepage && (
+        <section className="mt-10">
+          <a
+            href={detail.homepage}
+            target="_blank"
+            rel="noreferrer"
+            className="inline-block underline"
+          >
+            Official Website
+          </a>
+        </section>
+      )}
     </div>
-  )
-};
-export default MovieDetailPage;
+  );
+}
