@@ -1,10 +1,10 @@
 import React, { useEffect, useState, type JSX } from 'react'
 
-export default function UseEffectPage() :Element{
+export default function UseEffectPage() {
 
     const [count, setCount]=useState(0);
 
-    const handleIncrease= ():JSX.Element=>{
+    const handleIncrease= () =>{
         setCount((prev):number=>prev+1)
         console.log('setState(useState를 이용한)의 카운트:',count)
     };

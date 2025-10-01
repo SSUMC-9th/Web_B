@@ -1,92 +1,38 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import HomePage from './pages/home'
-import NotFound from './pages/not-found'
-import MoviesPage from './pages/movies'
-import Movies from './pages/movies' 
-import RootLayout from './layout/root-layout'
-import UseEffectPage from './02-useEffect/UseEffectPage'
-import useEffectCounterPage from "./02-useEffect/UseEffectCounterPage"
 
+import './App.css';
+import { Link, Route, Routes } from './router';
 
+const MatthewPage = () => <h1>매튜 페이지</h1>;
+const AeongPage = () => <h1>애옹 페이지</h1>;
+const JoyPage = () => <h1>조이 페이지</h1>;
+const NotFoundPage = () => <h1>404</h1>;
 
-const router= createBrowserRouter([
-  {
-    path: '/',
-    element: <RootLayout/>,
-    errorElement: <NotFound/>,
-    children:[
-      {
-        index: true,
-        element: <HomePage/>,
-      },
-      {
-        // 동적라우팅: movieId에 해당하는 페이지로 연결
-        path: 'movies/:movieId',
-        element: <MoviesPage/>,
-      }
-    ]
-  },
-
-]);
-
+const Header = () => {
+  return (
+    <nav style={{ display: 'flex', gap: '10px' }}>
+      <Link to='/matthew'>MATTHEW</Link>
+      <Link to='/aeong'>AEONG</Link>
+      <Link to='/joy'>JOY</Link>
+      <Link to='/not-found'>NOT FOUND</Link>
+    </nav>
+  );
+};
 
 function App() {
-
   return (
-    //<RouterProvider router={router}/>
-    //<UseEffectPage/>
-    <useEffectCounterPage/>
-    
-  )
-  
+    <>
+      <Header />
+      <Routes>
+        <Route path='/matthew' component={MatthewPage} />
+        <Route path='/aeong' component={AeongPage} />
+        <Route path='/joy' component={JoyPage} />
+
+
+        <Route path='/not-found' component={NotFoundPage} />
+        <Route path='*' component={NotFoundPage} />
+      </Routes>
+    </>
+  );
 }
 
-export default App
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// const Page1= ()=> <h1>페이지1번</h1>
-// const Page2= ()=> <h1>페이지2번</h1>
-// const Page3= ()=> <h1>페이지3번</h1>
-// const Page4= ()=> <h1>페이지4번</h1>
-
-
-// function App(){
-  
-//   const name='원호';
-
-//   const {pathname}=window.location;
-
-//   switch(pathname){
-//     case '/page1':
-//       return <Page1 />;
-//     case '/page2':
-//       return <Page2 />;
-//     case '/page3':
-//       return <Page3 />;
-//     case '/page4':
-//       return <Page4 />;
-//   }
-
-// }
-
-// export default App
+export default App;
