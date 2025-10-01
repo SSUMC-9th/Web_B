@@ -1,6 +1,6 @@
 import type { Movie } from "../types/movie.ts";
 import { useState } from "react";
-import {useNavigate, useParams} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 interface MovieCardProps {
   movie: Movie;
@@ -9,7 +9,6 @@ interface MovieCardProps {
 export default function MovieCard({ movie }: MovieCardProps) {
   const [isHovered, setIsHovered] = useState(false);
   const navigate = useNavigate();
-  const params = useParams<{ category: string }>();
 
   const handleClick = () => {
     navigate(`/movie/${movie.id}`);

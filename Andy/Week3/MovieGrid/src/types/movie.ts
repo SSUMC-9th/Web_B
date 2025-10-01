@@ -15,9 +15,23 @@ export type Movie = {
   "vote_count": number;
 };
 
-export type MovieResponse = {
+export type MoviesResponse = {
   "page": number,
   total_pages: number,
   total_results: number,
   results: Movie[];
+}
+
+export type MovieResponse = {
+  "id": number,
+  "adult": boolean,
+  "backdrop_path": string,
+  "belongs_to_collection": null | object,
+  "budget": number,
+  "genres": { id: number, name: string }[],
+  "homepage": string,
+  "imdb_id": string,
+  "original_language": string,
+  "original_title": string,
+  "overview": string,
 }

@@ -5,12 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b2f400c6-011c-40f3-baf2-11dfa1555932" name="변경" comment="">
-      <change afterPath="$PROJECT_DIR$/Andy/Week3/MovieGrid/src/api/movies.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Andy/Week3/MovieGrid/src/pages/MovieDetailsPage.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Andy/Week3/MovieGrid/src/api/movie.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Andy/Week3/MovieGrid/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Andy/Week3/MovieGrid/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Andy/Week3/MovieGrid/src/api/movies.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Andy/Week3/MovieGrid/src/api/movies.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Andy/Week3/MovieGrid/src/assets/react.svg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Andy/Week3/MovieGrid/src/components/MovieCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Andy/Week3/MovieGrid/src/components/MovieCard.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Andy/Week3/MovieGrid/src/pages/MoviePage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Andy/Week3/MovieGrid/src/pages/MoviesPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Andy/Week3/MovieGrid/src/pages/MovieDetailsPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Andy/Week3/MovieGrid/src/pages/MovieDetailsPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Andy/Week3/MovieGrid/src/pages/MoviesPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Andy/Week3/MovieGrid/src/pages/MoviesPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Andy/Week3/MovieGrid/src/types/movie.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Andy/Week3/MovieGrid/src/types/movie.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -128,7 +131,7 @@
       <workItem from="1758617651782" duration="5899000" />
       <workItem from="1758629528231" duration="10986000" />
       <workItem from="1758704193035" duration="14728000" />
-      <workItem from="1759321916659" duration="7905000" />
+      <workItem from="1759321916659" duration="8718000" />
     </task>
     <servers />
   </component>

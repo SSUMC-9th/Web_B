@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import type { Movie } from "../types/movie.ts";
+import { fetchMovies } from "../api/movies.ts";
 import { LoadingSpinner } from "../components/LoadingSpinner.tsx";
 import MovieCard from "../components/MovieCard.tsx";
 import Button from "../components/Button.tsx";
-import { fetchMovies } from "../api/movies.ts";
+import type { Movie } from "../types/movie.ts";
 
 
 export default function MoviesPage() {
