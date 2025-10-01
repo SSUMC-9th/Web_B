@@ -1,4 +1,4 @@
-import { children, createContext, useContext, useState, type PropsWithChildren } from "react";
+import { createContext, useContext, useState, type JSX, type PropsWithChildren } from "react";
 import type { TTodo } from "../types/todo";
 
 interface ITodoContext{
@@ -14,20 +14,16 @@ export const TodoContext=createContext<ITodoContext | undefined>
 (undefined);
 
 export const TodoProvider=({children}: 
-    PropsWithChildren): void =>{
-
- 
+    PropsWithChildren): JSX.Element =>{
 
         const [todos, setTodos]=useState<TTodo[]>([]);
         const [doneTodos, setDoneTodos]=useState<TTodo[]>([]);
 
         const addTodo=(text: string): void =>{
             const newTodo: TTodo ={id: Date.now(), text};
-            setTodos((prevTodos): TTodo[]=> [...prevTodos, newTodo]);
-            
-
+            setTodos((prevTodos): TTodo[]=> [...prevTodos, newTodo]);       
         };
-
+        
     const completeTodo=(todo: TTodo) : void =>{
     setTodos((prevTodos): TTodo[] => prevTodos.filter((t)
     : boolean =>t.id!==todo.id))
