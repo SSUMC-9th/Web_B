@@ -5,7 +5,29 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b2f400c6-011c-40f3-baf2-11dfa1555932" name="변경" comment="">
-      <change beforePath="$PROJECT_DIR$/Andy/Week3/MovieGrid/src/pages/MovieDetailsPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Andy/Week3/MovieGrid/src/pages/MovieDetailsPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Andy/Week3/MovieGrid/src/api/movie.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Andy/Week3/MovieGrid/src/api/movie.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Andy/Week3/MovieGrid/src/api/movies.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Andy/Week3/MovieGrid/src/api/movies.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Andy/Week3/MovieGrid/src/pages/MoviesPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Andy/Week3/MovieGrid/src/pages/MoviesPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Week1/Practice/array.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Week1/Practice/boolean.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Week1/Practice/function.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Week1/Practice/literal_type.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Week1/Practice/null.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Week1/Practice/number.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Week1/Practice/string.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Week1/Practice/tuple.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Week1/TodoList/bun.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Week1/TodoList/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Week1/TodoList/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Week1/TodoList/src/controller/TodoController.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Week1/TodoList/src/index.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Week1/TodoList/src/model/Todo.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Week1/TodoList/src/model/TodoList.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Week1/TodoList/src/styles.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Week1/TodoList/src/util/TodoUtil.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Week1/TodoList/src/view/TodoView.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Week1/TodoList/tsconfig.json" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,7 +95,7 @@
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_interpreter_path": "node",
     "nodejs_package_manager_path": "/opt/homebrew/bin/bun",
-    "settings.editor.selected.configurable": "discord-application",
+    "settings.editor.selected.configurable": "terminal",
     "ts.external.directory.path": "/Users/joonwoo/Developer/Web_B/Andy/Week3/MovieGrid/node_modules/typescript/lib",
     "vue.rearranger.settings.migration": "true"
   }

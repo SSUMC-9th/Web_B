@@ -1,1 +1,0 @@
-export const getTrimmedText = (text: string) => text.trim();

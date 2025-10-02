@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { fetchMovies } from "../api/movies.ts";
+import { getMovies } from "../api/movies.ts";
 import { LoadingSpinner } from "../components/LoadingSpinner";
 import MovieCard from "../components/MovieCard";
 import Button from "../components/Button";
@@ -18,10 +18,10 @@ export default function MoviesPage() {
   }>();
 
   useEffect(() => {
-    const getMovies = async() => {
+    const fetchMovies = async() => {
       setIsPending(true);
       try {
-        const data = await fetchMovies(params.category!, page);
+        const data = await getMovies(params.category!, page);
         setMovies(data.results);
       } catch {
         setError(true);
@@ -29,7 +29,7 @@ export default function MoviesPage() {
         setIsPending(false);
       }
     }
-    getMovies();
+    fetchMovies();
   }, [page, params.category]);
 
   useEffect(() => {
