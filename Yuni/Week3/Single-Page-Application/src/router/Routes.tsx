@@ -11,7 +11,7 @@ export const Routes: React.FC<RoutesProps> = ({ children }) => {
 
   const routes = Children.toArray(children).filter(
     child => isValidElement(child) && (child.type as any).displayName === "Route"
-  ) as ReactElement[];
+  ) as ReactElement<{ path: string }>[];
 
   const active = routes.find(route => route.props.path === currentPath);
 
