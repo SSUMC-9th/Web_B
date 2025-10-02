@@ -2,10 +2,10 @@ import { NavLink } from "react-router-dom";
 
 const Links = [
     { to : '/', label: '홈'},
-    { to : 'movie/popular', label: '인기 영화'},
-    { to : 'movie/now_playing', label : '상영 중'},
-    { to : 'movie/top_rated', label : '평점 높은'},
-    { to : 'movie/upcoming', label : '개봉 예정'},
+    { to : 'movies/popular', label: '인기 영화'},
+    { to : 'movies/now_playing', label : '상영 중'},
+    { to : 'movies/top_rated', label : '평점 높은'},
+    { to : 'movies/upcoming', label : '개봉 예정'},
 ];
 
 export default function Navbar() {

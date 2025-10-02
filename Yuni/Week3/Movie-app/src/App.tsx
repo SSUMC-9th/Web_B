@@ -5,17 +5,20 @@ import HomePage from "./pages/HomePage";
 import MovieDetailPage from "./pages/MovieDetailPage.tsx";
 
 const router = createBrowserRouter([
-    { path: "/", 
+    { path: "/",
       element: <HomePage />,
       errorElement: <NotFoundPage />,
       children: [
-        { path: "movies/:category", 
+        { index: true,
           element: <MoviePage />,
         },
-        { path: "movies/:movieId", 
+        { path: "movies/:category",
+          element: <MoviePage />,
+        },
+        { path: "movies/detail/:movieId",
           element: <MovieDetailPage />,
         }
-      ] 
+      ]
     }
 ]);
 
