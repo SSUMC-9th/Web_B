@@ -1,5 +1,5 @@
 import './App.css'
-import MoivePage from './pages/MoivePage';
+import MoivePage from './pages/MoviePage';
 
 
 function App() {
