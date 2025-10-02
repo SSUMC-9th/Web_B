@@ -79,7 +79,7 @@ export default function MovieDetailPage() {
             <div className='bg-black text-white p-8'>
               <h2 className="text-3xl font-bold">감독/출연</h2>
                 <div>    
-                    <div className='p-10 grid gap-4 grid-cols-2 sm:grid-cols-4 md:grid-cols-7 lg:grid-cols-8 xl:grid-cols-10'>
+                    <div className='p-10 grid gap-4 grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-8 xl:grid-cols-10'>
                       {movieC && movieC.map((movie_c) => (
                           <Credit key={movie_c.credit_id} movie_c = {movie_c} />
                         ))}
