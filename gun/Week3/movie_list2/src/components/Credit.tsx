@@ -1,6 +1,5 @@
 import type { MovieCast } from "../types/movie";
 import defaultProfile from "../assets/default_image.jpeg"; // 기본 이미지 import
-import { useState } from "react";
 
 interface MovieCastProps {
   movie_c: MovieCast;

@@ -22,7 +22,7 @@ export type MovieResponse = {
     total_pages: number,
     total_results: number,
 }
-export type MovieCredit = {
+export type MovieCast = {
       adult: boolean,
       gender: number,
       id: number,
@@ -35,4 +35,10 @@ export type MovieCredit = {
       character: string;
       credit_id: string;
       order: number,
-}
+};
+
+
+export type MovieCreditsResponse = {
+  id: number;
+  cast: MovieCast[];
+};

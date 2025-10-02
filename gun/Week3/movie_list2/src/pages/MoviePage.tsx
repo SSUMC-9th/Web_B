@@ -15,7 +15,7 @@ export default function MoviePage() {
   const [page, setPage] = useState(1);
 
   const {category} = useParams<{
-      category:string;
+      category : string;
   }>();
 
   useEffect((): void => {
@@ -44,6 +44,10 @@ export default function MoviePage() {
 
     fetchMovies();
   }, [page, category]);
+
+  useEffect(() => {
+    setPage(1);
+  }, [category]);
 
   if (isError) {
     return <div>
