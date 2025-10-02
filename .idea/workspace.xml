@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b2f400c6-011c-40f3-baf2-11dfa1555932" name="변경" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Andy/Week3/MovieGrid/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Andy/Week3/MovieGrid/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Andy/Week3/MovieGrid/src/pages/MovieDetailsPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Andy/Week3/MovieGrid/src/pages/MovieDetailsPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Andy/Week3/MovieGrid/src/types/movie.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Andy/Week3/MovieGrid/src/types/movie.ts" afterDir="false" />
-    </list>
+    <list default="true" id="b2f400c6-011c-40f3-baf2-11dfa1555932" name="변경" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -140,7 +135,7 @@
       <workItem from="1759321916659" duration="10370000" />
       <workItem from="1759368183015" duration="655000" />
       <workItem from="1759373242180" duration="668000" />
-      <workItem from="1759384321671" duration="671000" />
+      <workItem from="1759384321671" duration="1045000" />
     </task>
     <servers />
   </component>

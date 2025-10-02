@@ -26,9 +26,34 @@ export type MovieResponse = {
   "id": number,
   "title": string,
   "backdrop_path": string,
+  "poster_path": string,
   "genres": { id: number, name: string }[],
   "homepage": string,
   "imdb_id": string,
   "original_language": string,
   "overview": string,
+  "vote_average": number,
+  "vote_count": number,
+  "release_date": string,
+  "runtime": number,
+}
+
+export type Cast = {
+  "id": number,
+  "name": string,
+  "character": string,
+  "profile_path": string | null,
+}
+
+export type Crew = {
+  "id": number,
+  "name": string,
+  "job": string,
+  "profile_path": string | null,
+}
+
+export type CreditsResponse = {
+  "id": number,
+  "cast": Cast[],
+  "crew": Crew[],
 }
