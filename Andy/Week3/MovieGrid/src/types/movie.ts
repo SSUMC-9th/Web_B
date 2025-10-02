@@ -24,14 +24,11 @@ export type MoviesResponse = {
 
 export type MovieResponse = {
   "id": number,
-  "adult": boolean,
+  "title": string,
   "backdrop_path": string,
-  "belongs_to_collection": null | object,
-  "budget": number,
   "genres": { id: number, name: string }[],
   "homepage": string,
   "imdb_id": string,
   "original_language": string,
-  "original_title": string,
   "overview": string,
 }

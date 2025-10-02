@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { fetchMovies } from "../api/movies.ts";
-import { LoadingSpinner } from "../components/LoadingSpinner.tsx";
-import MovieCard from "../components/MovieCard.tsx";
-import Button from "../components/Button.tsx";
+import { LoadingSpinner } from "../components/LoadingSpinner";
+import MovieCard from "../components/MovieCard";
+import Button from "../components/Button";
 import type { Movie } from "../types/movie.ts";
 
 
