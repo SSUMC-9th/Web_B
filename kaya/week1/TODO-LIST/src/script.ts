@@ -76,7 +76,7 @@ const createTodoElement = (todo: Todo, isDone: boolean): HTMLLIElement => {
             deleteTodo(todo);
         } else {
             completeTask(todo);
-        }
+        } 
     })
 
     li.appendChild(button);
@@ -85,7 +85,7 @@ const createTodoElement = (todo: Todo, isDone: boolean): HTMLLIElement => {
 
 // 8. 폼 제출 이벤트 리스너
 todoForm.addEventListener('submit', (event: Event): void => {
-    event.preventDefault();
+
     const text = getTodoText();
     if (text) {
         addTodo(text);
