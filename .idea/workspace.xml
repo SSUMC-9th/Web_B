@@ -4,7 +4,31 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b2f400c6-011c-40f3-baf2-11dfa1555932" name="변경" comment="" />
+    <list default="true" id="b2f400c6-011c-40f3-baf2-11dfa1555932" name="변경" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Andy/Week3/MovieGrid/src/api/movie.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Andy/Week3/MovieGrid/src/api/movie.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Andy/Week3/MovieGrid/src/api/movies.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Andy/Week3/MovieGrid/src/api/movies.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Andy/Week3/MovieGrid/src/pages/MoviesPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Andy/Week3/MovieGrid/src/pages/MoviesPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Week1/Practice/array.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Week1/Practice/boolean.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Week1/Practice/function.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Week1/Practice/literal_type.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Week1/Practice/null.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Week1/Practice/number.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Week1/Practice/string.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Week1/Practice/tuple.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Week1/TodoList/bun.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Week1/TodoList/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Week1/TodoList/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Week1/TodoList/src/controller/TodoController.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Week1/TodoList/src/index.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Week1/TodoList/src/model/Todo.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Week1/TodoList/src/model/TodoList.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Week1/TodoList/src/styles.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Week1/TodoList/src/util/TodoUtil.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Week1/TodoList/src/view/TodoView.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Week1/TodoList/tsconfig.json" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -15,8 +39,8 @@
       <list>
         <option value="HTML File" />
         <option value="CSS File" />
-        <option value="TypeScript File" />
         <option value="TypeScript JSX File" />
+        <option value="TypeScript File" />
       </list>
     </option>
   </component>
@@ -46,46 +70,58 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;Bun.array.ts.executor&quot;: &quot;Run&quot;,
-    &quot;Bun.null.ts.executor&quot;: &quot;Run&quot;,
-    &quot;Bun.number.ts.executor&quot;: &quot;Run&quot;,
-    &quot;Bun.string.ts.executor&quot;: &quot;Run&quot;,
-    &quot;Bun.tuple.ts.executor&quot;: &quot;Run&quot;,
-    &quot;Bun.type.ts.executor&quot;: &quot;Run&quot;,
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;andy/#2&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/joonwoo/Developer/Web_B/Andy/Week2&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_interpreter_path&quot;: &quot;node&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;/opt/homebrew/bin/bun&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;discord-application&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/Users/joonwoo/Developer/Web_B/Andy/Week1/TodoList/node_modules/typescript/lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Bun.array.ts.executor": "Run",
+    "Bun.null.ts.executor": "Run",
+    "Bun.number.ts.executor": "Run",
+    "Bun.string.ts.executor": "Run",
+    "Bun.tuple.ts.executor": "Run",
+    "Bun.type.ts.executor": "Run",
+    "DefaultHtmlFileTemplate": "HTML File",
+    "JavaScript 디버그.localhost:5173.executor": "Debug",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "andy/#3에 #19개",
+    "last_opened_file_path": "/Users/joonwoo/Developer/Web_B/Andy/Week3/MovieGrid",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_interpreter_path": "node",
+    "nodejs_package_manager_path": "/opt/homebrew/bin/bun",
+    "settings.editor.selected.configurable": "terminal",
+    "ts.external.directory.path": "/Users/joonwoo/Developer/Web_B/Andy/Week3/MovieGrid/node_modules/typescript/lib",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Andy/Week3/MovieGrid" />
       <recent name="$PROJECT_DIR$/Andy/Week2" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Andy/Week3/MovieList" />
       <recent name="$PROJECT_DIR$/Andy/Week2/DarkMode/src/components" />
       <recent name="$PROJECT_DIR$/Andy/Week2" />
       <recent name="$PROJECT_DIR$/Andy/Week2/Practice/src" />
       <recent name="$PROJECT_DIR$/Andy/Week2/Practice" />
-      <recent name="$PROJECT_DIR$/Andy" />
     </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="localhost:5173" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:5173/">
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JavaScript 디버그.localhost:5173" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -120,10 +156,25 @@
       <workItem from="1758617651782" duration="5899000" />
       <workItem from="1758629528231" duration="10986000" />
       <workItem from="1758704193035" duration="14728000" />
+      <workItem from="1759321916659" duration="10370000" />
+      <workItem from="1759368183015" duration="655000" />
+      <workItem from="1759373242180" duration="668000" />
+      <workItem from="1759384321671" duration="1427000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>
