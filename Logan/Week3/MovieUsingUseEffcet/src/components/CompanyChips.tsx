@@ -37,7 +37,6 @@
 
 
 // src/components/CompanyChips.tsx
-import React from "react";
 import type { ProductionCompany } from "../types/MovieDetail";
 
 interface CompanyChipsProps {
