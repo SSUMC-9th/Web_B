@@ -5,36 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b2f400c6-011c-40f3-baf2-11dfa1555932" name="변경" comment="">
-      <change afterPath="$PROJECT_DIR$/Andy/Week4/MovieGrid/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Andy/Week4/MovieGrid/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Andy/Week4/MovieGrid/bun.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Andy/Week4/MovieGrid/eslint.config.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Andy/Week4/MovieGrid/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Andy/Week4/MovieGrid/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Andy/Week4/MovieGrid/public/vite.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Andy/Week4/MovieGrid/src/App.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Andy/Week4/MovieGrid/src/App.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Andy/Week4/MovieGrid/src/api/movie.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Andy/Week4/MovieGrid/src/api/movies.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Andy/Week4/MovieGrid/src/components/Button.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Andy/Week4/MovieGrid/src/components/LoadingSpinner.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Andy/Week4/MovieGrid/src/components/MovieCard.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Andy/Week4/MovieGrid/src/components/Navbar.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Andy/Week4/MovieGrid/src/hooks/useCustomFetch.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Andy/Week4/MovieGrid/src/hooks/useToggle.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Andy/Week4/MovieGrid/src/index.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Andy/Week4/MovieGrid/src/main.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Andy/Week4/MovieGrid/src/pages/HomePage.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Andy/Week4/MovieGrid/src/pages/MovieDetailsPage.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Andy/Week4/MovieGrid/src/pages/MoviesPage.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Andy/Week4/MovieGrid/src/pages/NotFoundPage.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Andy/Week4/MovieGrid/src/types/movie.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Andy/Week4/MovieGrid/src/vite-env.d.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Andy/Week4/MovieGrid/tsconfig.app.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Andy/Week4/MovieGrid/tsconfig.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Andy/Week4/MovieGrid/tsconfig.node.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Andy/Week4/MovieGrid/vite.config.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Andy/Week4/SpinTheLPRecord/src/pages/HomePage.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Andy/Week4/SpinTheLPRecord/src/pages/LoginPage.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Andy/Week4/SpinTheLPRecord/src/pages/NotFoundPage.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Andy/Week4/SpinTheLPRecord/src/pages/SignupPage.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Andy/Week4/MovieGrid/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/Andy/Week4/MovieGrid/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Andy/Week4/MovieGrid/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/Andy/Week4/MovieGrid/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Andy/Week4/MovieGrid/bun.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Andy/Week4/MovieGrid/bun.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Andy/Week4/MovieGrid/public/vite.svg" beforeDir="false" afterPath="$PROJECT_DIR$/Andy/Week4/MovieGrid/public/vite.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Andy/Week4/MovieGrid/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/Andy/Week4/MovieGrid/src/index.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,8 +26,8 @@
       <list>
         <option value="HTML File" />
         <option value="CSS File" />
-        <option value="TypeScript JSX File" />
         <option value="TypeScript File" />
+        <option value="TypeScript JSX File" />
       </list>
     </option>
   </component>
@@ -96,7 +76,7 @@
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "andy/#3",
+    "git-widget-placeholder": "andy/#4",
     "javascript.preferred.runtime.type.id": "bun",
     "last_opened_file_path": "/Users/joonwoo/Developer/Web_B/Andy",
     "list.type.of.created.stylesheet": "CSS",
@@ -107,7 +87,7 @@
     "nodejs_interpreter_path": "node",
     "nodejs_package_manager_path": "/opt/homebrew/bin/bun",
     "settings.editor.selected.configurable": "terminal",
-    "ts.external.directory.path": "/Users/joonwoo/Developer/Web_B/Andy/Week4/MovieGrid/node_modules/typescript/lib",
+    "ts.external.directory.path": "/Users/joonwoo/Developer/Web_B/Andy/Week3/Single-Page-App/node_modules/typescript/lib",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -173,7 +153,7 @@
       <workItem from="1759373242180" duration="668000" />
       <workItem from="1759384321671" duration="1427000" />
       <workItem from="1759917000754" duration="5037000" />
-      <workItem from="1759927169876" duration="4490000" />
+      <workItem from="1759927169876" duration="8736000" />
     </task>
     <servers />
   </component>
