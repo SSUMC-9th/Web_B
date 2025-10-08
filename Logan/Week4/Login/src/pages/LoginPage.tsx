@@ -1,5 +1,6 @@
 import React from "react";
 import useForm from "../hooks/useForm";
+import { useNavigate } from "react-router-dom";
 import { type UserSigninInformation, validateSignin } from "../utils/validate";
 import AppHeader from "../components/Appheader";
 import GoogleIcon from "../components/GoogleIcon";
@@ -24,6 +25,13 @@ const LoginPage = () => {
     Object.values(errors || {}).some((error: string) => error.length > 0) ||
     Object.values(values).some((value: string) => value === "");
 
+  // 이전페이지 이동작업
+  const navigate = useNavigate();
+  // 페이지 이동 함수
+  const handleGoBack = () => {
+    navigate(-1); // react-router-dom의 뒤로가기 기능
+  };
+
   return (
     // 스타일적용
     <div className="min-h-screen bg-black text-white">
@@ -37,6 +45,7 @@ const LoginPage = () => {
               type="button"
               aria-label="뒤로가기"
               className="rounded-md p-1 hover:bg-white/10"
+              onClick={handleGoBack}
             >
               {/* chevron-left */}
               <svg
