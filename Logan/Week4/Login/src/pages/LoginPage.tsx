@@ -1,6 +1,9 @@
 import React from "react";
 import useForm from "../hooks/useForm";
 import { type UserSigninInformation, validateSignin } from "../utils/validate";
+import AppHeader from "../components/Appheader";
+import GoogleIcon from "../components/GoogleIcon";
+import Divider from "../components/Divider";
 
 const LoginPage = () => {
   const { values, errors, touched, getInputProps } =
@@ -22,47 +25,100 @@ const LoginPage = () => {
     Object.values(values).some((value: string) => value === "");
 
   return (
-    <div className="flex flex-col items-center justify-center h-full gap-4">
-      <div className="flex flex-col gap-3">
-        <input
-          {...getInputProps("email")}
-          name="email"
-          className={`border w-[300px] p-[10px] focus:border-[#807bff] rounded-sm ${
-            errors?.email && touched?.email
-              ? "border-red-500 bg-red-200"
-              : "border-[#ccc]"
-          }`}
-          type={"email"}
-          placeholder="이메일"
-        />
-        {errors?.email && touched?.email && (
-          <div className="text-red-500 text-sm">{errors.email}</div>
-        )}
+    // 스타일적용
+    <div className="min-h-screen bg-black text-white">
+      <AppHeader />
 
-        <input
-          {...getInputProps("password")}
-          name="password"
-          className={`border w-[300px] p-[10px] focus:border-[#807bff] rounded-sm ${
-            errors?.password && touched?.password
-              ? "border-red-500 bg-red-200"
-              : "border-[#ccc]"
-          }`}
-          type={"password"}
-          placeholder="비밀번호"
-        />
-        {errors?.password && touched?.password && (
-          <div className="text-red-500 text-sm">{errors.password}</div>
-        )}
+      <main className="mx-auto flex max-w-6xl justify-center px-4">
+        <section className="w-full max-w-sm pt-16 sm:pt-20">
+          {/* 상단 타이틀 라인 */}
+          <div className="mb-6 flex items-center gap-2 text-gray-300">
+            <button
+              type="button"
+              aria-label="뒤로가기"
+              className="rounded-md p-1 hover:bg-white/10"
+            >
+              {/* chevron-left */}
+              <svg
+                viewBox="0 0 24 24"
+                className="h-5 w-5"
+                fill="none"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M15 19l-7-7 7-7"
+                />
+              </svg>
+            </button>
+            <h1 className="text-lg font-semibold">로그인</h1>
+          </div>
 
-        <button
-          type="button"
-          onClick={handleSubmit}
-          disabled={isDisabled}
-          className="w-full bg-blue-600 text-white py-5 rounded-md text-lg font-medium hover:bg-blue-700 transition-colors cursor-pointer disabled:bg-gray-500"
-        >
-          로그인
-        </button>
-      </div>
+          {/* 카드 */}
+          <div className="rounded-xl border border-white/10 bg-white/[0.03] p-6 shadow-2xl backdrop-blur">
+            {/* 구글 로그인 */}
+            <button
+              type="button"
+              className="mb-4 inline-flex w-full items-center justify-center gap-2 rounded-md border border-white/20 px-4 py-3 text-sm font-medium text-white transition hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-pink-500"
+            >
+              <GoogleIcon />
+              <span>구글 로그인</span>
+            </button>
+
+            <Divider text="OR" />
+
+            {/* 이메일 */}
+            <div className="space-y-1.5">
+              <input
+                {...getInputProps("email")}
+                name="email"
+                type="email"
+                placeholder="이메일을 입력해주세요!"
+                className={`w-full rounded-md border bg-transparent px-3 py-2 text-sm text-white placeholder-gray-500 outline-none transition
+                ${
+                  errors?.email && touched?.email
+                    ? "border-red-500 bg-red-500/10 focus:ring-2 focus:ring-red-500"
+                    : "border-white/20 focus:border-white/30 focus:ring-2 focus:ring-pink-500/50"
+                }`}
+              />
+              {errors?.email && touched?.email && (
+                <p className="text-xs text-red-400">{errors.email}</p>
+              )}
+            </div>
+
+            {/* 비밀번호 */}
+            <div className="mt-3 space-y-1.5">
+              <input
+                {...getInputProps("password")}
+                name="password"
+                type="password"
+                placeholder="비밀번호를 입력해주세요!"
+                className={`w-full rounded-md border bg-transparent px-3 py-2 text-sm text-white placeholder-gray-500 outline-none transition
+                ${
+                  errors?.password && touched?.password
+                    ? "border-red-500 bg-red-500/10 focus:ring-2 focus:ring-red-500"
+                    : "border-white/20 focus:border-white/30 focus:ring-2 focus:ring-pink-500/50"
+                }`}
+              />
+              {errors?.password && touched?.password && (
+                <p className="text-xs text-red-400">{errors.password}</p>
+              )}
+            </div>
+
+            {/* 로그인 버튼 */}
+            <button
+              type="button"
+              onClick={handleSubmit}
+              disabled={isDisabled}
+              className="mt-4 w-full rounded-md bg-pink-600 py-3 text-sm font-medium text-white transition hover:bg-pink-700 disabled:cursor-not-allowed disabled:bg-gray-700 disabled:text-gray-400"
+            >
+              로그인
+            </button>
+          </div>
+        </section>
+      </main>
     </div>
   );
 };
