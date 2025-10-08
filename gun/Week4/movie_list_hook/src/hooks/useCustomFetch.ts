@@ -1,4 +1,4 @@
-// src/hooks/useFetch.ts
+// src/hooks/useFetch.ts //커스텀 훅
 import { useEffect, useState } from "react";
 import axios from "axios";
 
@@ -23,3 +23,5 @@ export function useFetch<T>(url: string) {
 
   return { data, isPending, isError };
 }
+
+//수정
