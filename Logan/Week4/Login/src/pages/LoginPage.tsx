@@ -5,8 +5,14 @@ import { type UserSigninInformation, validateSignin } from "../utils/validate";
 import AppHeader from "../components/Appheader";
 import GoogleIcon from "../components/GoogleIcon";
 import Divider from "../components/Divider";
+import { postSignin } from "../apis/auth";
+import type { ReponseSigninDto } from "../tpyes/auth";
+import { useLocalStorage } from "../hooks/useLocalStorage";
+import { LOCAL_STORAGE_KEY } from "../constants/key";
 
 const LoginPage = () => {
+  const { setItem } = useLocalStorage(LOCAL_STORAGE_KEY.accessToken);
+
   const { values, errors, touched, getInputProps } =
     useForm<UserSigninInformation>({
       initialValue: {
@@ -16,8 +22,16 @@ const LoginPage = () => {
       validate: validateSignin,
     });
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     console.log(values);
+    try {
+      const response: ReponseSigninDto = await postSignin(values);
+      setItem(response.data.accessToken);
+
+      console.log(response);
+    } catch (error) {
+      alert(error?.message);
+    }
   };
 
   // 오류가 하나라도 있거나, 입력값이 비어있으면 버튼을 비활성화
