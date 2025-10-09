@@ -1,10 +1,10 @@
-import { useContext, useState, type FormEvent } from "react";
+import { useContext, useState, type FormEvent, type JSX } from "react";
 import type { TTodo } from "../types/todo";
 import TodoForm from "./TodoForm";
 import TodoList from "./TodoList";
 import { TodoContext, useTodo } from "../context/TodoContext";
 
-const Todo=():void=>{
+const Todo=():JSX.Element=>{
 
     // 3개의 상태를 정의할거임
     // const [todos, setTodos]=useState<TTodo[]>([]);
@@ -12,11 +12,6 @@ const Todo=():void=>{
     
     const {todos, completeTodo, deleteTodo, doneTodos}=useTodo();
     
-    
-    
-    
-
-
     // const completeTodo=(todo: TTodo) : void =>{
     //     setTodos((prevTodos): TTodo[] => prevTodos.filter((t): boolean =>t.id!==todo.id))
     //     setDoneTodos((prevDoneTodos): TTodo[] => [...prevDoneTodos, todo]);
@@ -32,6 +27,7 @@ const Todo=():void=>{
             <h1 className='todo-container__header'>Logan's todo</h1>
             <TodoForm />
             <div className='render-container'>
+
                 <TodoList 
                 title="할 일" 
                 todos={todos} 
@@ -53,6 +49,8 @@ const Todo=():void=>{
 
 
 export default Todo;
+
+
 
 export const A=() =>{
         const context=useContext(TodoContext);

@@ -20,9 +20,6 @@ const TodoList = ({title,
     }: TodoListProps) => {
         const context=useContext(TodoContext);
     
-    
-    
-    
     return (
         <div className='render-container__section'>
             <h2 className='render-container__title'>{title}</h2>

@@ -1,9 +1,9 @@
-import React, { useState, type FormEvent } from 'react';
+import React, { useState, type FormEvent, type JSX } from 'react';
 import { useTodo } from '../context/TodoContext';
 
 
 
-const TodoForm = (): Element => {
+const TodoForm = (): JSX.Element => {
 
 
     const [input, setInput]= useState<string>('');

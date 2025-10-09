@@ -7,12 +7,11 @@ import { TodoProvider } from './context/TodoContext'
 function App() {
   
 
-  return <>
+  return (
   <TodoProvider>
     <Todo/>
   </TodoProvider>
-
-  </>
+  )
 }
 
 export default App
