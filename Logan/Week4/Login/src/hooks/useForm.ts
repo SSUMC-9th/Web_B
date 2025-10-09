@@ -29,6 +29,7 @@ function useForm<T>({ initialValue, validate }: useFormProps<T>) {
   };
 
   // 이메일 인풋, 패스워드 인풋, 속성들을 좀 가져오는 것
+  // input창에 그대로 연결해줄거임
   const getInputProps = (name: keyof T) => {
     const value = values[name];
     const onChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
