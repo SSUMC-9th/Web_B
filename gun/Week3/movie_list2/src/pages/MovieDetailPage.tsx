@@ -7,6 +7,7 @@ import { LoadingSpinner } from "../components/LoadingSpinner";
 
 export default function MovieDetailPage() {
   const { movieId } = useParams();
+
   const location = useLocation(); //state로 넘긴 값 useLocation으로 받음
   const movie = location.state as Movie | undefined; 
 

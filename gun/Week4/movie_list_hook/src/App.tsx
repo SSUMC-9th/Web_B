@@ -14,7 +14,9 @@ const router = createBrowserRouter([
     path:'/',
     element: <HomePage/>,
     errorElement: <NotFoundPage/>,
-    children: [
+
+    // children = path의 상세 목록들
+    children: [   
       {
       path: 'movies/:category',
       element: <MoivePage/>,
