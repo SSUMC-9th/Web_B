@@ -8,55 +8,35 @@ import MovieFacts from "../components/MovieFacts";
 import CompanyChips from "../components/CompanyChips";
 import type { MovieDetail } from "../types/MovieDetail";
 import { type CreditResponse, type Cast } from "../types/credits";
+import useCustomFetch from "../hooks/useCustomFetch";
 
 export default function MovieDetailPage(): JSX.Element {
   const { movieId } = useParams<{ movieId: string }>();
 
-  const [detail, setDetail] = useState<MovieDetail | null>(null);
+  // 1) 상세 정보 요청
+  const {
+    data: detail,
+    isPending: isPendingDetail,
+    isError: isErrorDetail,
+  } = useCustomFetch<MovieDetail>(
+    movieId ? `https://api.themoviedb.org/3/movie/${movieId}` : null,
+    { language: "ko-KR" }
+  );
+  // 2) 크레딧(감독/출연) 요청
+  const {
+    data: creditsData,
+    isPending: isPendingCredits,
+    isError: isErrorCredits,
+  } = useCustomFetch<CreditResponse>(
+    movieId ? `https://api.themoviedb.org/3/movie/${movieId}/credits` : null,
+    { language: "ko-KR" }
+  );
 
-  const [credits, setCredits] = useState<Cast[]>([]);
+  const isPending = isPendingDetail || isPendingCredits;
+  const isError = isErrorDetail || isErrorCredits;
+  const credits = creditsData?.cast ?? [];
 
-  const [isPending, setIsPending] = useState<boolean>(false);
-  const [isError, setIsError] = useState<boolean>(false);
-
-  useEffect((): void => {
-    if (!movieId) return;
-
-    const fetchDetailAndCredits = async (): Promise<void> => {
-      if (!movieId) return;
-      setIsPending(true);
-
-      try {
-        const [detailRes, creditRes] = await Promise.all([
-          axios.get<MovieDetail>(
-            `https://api.themoviedb.org/3/movie/${movieId}?language=ko-KR`,
-            {
-              headers: {
-                Authorization: `Bearer ${import.meta.env.VITE_TMDB_KEY}`,
-              },
-            }
-          ),
-          axios.get<CreditResponse>(
-            `https://api.themoviedb.org/3/movie/${movieId}/credits?language=ko-KR`,
-            {
-              headers: {
-                Authorization: `Bearer ${import.meta.env.VITE_TMDB_KEY}`,
-              },
-            }
-          ),
-        ]);
-        setDetail(detailRes.data);
-        setCredits(creditRes.data.cast);
-      } catch (e) {
-        setIsError(true);
-      } finally {
-        setIsPending(false);
-      }
-    };
-
-    fetchDetailAndCredits();
-  }, [movieId]);
-
+  // 아래 컴포넌트들 렌더링
   if (isError) {
     return (
       <div className="p-6">
