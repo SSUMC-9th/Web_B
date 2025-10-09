@@ -1,65 +1,27 @@
-import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import axios from "axios";
-import type { MovieDetails, Credits, CastMember, CrewMember } from "../types/movie";
+import type { MovieDetails, Credits, CastMember, CrewMember, Genre } from "../types/movie";
 import LoadingSpinner from "../components/LoadingSpinner";
+import useCustomFetch from "../hooks/useCustomFetch";
 
 export default function MovieDetailPage() {
+    const { movieId } = useParams<{ movieId: string }>();
 
-    const { movieId } = useParams<{ movieId: string }>(); // URL에서 movieId 파라미터 추출 (예: /movie/123 -> movieId = "123")
+    const [movieDetails, isMoviePending, movieError] = useCustomFetch<MovieDetails>(
+       `https://api.themoviedb.org/3/movie/${movieId}?language=ko-KR`
+    );
 
-    const [movieDetails, setMovieDetails] = useState<MovieDetails | null>(null);
-    const [credits, setCredits] = useState<Credits | null>(null);
-    const [isLoading, setIsLoading] = useState(true);
-    const [error, setError] = useState(false);
+    // useCustomFetch hook을 사용하여 크레딧 정보 불러오기
+    const [credits, isCreditsPending, creditsError] = useCustomFetch<Credits>(
+        `https://api.themoviedb.org/3/movie/${movieId}/credits?language=ko-KR`
+    );
 
-    useEffect(() => {
-        const fetchMovieData = async () => {
-            
-            // movieId가 없으면 에러 처리
-            if (!movieId) {
-                setError(true);
-                setIsLoading(false);
-                return;
-            }
-
-            try {
-                // 로딩 시작 및 이전 에러 초기화
-                setIsLoading(true);
-                setError(false);
-
-                // 영화 상세 정보 불러오기
-                const detailsResponse = await axios.get<MovieDetails>(
-                    `https://api.themoviedb.org/3/movie/${movieId}?language=ko-KR`,
-                    {
-                        headers: {
-                            Authorization: `Bearer ${import.meta.env.VITE_TMDB_KEY}`,
-                        },
-                    }
-                );
-                setMovieDetails(detailsResponse.data);
-
-                // credit 정보 불러오기
-                const creditsResponse = await axios.get<Credits>(
-                    `https://api.themoviedb.org/3/movie/${movieId}/credits?language=ko-KR`,
-                    {
-                        headers: {
-                            Authorization: `Bearer ${import.meta.env.VITE_TMDB_KEY}`,
-                        },
-                    }
-                );
-                setCredits(creditsResponse.data);
-            } catch {
-                setError(true);
-            } finally {
-                setIsLoading(false);
-            }
-        };
-        fetchMovieData();
-    }, [movieId]); // movieId가 변경될 때마다 재실행
+    // 두 요청 중 하나라도 로딩 중이면 로딩 상태
+    const isPending = isMoviePending || isCreditsPending;
+    // 두 요청 중 하나라도 에러가 발생하면 에러 상태
+    const error = movieError || creditsError;
 
     // 로딩 중일 때 보여줄 화면
-    if (isLoading) {
+    if (isPending) {
         return (
             <div className="flex justify-center items-center min-h-screen">
                 <LoadingSpinner />
@@ -71,7 +33,7 @@ export default function MovieDetailPage() {
     if (error) {
         return (
             <div className="flex justify-center items-center min-h-screen">
-                <div className="text-red-500 text-2xl">{error}</div>
+                <div className="text-red-500 text-2xl">에러가 발생했습니다.</div>
             </div>
         );
     }
@@ -163,7 +125,7 @@ export default function MovieDetailPage() {
                         {/* 장르 섹션 */}
                         <div className="flex flex-wrap gap-2 mb-4">
                             {/* 각 장르를 배지 형태로 표시 */}
-                            {movieDetails.genres.map((genre) => (
+                            {movieDetails.genres.map((genre: Genre) => (
                                 <span
                                     key={genre.id}
                                     className="px-3 py-1 bg-gray-700 rounded-full text-sm"
@@ -185,7 +147,7 @@ export default function MovieDetailPage() {
                                 <h3 className="text-xl font-semibold mb-2">감독</h3>
                                 <div className="flex gap-2">
                                     {/* 감독이 여러 명일 수 있으므로 map으로 순회 */}
-                                    {directors.map((director) => (
+                                    {directors.map((director: CrewMember) => (
                                         <span key={director.id} className="text-gray-300">
                                             {director.name}
                                         </span>
