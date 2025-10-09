@@ -1,7 +1,11 @@
 import { type UserSigninInformation, validateSignin } from "../utils/validate.ts";
 import useForm from "../hooks/useForm.ts";
+import {postSignin} from "../apis/auth.ts";
+import {useLocalStorage} from "../hooks/useLocalStorage.ts";
+import {LOCAL_STORAGE_KEY} from "../constants/key.ts";
 
 const LoginPage = () => {
+  const { setItem } = useLocalStorage(LOCAL_STORAGE_KEY.accessToken);
   const { values, errors, touched, getInputProps } = useForm<UserSigninInformation>({
     initialValue: {
       email: "",
@@ -10,9 +14,16 @@ const LoginPage = () => {
     validate: validateSignin,
   })
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     console.log("Login:", values);
-  };
+    try {
+      const response = await postSignin(values);
+      console.log("Login:", response);
+      setItem(response.data.accessToken);
+    } catch (error) {
+      alert(error?.message);
+    }
+  }
 
   const isValid = !errors.email && !errors.password;
 

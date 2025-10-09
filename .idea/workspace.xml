@@ -5,13 +5,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b2f400c6-011c-40f3-baf2-11dfa1555932" name="변경" comment="">
-      <change afterPath="$PROJECT_DIR$/Andy/Week4/SpinTheLPRecord/src/hooks/useForm.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Andy/Week4/SpinTheLPRecord/src/utils/validate.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Andy/Week4/SpinTheLPRecord/src/apis/auth.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Andy/Week4/SpinTheLPRecord/src/apis/axios.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Andy/Week4/SpinTheLPRecord/src/constants/key.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Andy/Week4/SpinTheLPRecord/src/hooks/useLocalStorage.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Andy/Week4/SpinTheLPRecord/src/pages/MyPage.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Andy/Week4/SpinTheLPRecord/src/types/auth.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Andy/Week4/SpinTheLPRecord/src/types/common.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Andy/Week4/SpinTheLPRecord/vite-env.d.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Andy/Week4/SpinTheLPRecord/src/components/NavBar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Andy/Week4/SpinTheLPRecord/src/components/NavBar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Andy/Week4/SpinTheLPRecord/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/Andy/Week4/SpinTheLPRecord/src/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Andy/Week4/SpinTheLPRecord/src/pages/HomePage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Andy/Week4/SpinTheLPRecord/src/pages/HomePage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Andy/Week4/SpinTheLPRecord/bun.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Andy/Week4/SpinTheLPRecord/bun.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Andy/Week4/SpinTheLPRecord/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/Andy/Week4/SpinTheLPRecord/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Andy/Week4/SpinTheLPRecord/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Andy/Week4/SpinTheLPRecord/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Andy/Week4/SpinTheLPRecord/src/hooks/useForm.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Andy/Week4/SpinTheLPRecord/src/hooks/useForm.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Andy/Week4/SpinTheLPRecord/src/pages/LoginPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Andy/Week4/SpinTheLPRecord/src/pages/LoginPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Andy/Week4/SpinTheLPRecord/src/pages/SignupPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Andy/Week4/SpinTheLPRecord/src/pages/SignupPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Andy/Week4/SpinTheLPRecord/src/utils/validate.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Andy/Week4/SpinTheLPRecord/src/utils/validate.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -150,7 +159,7 @@
       <workItem from="1759373242180" duration="668000" />
       <workItem from="1759384321671" duration="1427000" />
       <workItem from="1759917000754" duration="5037000" />
-      <workItem from="1759927169876" duration="18103000" />
+      <workItem from="1759927169876" duration="29048000" />
     </task>
     <servers />
   </component>

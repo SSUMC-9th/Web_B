@@ -15,7 +15,7 @@ function validateUser(values: UserSigninInformation) {
     errors.email = "유효한 이메일 주소를 입력해주세요.";
   }
 
-  if (8 <= values.password.length && values.password.length << 20) {
+  if (values.password.length < 8 || values.password.length > 20) {
     errors.password = "비밀번호는 8자 이상 20자 이하여야 합니다.";
   }
 
