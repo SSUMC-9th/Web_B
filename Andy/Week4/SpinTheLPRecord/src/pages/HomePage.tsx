@@ -3,7 +3,7 @@ import {Outlet} from "react-router-dom";
 
 const HomePage = () => {
   return (
-    <div>
+    <div className="min-h-screen bg-black text-white">
       <NavBar />
       <Outlet />
     </div>
