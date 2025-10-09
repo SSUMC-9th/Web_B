@@ -5,29 +5,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b2f400c6-011c-40f3-baf2-11dfa1555932" name="변경" comment="">
+      <change afterPath="$PROJECT_DIR$/Andy/Week4/SpinTheLPRecord/src/apis/auth.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Andy/Week4/SpinTheLPRecord/src/apis/axios.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Andy/Week4/SpinTheLPRecord/src/constants/key.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Andy/Week4/SpinTheLPRecord/src/hooks/useLocalStorage.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Andy/Week4/SpinTheLPRecord/src/pages/MyPage.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Andy/Week4/SpinTheLPRecord/src/types/auth.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Andy/Week4/SpinTheLPRecord/src/types/common.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Andy/Week4/SpinTheLPRecord/vite-env.d.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Andy/Week3/MovieGrid/src/api/movie.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Andy/Week3/MovieGrid/src/api/movie.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Andy/Week3/MovieGrid/src/api/movies.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Andy/Week3/MovieGrid/src/api/movies.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Andy/Week3/MovieGrid/src/pages/MoviesPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Andy/Week3/MovieGrid/src/pages/MoviesPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Week1/Practice/array.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Week1/Practice/boolean.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Week1/Practice/function.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Week1/Practice/literal_type.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Week1/Practice/null.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Week1/Practice/number.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Week1/Practice/string.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Week1/Practice/tuple.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Week1/TodoList/bun.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Week1/TodoList/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Week1/TodoList/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Week1/TodoList/src/controller/TodoController.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Week1/TodoList/src/index.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Week1/TodoList/src/model/Todo.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Week1/TodoList/src/model/TodoList.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Week1/TodoList/src/styles.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Week1/TodoList/src/util/TodoUtil.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Week1/TodoList/src/view/TodoView.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Week1/TodoList/tsconfig.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Andy/Week4/SpinTheLPRecord/bun.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Andy/Week4/SpinTheLPRecord/bun.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Andy/Week4/SpinTheLPRecord/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/Andy/Week4/SpinTheLPRecord/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Andy/Week4/SpinTheLPRecord/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Andy/Week4/SpinTheLPRecord/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Andy/Week4/SpinTheLPRecord/src/hooks/useForm.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Andy/Week4/SpinTheLPRecord/src/hooks/useForm.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Andy/Week4/SpinTheLPRecord/src/pages/LoginPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Andy/Week4/SpinTheLPRecord/src/pages/LoginPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Andy/Week4/SpinTheLPRecord/src/pages/SignupPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Andy/Week4/SpinTheLPRecord/src/pages/SignupPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Andy/Week4/SpinTheLPRecord/src/utils/validate.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Andy/Week4/SpinTheLPRecord/src/utils/validate.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,6 +52,9 @@
     &quot;accountId&quot;: &quot;bdb3ba55-51fa-4a5b-82fb-8cf70e5607e6&quot;
   }
 }</component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Andy/Week4/MovieGrid/src/hooks/useMovieDetails.tsx" root0="FORCE_HIGHLIGHTING" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 1
 }</component>
@@ -86,8 +82,9 @@
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "andy/#3에 #19개",
-    "last_opened_file_path": "/Users/joonwoo/Developer/Web_B/Andy/Week3/MovieGrid",
+    "git-widget-placeholder": "andy/#4",
+    "javascript.preferred.runtime.type.id": "bun",
+    "last_opened_file_path": "/Users/joonwoo/Developer/Web_B/Andy",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -96,12 +93,13 @@
     "nodejs_interpreter_path": "node",
     "nodejs_package_manager_path": "/opt/homebrew/bin/bun",
     "settings.editor.selected.configurable": "terminal",
-    "ts.external.directory.path": "/Users/joonwoo/Developer/Web_B/Andy/Week3/MovieGrid/node_modules/typescript/lib",
+    "ts.external.directory.path": "/Users/joonwoo/Developer/Web_B/Andy/Week3/Single-Page-App/node_modules/typescript/lib",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Andy" />
       <recent name="$PROJECT_DIR$/Andy/Week3/MovieGrid" />
       <recent name="$PROJECT_DIR$/Andy/Week2" />
     </key>
@@ -126,7 +124,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-9c94529fcfe0-JavaScript-WS-252.26199.162" />
+        <option value="bundled-js-predefined-d6986cc7102b-256f9dae541f-JavaScript-WS-253.24325.37" />
       </set>
     </attachedChunks>
   </component>
@@ -160,6 +158,8 @@
       <workItem from="1759368183015" duration="655000" />
       <workItem from="1759373242180" duration="668000" />
       <workItem from="1759384321671" duration="1427000" />
+      <workItem from="1759917000754" duration="5037000" />
+      <workItem from="1759927169876" duration="29048000" />
     </task>
     <servers />
   </component>
