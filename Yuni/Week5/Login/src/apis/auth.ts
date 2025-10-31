@@ -37,13 +37,24 @@ export type ResponseSigninDto = CommonResponse<{
     refreshToken: string;
 }>;
 
-// 내 정보 조회 
+// 내 정보 조회
 export type ResponseMeDto = CommonResponse<{
     id: number;
     name: string;
-    email: string;  
+    email: string;
     bio?: string;
     avatar?: string;
     createdAt: Date;
     updatedAt: Date;
+}>;
+
+// 토큰 갱신 요청
+export type RequestRefreshTokenDto = {
+    refreshToken: string;
+};
+
+// 토큰 갱신 응답
+export type ResponseRefreshTokenDto = CommonResponse<{
+    accessToken: string;
+    refreshToken: string;
 }>;

@@ -42,10 +42,13 @@ export default function LoginPage() {
                 };
 
                 login(response.data.accessToken, user);
+                // Refresh Token 저장
+                localStorage.setItem('refreshToken', response.data.refreshToken);
                 console.log('✅ 로그인 성공! 토큰 저장됨:', response.data.accessToken);
+                console.log('🔄 Refresh Token 저장됨:', response.data.refreshToken);
 
-                // 로그인 성공 후 홈으로 리다이렉트
-                navigate('/', { replace: true });
+                // 로그인 성공 후 대시보드로 리다이렉트
+                navigate('/dashboard', { replace: true });
             } else {
                 setError(response.message || '로그인에 실패했습니다.');
             }
@@ -79,9 +82,9 @@ export default function LoginPage() {
                 login(mockAccessToken, mockUser);
                 setError('⚠️ 백엔드 없이 테스트 모드로 로그인했습니다. 2초 후 이동합니다...');
 
-                // 2초 후 홈으로 리다이렉트
+                // 2초 후 대시보드로 리다이렉트
                 setTimeout(() => {
-                    navigate('/', { replace: true });
+                    navigate('/dashboard', { replace: true });
                 }, 2000);
             } else {
                 if (err instanceof Error) {

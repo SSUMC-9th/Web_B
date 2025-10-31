@@ -23,6 +23,7 @@ const router = createBrowserRouter([
     element: <HomePage />,
     errorElement: <ErrorPage />,
     children: [
+      { index: true, element: <LoginPage /> },
       { path: "login", element: <LoginPage /> },
       { path: "signup", element: <SignUpPage /> },
       // Protected Route 예제: 로그인 필요

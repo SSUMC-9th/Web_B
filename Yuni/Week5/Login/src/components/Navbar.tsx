@@ -16,16 +16,16 @@ export default function Navbar() {
       <div className="flex gap-3 items-center">
         {isAuthenticated && user ? (
           <>
-            <button
-              onClick={() => navigate('/dashboard')}
-              className="px-4 py-2 bg-blue-600 rounded hover:bg-blue-700 transition"
-            >
-              대시보드
-            </button>
             <span className="text-gray-300 text-sm">
               {user.name || user.email}
               {user.role === 'admin' && <span className="ml-2 text-yellow-500">[관리자]</span>}
             </span>
+            <button
+              onClick={() => navigate('/dashboard')}
+              className="px-4 py-2 bg-pink-500 rounded hover:bg-pink-600 transition"
+            >
+              대시보드
+            </button>
             <button
               onClick={handleLogout}
               className="px-4 py-2 bg-red-600 rounded hover:bg-red-700 transition"

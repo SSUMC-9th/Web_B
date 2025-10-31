@@ -1,4 +1,6 @@
 import { useAuth } from '../hooks/useAuth';
+import { axiosInstance } from '../apis/common';
+import { useState } from 'react';
 
 /**
  * DashboardPage - Protected Route 예제
@@ -6,6 +8,18 @@ import { useAuth } from '../hooks/useAuth';
  */
 export default function DashboardPage() {
   const { user } = useAuth();
+  const [testResult, setTestResult] = useState('');
+
+  const handlePlayMusic = async () => {
+    try {
+      setTestResult('음악을 재생하는 중...');
+      // 사용자 정보 조회 API 요청
+      const response = await axiosInstance.get('/users/me');
+      setTestResult('✅ 음악 재생 성공!');
+    } catch (error: any) {
+      setTestResult('❌ 음악 재생 실패: ' + (error.message || '알 수 없는 에러'));
+    }
+  };
 
   return (
     <div className="min-h-[calc(100vh-80px)] bg-black text-white p-8">
@@ -51,6 +65,28 @@ export default function DashboardPage() {
                 <p className="text-white font-medium">Protected Route 접근 가능</p>
               </div>
             </div>
+          </div>
+        </div>
+
+        {/* 음악 재생 */}
+        <div className="bg-gray-900 rounded-lg p-6 border border-purple-500 border-opacity-30 mb-6">
+          <h2 className="text-xl font-semibold mb-4 text-purple-500">🎵 음악 재생</h2>
+          <div className="space-y-4">
+            <p className="text-gray-300">
+              아래 버튼을 클릭하면 음악이 재생됩니다.<br/>
+              <span className="text-purple-400">30초 이상 경과 후</span> 버튼을 클릭하면 토큰이 만료되어 자동으로 갱신됩니다.
+            </p>
+            <button
+              onClick={handlePlayMusic}
+              className="w-full px-6 py-3 bg-purple-600 hover:bg-purple-700 text-white rounded-lg font-medium transition"
+            >
+              ▶️ 음악 재생하기
+            </button>
+            {testResult && (
+              <div className="bg-gray-800 rounded p-4 mt-3">
+                <p className="text-sm font-mono text-gray-300">{testResult}</p>
+              </div>
+            )}
           </div>
         </div>
 
