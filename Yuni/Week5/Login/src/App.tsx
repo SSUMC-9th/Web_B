@@ -4,6 +4,7 @@ import LoginPage from './pages/LoginPage.tsx';
 import ErrorPage from './pages/NotFoundPage.tsx';
 import SignUpPage from './pages/SignUpPage.tsx';
 import DashboardPage from './pages/DashboardPage.tsx';
+import GoogleCallbackPage from './pages/GoogleCallbackPage.tsx';
 import { AuthProvider } from './contexts/AuthContext';
 import { ProtectedRoute } from './components/ProtectedRoute';
 
@@ -25,6 +26,7 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <LoginPage /> },
       { path: "login", element: <LoginPage /> },
+      { path: "v1/auth/google/callback", element: <GoogleCallbackPage /> },  // Google OAuth 콜백
       { path: "signup", element: <SignUpPage /> },
       // Protected Route 예제: 로그인 필요
       {

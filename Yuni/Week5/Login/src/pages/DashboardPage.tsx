@@ -14,7 +14,7 @@ export default function DashboardPage() {
     try {
       setTestResult('음악을 재생하는 중...');
       // 사용자 정보 조회 API 요청
-      const response = await axiosInstance.get('/users/me');
+      await axiosInstance.get('/users/me');
       setTestResult('✅ 음악 재생 성공!');
     } catch (error: any) {
       setTestResult('❌ 음악 재생 실패: ' + (error.message || '알 수 없는 에러'));

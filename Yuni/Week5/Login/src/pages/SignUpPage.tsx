@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { emailSchema, passwordSchema, nicknameSchema } from "../schemas/signup.schema";
 import { postSignup } from "../apis/common";
-import type { RequestUser } from "../apis/auth";
 
 export default function SignUpPage() {
   const navigate = useNavigate();
