@@ -2,10 +2,17 @@ import { useNavigate } from 'react-router-dom';
 import type { UserSigninInformation } from '../utils/validate';
 import validateSignin from '../utils/validate';
 import useForm from '../hooks/useForm';
-import axios from 'axios';
+import { postSignin } from '../apis/common';
+import { useAuth } from '../hooks/useAuth';
+import { useState } from 'react';
+import type { User } from '../types/auth.types';
 
 export default function LoginPage() {
     const navigate = useNavigate();
+    const { login } = useAuth();
+    const [error, setError] = useState('');
+    const [isSubmitting, setIsSubmitting] = useState(false);
+
     const { values, errors, touched, getInputProps } = useForm<UserSigninInformation>({
         initialValues: { email: '', password: '' },
         validate: validateSignin,
@@ -13,8 +20,43 @@ export default function LoginPage() {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        console.log(values);
-        await axios.post('https://example.com/api/login', values);
+        setError('');
+        setIsSubmitting(true);
+
+        try {
+            // API 호출
+            const response = await postSignin({
+                email: values.email,
+                password: values.password,
+            });
+
+            if (response.status) {
+                // 토큰 저장 및 사용자 정보 설정
+                const user: User = {
+                    id: response.data.id,
+                    email: response.data.email,
+                    name: response.data.email.split('@')[0], // 임시로 이메일에서 추출
+                    role: 'user', // 기본 역할은 user
+                    createdAt: new Date(),
+                    updatedAt: new Date(),
+                };
+
+                login(response.data.accessToken, user);
+
+                // 로그인 성공 후 홈으로 리다이렉트
+                navigate('/', { replace: true });
+            } else {
+                setError(response.message || '로그인에 실패했습니다.');
+            }
+        } catch (err) {
+            if (err instanceof Error) {
+                setError(err.message || '로그인 중 오류가 발생했습니다.');
+            } else {
+                setError('로그인 중 오류가 발생했습니다.');
+            }
+        } finally {
+            setIsSubmitting(false);
+        }
     }
 
     const isDisable : boolean =
@@ -26,7 +68,7 @@ export default function LoginPage() {
       <main className="flex flex-col items-center justify-center min-h-[calc(100vh-80px)] px-4">
         <div className="w-full max-w-md">
           <div className="flex items-center justify-center gap-4 mb-8 relative">
-            <button 
+            <button
                 onClick={() => navigate(-1)}
                 className="text-white hover:text-gray-300 transition absolute left-0">
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -35,6 +77,12 @@ export default function LoginPage() {
             </button>
             <h2 className="text-2xl font-semibold">로그인</h2>
           </div>
+
+          {error && (
+            <div className="bg-red-900 border border-red-700 text-red-100 px-4 py-3 rounded-lg mb-6">
+              {error}
+            </div>
+          )}
 
           <button className="w-full flex items-center justify-center gap-3 px-6 py-3 bg-white text-gray-800 rounded-lg hover:bg-gray-100 transition mb-6">
             <svg className="w-5 h-5" viewBox="0 0 24 24">
@@ -59,6 +107,7 @@ export default function LoginPage() {
               type={"email"}
               placeholder="이메일을 입력해주세요!"
               className="w-full px-4 py-3 bg-transparent border border-gray-600 rounded-lg focus:outline-none focus:border-pink-500 transition mb-4 placeholder-gray-500"
+              disabled={isSubmitting}
             />
             {errors?.email && touched?.email && (
               <div className="text-red-500 text-sm mb-4">{errors.email}</div>
@@ -69,6 +118,7 @@ export default function LoginPage() {
               type="password"
               placeholder="비밀번호를 입력해주세요!"
               className="w-full px-4 py-3 bg-transparent border border-gray-600 rounded-lg focus:outline-none focus:border-pink-500 transition mb-6 placeholder-gray-500"
+              disabled={isSubmitting}
             />
             {errors?.password && touched?.password && (
               <div className="text-red-500 text-sm mb-4">{errors.password}</div>
@@ -76,14 +126,14 @@ export default function LoginPage() {
 
             <button
               type="submit"
-              disabled={isDisable}
+              disabled={isDisable || isSubmitting}
               className={`w-full px-6 py-3 rounded-lg font-medium ${
-                isDisable
+                isDisable || isSubmitting
                   ? 'bg-gray-600 text-white cursor-not-allowed opacity-50'
                   : 'bg-gray-800 text-white hover:bg-gray-700 transition'
               }`}
             >
-              로그인
+              {isSubmitting ? '로그인 중...' : '로그인'}
             </button>
           </form>
         </div>
