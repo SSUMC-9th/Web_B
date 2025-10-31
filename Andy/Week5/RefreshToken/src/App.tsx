@@ -7,6 +7,7 @@ import MyPage from "./pages/MyPage.tsx";
 import { AuthProvider } from "./context/AuthContext.tsx";
 import HomeLayout from "./layouts/HomeLayout.tsx";
 import ProtectedLayout from "./layouts/ProtectedLayout.tsx";
+import GoogleLoginRedirectPage from "./pages/GoogleLoginRedirectPage.tsx";
 
 const publicRouter: RouteObject[] = [
   {
@@ -26,6 +27,10 @@ const publicRouter: RouteObject[] = [
         path: "signup",
         element: <SignupPage />,
       },
+      {
+        path: "v1/auth/google/callback",
+        element: <GoogleLoginRedirectPage />,
+      }
     ],
   },
 ];
