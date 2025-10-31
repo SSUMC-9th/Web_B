@@ -1,5 +1,4 @@
 import { axiosInstance } from "./axios.ts";
-import { LOCAL_STORAGE_KEY } from "../constants/key.ts";
 import type {
   RequestSigninDto,
   RequestSignupDto,
@@ -31,14 +30,7 @@ export const postSignout = async(): Promise<void> => {
 }
 
 export const getMyInfo = async(): Promise<ResponseMyInfoDto> => {
-  const token = localStorage.getItem(LOCAL_STORAGE_KEY.accessToken);
-  const parsedToken = token ? JSON.parse(token) : null;
-
-  const { data } = await axiosInstance.get("/v1/users/me", {
-    headers: {
-      Authorization: `Bearer ${parsedToken}`,
-    }
-  });
+  const { data } = await axiosInstance.get("/v1/users/me");
 
   return data;
 }
