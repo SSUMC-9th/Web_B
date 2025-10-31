@@ -33,7 +33,8 @@ axiosInstance.interceptors.request.use(
 axiosInstance.interceptors.response.use(
   (response) => response,
   (error) => {
-    if (error.response?.status === 401) {
+    // 로그인 엔드포인트는 401 응답을 처리하지 않음 (정상적인 응답일 수 있음)
+    if (error.response?.status === 401 && error.config?.url !== '/auth/signin') {
       // 인증 실패 - 로그아웃 처리
       localStorage.removeItem('accessToken');
       localStorage.removeItem('user');
@@ -47,12 +48,26 @@ export { axiosInstance };
 
 // 회원가입
 export const postSignup = async (body: RequestUser): Promise<ResponseSignupDto> => {
-  const { data } = await axiosInstance.post<ResponseSignupDto>('/auth/signup', body);
-  return data;
+  console.log('📤 회원가입 요청 데이터:', body);
+  try {
+    const { data } = await axiosInstance.post<ResponseSignupDto>('/auth/signup', body);
+    console.log('✅ 회원가입 응답:', data);
+    return data;
+  } catch (error: any) {
+    console.error('❌ 회원가입 실패:', error.response?.data);
+    throw error;
+  }
 };
 
 // 로그인
 export const postSignin = async (body: RequestSigninDto): Promise<ResponseSigninDto> => {
-  const { data } = await axiosInstance.post<ResponseSigninDto>('/auth/signin', body);
-  return data;
+  console.log('📤 로그인 요청 데이터:', body);
+  try {
+    const { data } = await axiosInstance.post<ResponseSigninDto>('/auth/signin', body);
+    console.log('✅ 로그인 응답:', data);
+    return data;
+  } catch (error: any) {
+    console.error('❌ 로그인 요청 실패 - 상세 정보:');
+    throw error;
+  }
 };

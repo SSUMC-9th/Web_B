@@ -34,14 +34,15 @@ export default function LoginPage() {
                 // 토큰 저장 및 사용자 정보 설정
                 const user: User = {
                     id: response.data.id,
-                    email: response.data.email,
-                    name: response.data.email.split('@')[0], // 임시로 이메일에서 추출
+                    email: values.email, // 로그인할 때 입력한 이메일 사용
+                    name: response.data.name,
                     role: 'user', // 기본 역할은 user
                     createdAt: new Date(),
                     updatedAt: new Date(),
                 };
 
                 login(response.data.accessToken, user);
+                console.log('✅ 로그인 성공! 토큰 저장됨:', response.data.accessToken);
 
                 // 로그인 성공 후 홈으로 리다이렉트
                 navigate('/', { replace: true });
@@ -49,10 +50,45 @@ export default function LoginPage() {
                 setError(response.message || '로그인에 실패했습니다.');
             }
         } catch (err) {
-            if (err instanceof Error) {
-                setError(err.message || '로그인 중 오류가 발생했습니다.');
+            console.error('❌ 로그인 에러:', err);
+
+            // 🔧 임시 해결: 백엔드가 없을 때 테스트용 모의 응답
+            const errorMsg = (err as any)?.message || '';
+            const errorCode = (err as any)?.code || '';
+            const isConnectionError = errorMsg.includes('ERR_CONNECTION_REFUSED') ||
+                                     errorMsg.includes('ECONNREFUSED') ||
+                                     errorMsg.includes('Network Error') ||
+                                     errorCode === 'ECONNREFUSED' ||
+                                     errorCode === 'ERR_NETWORK';
+
+            if (isConnectionError) {
+                console.log('🔧 백엔드 연결 실패 - 모의 로그인 실행');
+
+                // 임시 토큰 생성
+                const mockAccessToken = 'mock-token-' + Date.now();
+                const mockUser: User = {
+                    id: 1,
+                    name: values.email.split('@')[0],
+                    email: values.email,
+                    role: 'user',
+                    createdAt: new Date(),
+                    updatedAt: new Date(),
+                };
+
+                console.log('✅ 모의 로그인 성공 (테스트 모드):', { mockAccessToken, mockUser });
+                login(mockAccessToken, mockUser);
+                setError('⚠️ 백엔드 없이 테스트 모드로 로그인했습니다. 2초 후 이동합니다...');
+
+                // 2초 후 홈으로 리다이렉트
+                setTimeout(() => {
+                    navigate('/', { replace: true });
+                }, 2000);
             } else {
-                setError('로그인 중 오류가 발생했습니다.');
+                if (err instanceof Error) {
+                    setError(err.message || '로그인 중 오류가 발생했습니다.');
+                } else {
+                    setError('로그인 중 오류가 발생했습니다.');
+                }
             }
         } finally {
             setIsSubmitting(false);

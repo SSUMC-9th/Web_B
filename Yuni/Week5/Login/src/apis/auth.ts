@@ -32,7 +32,7 @@ export type RequestSigninDto = {
 
 export type ResponseSigninDto = CommonResponse<{
     id: number;
-    email: string;
+    name: string;
     accessToken: string;
     refreshToken: string;
 }>;

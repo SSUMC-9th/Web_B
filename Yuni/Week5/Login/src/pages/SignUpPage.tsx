@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { emailSchema, passwordSchema, nicknameSchema } from "../schemas/signup.schema";
+import { postSignup } from "../apis/common";
+import type { RequestUser } from "../apis/auth";
 
 export default function SignUpPage() {
   const navigate = useNavigate();
@@ -25,7 +27,7 @@ export default function SignUpPage() {
       emailSchema.parse(value);
       setEmailError("");
     } catch (error: any) {
-      setEmailError(error.errors[0]?.message || "이메일이 유효하지 않습니다");
+      setEmailError(error.issues?.[0]?.message || error.errors?.[0]?.message || "이메일이 유효하지 않습니다");
     }
   };
 
@@ -35,7 +37,7 @@ export default function SignUpPage() {
       passwordSchema.parse(value);
       setPasswordError("");
     } catch (error: any) {
-      setPasswordError(error.errors[0]?.message || "비밀번호가 유효하지 않습니다");
+      setPasswordError(error.issues?.[0]?.message || error.errors?.[0]?.message || "비밀번호가 유효하지 않습니다");
     }
   };
 
@@ -54,7 +56,7 @@ export default function SignUpPage() {
       nicknameSchema.parse(value);
       setNicknameError("");
     } catch (error: any) {
-      setNicknameError(error.errors[0]?.message || "닉네임이 유효하지 않습니다");
+      setNicknameError(error.issues?.[0]?.message || error.errors?.[0]?.message || "닉네임이 유효하지 않습니다");
     }
   };
 
@@ -71,8 +73,26 @@ export default function SignUpPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log({ email, password, nickname, profileImage });
-    // await axios.post('https://example.com/api/signup', { email, password, nickname, profileImage });
+
+    try {
+      const response = await postSignup({
+        email,
+        password,
+        name: nickname,
+        avatar: profileImage || undefined,
+      });
+
+      if (response.status) {
+        console.log('✅ 회원가입 성공!', response.data);
+        alert('회원가입이 완료되었습니다!');
+        navigate('/login');
+      } else {
+        alert(response.message || '회원가입에 실패했습니다.');
+      }
+    } catch (error: any) {
+      console.error('❌ 회원가입 실패:', error);
+      alert(error.response?.data?.message || '회원가입 중 오류가 발생했습니다.');
+    }
   };
 
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
