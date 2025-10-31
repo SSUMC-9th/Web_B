@@ -21,9 +21,11 @@ const MyPage = () => {
     getData();
   }, []);
 
+  // useEffect 본문은 아래handleLogout이런거 실행하기 전에 실행되지않는다.
+
   const handleLogout = async () => {
     await logout();
-    navigate("/");
+    navigate("/"); // 로그아웃 후 홈으로 보내기
   };
 
   console.log(data.data?.name);

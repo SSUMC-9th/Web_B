@@ -2,6 +2,7 @@ import React from "react";
 import { useAuth } from "../context/AuthContext";
 import { Navigate, Outlet } from "react-router-dom";
 
+// layout은 왜쓰는걸까...
 const ProtectedLayout = () => {
   const { accessToken } = useAuth();
 

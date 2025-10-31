@@ -8,6 +8,7 @@ import type {
 } from "../tpyes/auth";
 import { axiosInstance } from "./axios";
 
+// 회원가입요청
 export const postSignup = async (
   body: RequestSignupDto
 ): Promise<ResponseSignupDto> => {
@@ -16,6 +17,8 @@ export const postSignup = async (
   return data;
 };
 
+// 로그인요청
+// ReqeustSigninDto타입의 body에는 email이랑 pw가 들어감
 export const postSignin = async (
   body: RequestSigninDto
 ): Promise<ReponseSigninDto> => {

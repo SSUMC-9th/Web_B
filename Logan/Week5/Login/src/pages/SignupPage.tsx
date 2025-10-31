@@ -29,6 +29,7 @@ const schema = z
     message: "비밀번호가 일치하지 않습니다.",
   });
 
+// zod 스키마로부터 타입생성
 type FormFields = z.infer<typeof schema>;
 
 export default function SignupPage() {

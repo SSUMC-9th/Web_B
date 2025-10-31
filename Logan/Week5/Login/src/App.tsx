@@ -30,7 +30,7 @@ const publicRoutes: RouteObject[] = [
 ];
 
 // protectedRoutes: 인증이 필요한 라우트
-const protectedRouts: RouteObject[] = [
+const protectedRoutes: RouteObject[] = [
   {
     path: "/",
     element: <ProtectedLayout />,
@@ -44,7 +44,7 @@ const protectedRouts: RouteObject[] = [
   },
 ];
 
-const router = createBrowserRouter([...publicRoutes, ...protectedRouts]);
+const router = createBrowserRouter([...publicRoutes, ...protectedRoutes]);
 
 function App() {
   return (

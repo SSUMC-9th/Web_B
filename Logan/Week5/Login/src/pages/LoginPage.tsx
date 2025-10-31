@@ -12,7 +12,7 @@ import { LOCAL_STORAGE_KEY } from "../constants/key";
 import { useAuth } from "../context/AuthContext";
 
 const LoginPage = () => {
-  const { login } = useAuth();
+  const { login } = useAuth(); // useAuth에서 login 꺼내쓰기
   const navigate: NavigateFunction = useNavigate();
 
   const { values, errors, touched, getInputProps } =
@@ -26,6 +26,11 @@ const LoginPage = () => {
 
   const handleSubmit = async () => {
     await login(values);
+  };
+
+  const handleGoogleLogin = () => {
+    window.location.href =
+      import.meta.env.VITE_SERVER_API_URL + "/v1/auth/google/login";
   };
 
   // 오류가 하나라도 있거나, 입력값이 비어있으면 버튼을 비활성화
@@ -79,6 +84,8 @@ const LoginPage = () => {
             {/* 구글 로그인 */}
             <button
               type="button"
+              onClick={handleGoogleLogin}
+              //disabled={isDisabled}
               className="mb-4 inline-flex w-full items-center justify-center gap-2 rounded-md border border-white/20 px-4 py-3 text-sm font-medium text-white transition hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-pink-500"
             >
               <GoogleIcon />
