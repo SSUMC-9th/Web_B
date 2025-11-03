@@ -60,6 +60,7 @@ const UserDataDisplay = ({ userId }: { userId: number }) => {
     return <div>Error Occurred</div>;
   }
 
+  // 최종 성공했을때
   return (
     <div>
       <h1>{data?.name}</h1>
