@@ -1,8 +1,31 @@
-import React from "react";
+import React, { useState } from "react";
 import { Outlet } from "react-router-dom";
+import { boolean } from "zod";
+import useGetLpList from "../hooks/queries/useGetLpList";
 
 const HomePage = () => {
-  return <div>Home page</div>;
+  const [search, setSearch] = useState("매튜");
+  const { data, isPending, isError } = useGetLpList({
+    search,
+  });
+
+  //console.log(data?.data.data?.map((lp) => lp.id));
+  // if (!isPending) {
+  //   return <div className={"mt-20"}>Loading...</div>;
+  // }
+
+  if (isError) {
+    return <div>Error.</div>;
+  }
+
+  return (
+    <div className={"mt-20"}>
+      <input value={search} onChange={(e) => setSearch(e.target.value)} />
+      {data?.map((lp) => (
+        <h1>{lp.title}</h1>
+      ))}
+    </div>
+  );
 };
 
 export default HomePage;
