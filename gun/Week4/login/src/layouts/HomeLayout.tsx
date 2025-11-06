@@ -5,8 +5,7 @@ const HomeLayout = () => {
   const year = new Date().getFullYear();
 
   return (
-    <div className="min-h-dvh bg-gradient-to-b from-gray-50 to-white text-gray-800">
-      {/* 중앙 카드형 래퍼 */}
+    <div className="min-h-dvh">
       <div className="mx-auto max-w-6xl min-h-dvh flex flex-col rounded-2xl border border-black/10 shadow-sm overflow-hidden m-4">
 
         {/* 헤더(네브바 영역) */}

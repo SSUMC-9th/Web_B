@@ -11,6 +11,7 @@ import ProtectedLayout from './layouts/ProtectedLayout';
 import GoogleLoginPage from './pages/GooglePage';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import SearchPage from './pages/SearchPage';
 
 
 // 1. 홈 페이지
@@ -27,7 +28,9 @@ const routes: RouteObject[] = [
       { index: true, element: <HomePage /> },
       { path: "login", element: <LoginPage /> },
       { path: "signup", element: <SignupPage /> },
+      { path: "search", element: <SearchPage /> },
       { path: "v1/auth/google/callback", element: <GoogleLoginPage/>},
+      
 
       // ✅ MyPage 를 ProtectedLayout 아래에 중첩시킴
       {
@@ -42,7 +45,13 @@ const routes: RouteObject[] = [
 // protect랑 public을 나누지 않음 -> homelayout을 공통으로 outlet만 달라지게
 const router = createBrowserRouter(routes);
 
-export const queryClient = new QueryClient()
+export const queryClient = new QueryClient( { 
+  defaultOptions: {
+    queries: {
+      retry: 3,
+    }
+  }
+})
 
 function App() {
 

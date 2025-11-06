@@ -1,8 +1,7 @@
-import { Outlet } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import NavBar from "../components/Navbar";
 
 const HomeLayout = () => {
-  const year = new Date().getFullYear();
 
   return (
     <div className="min-h-dvh">
@@ -12,7 +11,11 @@ const HomeLayout = () => {
         <header className="sticky top-0 z-20 bg-white/80 backdrop-blur border-b">
           <div className="px-6 py-4 flex items-center justify-between">
             <div className="text-2xl font-semibold tracking-tight">
-              <span className="text-[#b2dab1]">Gun</span>Page
+              <Link to="/"> 
+              <div className="text-2xl font-semibold tracking-tight cursor-pointer">
+                <span className="text-[#b2dab1]">Gun</span>Page
+              </div>
+            </Link>
             </div>
             <NavBar />
           </div>

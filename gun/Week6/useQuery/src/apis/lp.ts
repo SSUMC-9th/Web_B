@@ -1,3 +1,6 @@
+//TanStack Query에서 queryFn에 들어갈 비동기 함수
+
+
 import type { PaginationDto } from "../type/common";
 import type { ResponseLpListDto } from "../type/lp";
 import { axiosInstance } from "./axios";

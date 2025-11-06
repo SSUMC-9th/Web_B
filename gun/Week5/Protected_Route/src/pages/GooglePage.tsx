@@ -20,12 +20,12 @@ const GoogleLoginPage = () => {
     if (accessToken) {
       setAccessToken(accessToken);
       setRefreshToken(refreshToken);
-      window.location.href = "/my";
+      window.location.href = "/user";
     }
 
     console.log(window.location.search, urlParams);
   }, [setAccessToken, setRefreshToken]);
-  return <div>구글 로그인 리다이렉트 화면임</div>;
+  return <div>구글 로그인 </div>;
 };
 
 export default GoogleLoginPage;
