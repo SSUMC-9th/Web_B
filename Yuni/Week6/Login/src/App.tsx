@@ -6,6 +6,7 @@ import LoginPage from './pages/LoginPage.tsx';
 import ErrorPage from './pages/NotFoundPage.tsx';
 import SignUpPage from './pages/SignUpPage.tsx';
 import DashboardPage from './pages/DashboardPage.tsx';
+import DetailPage from './pages/DetailPage.tsx';
 import GoogleCallbackPage from './pages/GoogleCallbackPage.tsx';
 import HomeLayout from './layouts/HomeLayout.tsx';
 import ProtectedLayout from './layouts/ProtectedLayout.tsx';
@@ -28,6 +29,7 @@ const router = createBrowserRouter([
       { index: true, element: <HomePage /> },
       { path: "login", element: <LoginPage /> },
       { path: "signup", element: <SignUpPage /> },
+      { path: "lp/:lpId", element: <DetailPage /> },
       { path: "v1/auth/google/callback", element: <GoogleCallbackPage /> },  // Google OAuth 콜백
     ],
   },
