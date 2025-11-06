@@ -19,6 +19,8 @@ const HomePage = () => {
   // if (!isPending) {
   //   return <div className={"mt-20"}>Loading...</div>;
   // }
+
+  // 우리가 가져온 데이터
   const {
     data: lps,
     isFetching,

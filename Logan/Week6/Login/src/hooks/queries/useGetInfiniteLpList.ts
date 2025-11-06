@@ -9,7 +9,7 @@ function useGetInfiniteLpList(
   order: PAGINATION_ORDER
 ) {
   return useInfiniteQuery({
-    queryFn: ({ pageParam: number }) =>
+    queryFn: ({ pageParam }) =>
       getLpList({ cursor: pageParam, limit, search, order }),
     queryKey: [QUERY_KEY.lps, search, order],
     initialPageParam: 0,
