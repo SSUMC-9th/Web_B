@@ -1,24 +1,54 @@
-import useGetLpList from "../hooks/queries/useGetLpList.ts";
-import { useState } from "react";
+import useGetLpListInfinite from "../hooks/queries/useGetLpListInfinite.ts";
+import { useState, useRef, useCallback, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
 import LoadingState from "../components/LoadingState";
 import ErrorState from "../components/ErrorState";
+import SkeletonCard from "../components/SkeletonCard";
 import type { Lp } from "../types/lp.ts";
 
 const HomePage = () => {
   const navigate = useNavigate();
   const [search, setSearch] = useState("");
   const [sortOrder, setSortOrder] = useState<" asc" | "desc">("desc"); // 최신순(desc)이 기본값
-  const { data, isLoading, error } = useGetLpList({ search, order: sortOrder });
+  const observerTarget = useRef<HTMLDivElement>(null);
+
+  const { data, isLoading, error, isFetchingNextPage, hasNextPage, fetchNextPage } = useGetLpListInfinite({
+    search,
+    order: sortOrder
+  });
   const { isAuthenticated, user } = useAuth();
 
-  // data 구조: { data: { data: [...], nextCursor, hasNext }, message, ... }
-  const lpList = data?.data?.data || [];
+  // data 구조: pages 배열에서 각 페이지의 data.data에 LP 목록이 있음
+  const lpList = data?.pages?.flatMap(page => page.data.data) || [];
 
   const toggleSortOrder = () => {
     setSortOrder(sortOrder === "desc" ? " asc" : "desc");
   };
+
+  // Intersection Observer for infinite scroll
+  const handleObserverCallback = useCallback(
+    (entries: IntersectionObserverEntry[]) => {
+      const target = entries[0];
+      if (target.isIntersecting && hasNextPage && !isFetchingNextPage) {
+        fetchNextPage();
+      }
+    },
+    [fetchNextPage, hasNextPage, isFetchingNextPage]
+  );
+
+  // Set up Intersection Observer
+  useEffect(() => {
+    if (!observerTarget.current) return;
+
+    const observer = new IntersectionObserver(handleObserverCallback, {
+      threshold: 0.1,
+    });
+
+    observer.observe(observerTarget.current);
+
+    return () => observer.disconnect();
+  }, [handleObserverCallback]);
 
   const formatDate = (date: Date | string) => {
     try {
@@ -69,7 +99,7 @@ const HomePage = () => {
 
       {/* 메인 컨텐츠 */}
       <main className="flex-1 container mx-auto px-4 py-8">
-        {isLoading ? (
+        {isLoading && lpList.length === 0 ? (
           <LoadingState />
         ) : error ? (
           <ErrorState message="LP 목록을 불러올 수 없습니다" />
@@ -78,55 +108,79 @@ const HomePage = () => {
             <p className="text-gray-400 text-center">표시할 LP가 없습니다</p>
           </div>
         ) : (
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
-            {lpList.map((lp: Lp) => (
-              <div
-                key={lp.id}
-                className="group relative cursor-pointer"
-                onClick={() => navigate(`/lp/${lp.id}`)}
-              >
-                {/* 정사각형 카드 - Hover 시 확장 */}
-                <div className="aspect-square relative overflow-hidden rounded-lg bg-gradient-to-br from-gray-700 to-gray-900 shadow-lg transition-all duration-300 group-hover:scale-110 group-hover:shadow-2xl group-hover:shadow-pink-500/50">
-                  {/* 앨범 아트 아이콘 */}
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="text-gray-400 text-6xl group-hover:text-gray-300 transition-colors duration-300">♫</span>
-                  </div>
+          <>
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+              {/* Top loading skeletons (shown when isLoading is true) */}
+              {isLoading && lpList.length === 0 && (
+                <>
+                  {Array.from({ length: 10 }).map((_, i) => (
+                    <SkeletonCard key={`skeleton-top-${i}`} />
+                  ))}
+                </>
+              )}
 
-                  {/* 기본 상태: 제목만 표시 (카드 하단) */}
-                  <div className="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black via-black/80 to-transparent transition-opacity duration-300 group-hover:opacity-0">
-                    <h2 className="text-sm font-semibold text-white line-clamp-2">
-                      {lp.title}
-                    </h2>
-                  </div>
+              {/* Actual LP cards */}
+              {lpList.map((lp: Lp) => (
+                <div
+                  key={lp.id}
+                  className="group relative cursor-pointer"
+                  onClick={() => navigate(`/lp/${lp.id}`)}
+                >
+                  {/* 정사각형 카드 - Hover 시 확장 */}
+                  <div className="aspect-square relative overflow-hidden rounded-lg bg-gradient-to-br from-gray-700 to-gray-900 shadow-lg transition-all duration-300 group-hover:scale-110 group-hover:shadow-2xl group-hover:shadow-pink-500/50">
+                    {/* 앨범 아트 아이콘 */}
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <span className="text-gray-400 text-6xl group-hover:text-gray-300 transition-colors duration-300">♫</span>
+                    </div>
 
-                  {/* Hover 상태: 검정 오버레이 + 메타 정보 */}
-                  <div className="absolute inset-0 bg-black/75 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center p-4">
-                    <div className="text-center space-y-3 w-full">
-                      {/* 제목 */}
-                      <h3 className="text-sm font-bold text-white line-clamp-2">
+                    {/* 기본 상태: 제목만 표시 (카드 하단) */}
+                    <div className="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black via-black/80 to-transparent transition-opacity duration-300 group-hover:opacity-0">
+                      <h2 className="text-sm font-semibold text-white line-clamp-2">
                         {lp.title}
-                      </h3>
+                      </h2>
+                    </div>
 
-                      {/* 메타 정보 구분선 */}
-                      <div className="w-8 h-0.5 bg-pink-500 mx-auto"></div>
+                    {/* Hover 상태: 검정 오버레이 + 메타 정보 */}
+                    <div className="absolute inset-0 bg-black/75 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center p-4">
+                      <div className="text-center space-y-3 w-full">
+                        {/* 제목 */}
+                        <h3 className="text-sm font-bold text-white line-clamp-2">
+                          {lp.title}
+                        </h3>
 
-                      {/* 업로드 날짜 */}
-                      <div className="text-xs text-gray-300">
-                        <span className="block text-gray-400 mb-1">📅 업로드</span>
-                        <span>{formatDate(lp.createdAt)}</span>
-                      </div>
+                        {/* 메타 정보 구분선 */}
+                        <div className="w-8 h-0.5 bg-pink-500 mx-auto"></div>
 
-                      {/* 좋아요 수 */}
-                      <div className="text-xs text-gray-300">
-                        <span className="block text-gray-400 mb-1">❤️ 좋아요</span>
-                        <span className="text-pink-400 font-semibold">{lp.likes?.length || 0}</span>
+                        {/* 업로드 날짜 */}
+                        <div className="text-xs text-gray-300">
+                          <span className="block text-gray-400 mb-1">📅 업로드</span>
+                          <span>{formatDate(lp.createdAt)}</span>
+                        </div>
+
+                        {/* 좋아요 수 */}
+                        <div className="text-xs text-gray-300">
+                          <span className="block text-gray-400 mb-1">❤️ 좋아요</span>
+                          <span className="text-pink-400 font-semibold">{lp.likes?.length || 0}</span>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            ))}
-          </div>
+              ))}
+
+              {/* Bottom loading skeletons (shown when isFetchingNextPage is true) */}
+              {isFetchingNextPage && (
+                <>
+                  {Array.from({ length: 10 }).map((_, i) => (
+                    <SkeletonCard key={`skeleton-bottom-${i}`} />
+                  ))}
+                </>
+              )}
+            </div>
+
+            {/* Infinite scroll trigger element */}
+            <div ref={observerTarget} className="h-10 mt-8" />
+          </>
         )}
       </main>
 

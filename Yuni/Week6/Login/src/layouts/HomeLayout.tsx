@@ -1,37 +1,15 @@
-import { Outlet } from 'react-router-dom';
-import { useState } from 'react';
-import Navbar from '../components/Navbar';
-import Sidebar from '../components/Sidebar';
-import Footer from '../components/Footer';
+import { Outlet } from "react-router-dom";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
-/**
- * HomeLayout - 공개 페이지용 레이아웃
- * 헤더(Navbar), 사이드바(Sidebar), 메인 컨텐츠, 푸터를 포함합니다.
- * 반응형 디자인으로 모바일에서는 사이드바가 숨겨집니다.
- */
-export default function HomeLayout() {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
-
-  const closeSidebar = () => setSidebarOpen(false);
-  const toggleSidebar = () => setSidebarOpen(!sidebarOpen);
-
-  return (
-    <div className="flex flex-col min-h-screen bg-gray-950 text-white">
-      {/* 헤더 */}
-      <Navbar onToggleSidebar={toggleSidebar} />
-
-      <div className="flex flex-1">
-        {/* 사이드바 - 데스크톱에서는 항상 표시, 모바일에서는 토글 가능 */}
-        <Sidebar isOpen={sidebarOpen} onClose={closeSidebar} />
-
-        {/* 메인 컨텐츠 영역 */}
-        <main className="flex-1 overflow-auto">
-          <Outlet />
-        </main>
-      </div>
-
-      {/* 푸터 */}
-      <Footer />
-    </div>
-  );
+export default function HomePage() {
+    return (
+         <div className="min-h-screen bg-black text-white">
+            <Navbar />
+            <main className="flex-1 mt-10">
+                <Outlet />
+            </main>
+            <Footer />
+        </div>
+    )
 }

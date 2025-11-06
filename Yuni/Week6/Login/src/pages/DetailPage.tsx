@@ -1,8 +1,11 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import useGetLpDetail from '../hooks/queries/useGetLpDetail';
+import useGetComments from '../hooks/queries/useGetComments';
 import LoadingState from '../components/LoadingState';
 import ErrorState from '../components/ErrorState';
-import { useState, useEffect } from 'react';
+import CommentForm from '../components/CommentForm';
+import CommentItem from '../components/CommentItem';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { axiosInstance } from '../apis/axios';
 import { useAuth } from '../hooks/useAuth';
 
@@ -12,6 +15,8 @@ export default function DetailPage() {
   const { isAuthenticated } = useAuth();
   const [likeLoading, setLikeLoading] = useState(false);
   const [actionMessage, setActionMessage] = useState('');
+  const [commentOrder, setCommentOrder] = useState<"asc" | "desc">("desc");
+  const observerTarget = useRef<HTMLDivElement>(null);
 
   // 비로그인 사용자 체크
   useEffect(() => {
@@ -28,6 +33,51 @@ export default function DetailPage() {
   const lpIdNumber = parseInt(lpId, 10);
   const { data, isLoading, error } = useGetLpDetail(lpIdNumber);
   const lp = data?.data;
+
+  // Comments infinite query
+  const {
+    data: commentsData,
+    isLoading: commentsLoading,
+    isFetchingNextPage,
+    hasNextPage,
+    fetchNextPage,
+    refetch: refetchComments,
+  } = useGetComments({
+    lpId: lpIdNumber,
+    order: commentOrder,
+  });
+
+  const commentList = commentsData?.pages?.flatMap(page => page.data.data) || [];
+
+  // Intersection Observer for infinite scroll
+  const handleObserverCallback = useCallback(
+    (entries: IntersectionObserverEntry[]) => {
+      const target = entries[0];
+      if (target.isIntersecting && hasNextPage && !isFetchingNextPage) {
+        fetchNextPage();
+      }
+    },
+    [fetchNextPage, hasNextPage, isFetchingNextPage]
+  );
+
+  // Set up Intersection Observer for comments
+  useEffect(() => {
+    if (!observerTarget.current) return;
+
+    const observer = new IntersectionObserver(handleObserverCallback, {
+      threshold: 0.1,
+    });
+
+    observer.observe(observerTarget.current);
+
+    return () => observer.disconnect();
+  }, [handleObserverCallback]);
+
+  // Handle comment order change - reset to first page
+  const handleCommentOrderChange = () => {
+    const newOrder = commentOrder === "desc" ? "asc" : "desc";
+    setCommentOrder(newOrder);
+  };
 
   const formatDate = (date: Date | string) => {
     try {
@@ -176,6 +226,71 @@ export default function DetailPage() {
           >
             🗑️ 삭제
           </button>
+        </div>
+
+        {/* 댓글 섹션 */}
+        <div className="mt-12">
+          {/* 댓글 헤더 */}
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="text-2xl font-semibold">댓글</h2>
+            <button
+              onClick={handleCommentOrderChange}
+              className="px-4 py-2 bg-gray-800 hover:bg-gray-700 text-white rounded-lg text-sm transition"
+            >
+              {commentOrder === "desc" ? "📅 최신순" : "📅 오래된순"}
+            </button>
+          </div>
+
+          {/* 댓글 입력 폼 */}
+          <CommentForm lpId={lpIdNumber} onCommentAdded={() => refetchComments()} />
+
+          {/* 댓글 목록 */}
+          <div className="bg-gray-900 rounded-lg p-6 border border-gray-800">
+            {commentsLoading && commentList.length === 0 ? (
+              <div className="space-y-4">
+                {Array.from({ length: 5 }).map((_, i) => (
+                  <div key={`skeleton-${i}`} className="flex gap-4">
+                    <div className="w-10 h-10 rounded-full bg-gray-800 animate-pulse" />
+                    <div className="flex-1 space-y-2">
+                      <div className="h-4 bg-gray-800 rounded animate-pulse w-1/3" />
+                      <div className="h-4 bg-gray-800 rounded animate-pulse w-full" />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            ) : commentList.length === 0 ? (
+              <p className="text-gray-400 text-center py-8">첫 댓글을 작성해주세요!</p>
+            ) : (
+              <>
+                {commentList.map((comment) => (
+                  <CommentItem
+                    key={comment.id}
+                    comment={comment}
+                    lpId={lpIdNumber}
+                    onCommentDeleted={() => refetchComments()}
+                  />
+                ))}
+
+                {/* 하단 로딩 스켈레톤 */}
+                {isFetchingNextPage && (
+                  <div className="space-y-4 mt-4 pt-4 border-t border-gray-800">
+                    {Array.from({ length: 3 }).map((_, i) => (
+                      <div key={`skeleton-bottom-${i}`} className="flex gap-4">
+                        <div className="w-10 h-10 rounded-full bg-gray-800 animate-pulse" />
+                        <div className="flex-1 space-y-2">
+                          <div className="h-4 bg-gray-800 rounded animate-pulse w-1/3" />
+                          <div className="h-4 bg-gray-800 rounded animate-pulse w-full" />
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                {/* 무한 스크롤 트리거 */}
+                <div ref={observerTarget} className="h-4 mt-4" />
+              </>
+            )}
+          </div>
         </div>
       </div>
     </div>
