@@ -39,8 +39,8 @@ export default function GoogleCallbackPage() {
                 }
                 console.log('✅ Google 로그인 성공!', { user, token: accessToken });
 
-                // 대시보드로 리다이렉트
-                navigate('/dashboard', { replace: true });
+                // 홈으로 리다이렉트
+                navigate('/', { replace: true });
             } catch (err) {
                 console.error('❌ Google 콜백 처리 에러:', err);
                 setError('Google 로그인 처리 중 오류가 발생했습니다.');

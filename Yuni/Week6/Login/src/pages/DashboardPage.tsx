@@ -1,6 +1,8 @@
 import { useAuth } from '../hooks/useAuth';
 import { axiosInstance } from '../apis/axios';
 import { useState } from 'react';
+import useGetLpList from '../hooks/queries/useGetLpList';
+import type { Lp } from '../types/lp';
 
 /**
  * DashboardPage - Protected Route 예제
@@ -9,6 +11,8 @@ import { useState } from 'react';
 export default function DashboardPage() {
   const { user } = useAuth();
   const [testResult, setTestResult] = useState('');
+  const { data, isLoading } = useGetLpList({});
+  const lpList = data?.data?.data || [];
 
   const handlePlayMusic = async () => {
     try {
