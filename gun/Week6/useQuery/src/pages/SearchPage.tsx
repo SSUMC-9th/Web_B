@@ -1,22 +1,26 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-// ⭐ 1. 필요한 타입 임포트
+import { useQueryClient } from '@tanstack/react-query'; 
+import React from 'react'; 
 import type { PaginationDto } from '../type/common'; 
-import useGetLpList from '../hooks/queries/useGetLPList'; // useGetLpList 경로
+import useGetLpList from '../hooks/queries/useGetLPList'; 
+
+// ❌ LpSkeletonCard 컴포넌트 정의가 제거됨
+
 
 const SearchPage = () => {
-    // 2. 쿼리 매개변수 상태 관리에 PaginationDto 타입을 명시적으로 지정
-    //    이제 order: 'desc'가 허용됩니다.
+    const queryClient = useQueryClient(); 
+    
+    // 쿼리 매개변수 상태 관리: limit은 9로 수정
     const [queryParams, setQueryParams] = useState<PaginationDto>({ 
         cursor: undefined, 
-        limit: 10,
-        search: undefined, // 초기에는 undefined가 더 안전합니다.
+        limit: 9, // limit을 9로 유지
+        search: undefined, 
         order: 'desc',
     });
 
-    const [searchTerm, setSearchTerm] = useState(''); // 검색어 입력 필드 상태
+    const [searchTerm, setSearchTerm] = useState(''); 
 
-    // 3. useGetLpList 훅 사용
     const { 
         data: lpResponse, 
         isLoading, 
@@ -24,43 +28,46 @@ const SearchPage = () => {
         isFetching,
     } = useGetLpList(queryParams);
 
-    // 4. 데이터 안전하게 추출: data?.data?.data 구조를 가정 (타입 정의에 따름)
-    //    data?.data는 ResponseLpListDto의 필드, data?.data?.data는 LpItem[] 배열
+    // 데이터 안전하게 추출 (LpItem 타입 명시 제거)
     const lpList = lpResponse?.data?.data || []; 
-    const hasNextPage = lpResponse?.hasNext;
-    const nextCursor = lpResponse?.nextCursor;
     
+    // hasNextPage와 nextCursor는 CursorBasedResponse에서 추출
+    const hasNextPage = lpResponse?.hasNext ?? false; 
+    const nextCursor = lpResponse?.nextCursor;
+
+    // 디버깅 로그 (유지)
     console.log("--- SearchPage Debugging ---");
-    console.log("LP Response Status (Simulated):", lpResponse?.statusCode || 'N/A');
     console.log("LP List Array Length:", lpList.length);
+    console.log("isFetching:", isFetching);
+    console.log("hasNextPage:", hasNextPage);
+    console.log("nextCursor:", nextCursor);
     console.log("----------------------------");
-    // 5. 검색 버튼 클릭 핸들러
-    // 🌟 수정: e에 React.FormEvent<HTMLFormElement> 타입 명시
+
     const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        
-        // searchTerm이 빈 문자열이면 undefined로 변환하여 DTO 타입에 맞춥니다.
         const newSearch = searchTerm.trim() || undefined;
+        queryClient.invalidateQueries({ queryKey: ['lps'] }); 
 
         setQueryParams(prev => ({
             ...prev,
-            search: newSearch, // 새 검색어 적용
-            cursor: undefined, // 새 검색 시작 시 커서 초기화
+            search: newSearch, 
+            cursor: undefined, // 검색 시 커서 초기화
         }));
     };
     
-    // 6. '다음 페이지' 버튼 클릭 핸들러 (목록을 새로운 페이지로 교체)
+    // handleLoadMore 로직: 다음 페이지 로딩
     const handleLoadMore = () => {
         if (hasNextPage && nextCursor !== undefined) {
             setQueryParams(prev => ({
                 ...prev,
-                cursor: nextCursor,
+                cursor: nextCursor, // 다음 커서 값으로 업데이트
             }));
         }
     };
     
     // 7. 로딩 및 에러 상태 처리
     if (isLoading) {
+        // ⭐ 최초 로딩 시 로딩 메시지만 반환
         return <div className="text-center py-10 text-xl font-medium text-gray-600">데이터를 처음 로딩 중입니다...</div>;
     }
 
@@ -78,7 +85,6 @@ const SearchPage = () => {
                     type="text"
                     placeholder="검색어를 입력하세요..."
                     value={searchTerm}
-                    // 🌟 수정: onChange 핸들러의 e에 React.ChangeEvent<HTMLInputElement> 타입 명시
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSearchTerm(e.target.value)} 
                     className="flex-1 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#b2dab1]"
                 />
@@ -94,7 +100,8 @@ const SearchPage = () => {
             {/* LP 목록 표시 */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {lpList.length > 0 ? (
-                    lpList.map(lp => (
+                    // LP 목록을 map으로 렌더링
+                    lpList.map((lp: any) => (
                         <div key={lp.id} className="bg-white p-5 rounded-lg shadow-lg border border-gray-100 hover:shadow-xl transition duration-300">
                             <h3 className="text-xl font-semibold mb-2 truncate">{lp.title}</h3>
                             <p className="text-sm text-gray-600 line-clamp-2">{lp.content}</p>
@@ -108,9 +115,16 @@ const SearchPage = () => {
                         </div>
                     ))
                 ) : (
-                    <p className="col-span-full text-center text-gray-500 p-8 border border-dashed rounded-lg">
-                        {isFetching ? '검색 결과를 찾는 중...' : '검색 결과가 없습니다.'}
-                    </p>
+                    // ⭐ 데이터가 없고 fetch 중일 때 로딩 인디케이터 표시
+                    isFetching ? (
+                        <p className="col-span-full text-center text-gray-500 p-8 border border-dashed rounded-lg">
+                            다음 목록 로딩 중...
+                        </p>
+                    ) : (
+                        <p className="col-span-full text-center text-gray-500 p-8 border border-dashed rounded-lg">
+                            검색 결과가 없습니다.
+                        </p>
+                    )
                 )}
             </div>
 
