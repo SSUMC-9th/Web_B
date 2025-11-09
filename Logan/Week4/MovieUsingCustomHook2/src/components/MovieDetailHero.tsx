@@ -1,4 +1,4 @@
-import React from "react";
+
 import type { MovieDetail } from "../types/MovieDetail";
 
 const IMG = (p?: string | null, size: "w500" | "original" = "w500") =>

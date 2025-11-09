@@ -23,9 +23,7 @@ dist-ssr
 *.sln
 *.sw?
 
-
-# envapi키 가리기
-.env
-.env.local
-.env.*.local
-**/.env
+# .env
+# .env.local
+# .env.*.local
+# **/.env
