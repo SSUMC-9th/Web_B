@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { get } from "react-hook-form";
 import { getMyInfo } from "../apis/auth";
-import type { ResponseMyInfoDto } from "../tpyes/auth";
+import type { ResponseMyInfoDto } from "../types/auth";
 import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 

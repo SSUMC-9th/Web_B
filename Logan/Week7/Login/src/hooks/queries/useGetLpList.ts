@@ -1,9 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
-import type { PaginationDto } from "../../tpyes/common";
+import type { PaginationDto } from "../../types/common";
 import { getLpList } from "../../apis/lp";
 import { QUERY_KEY } from "../../constants/key";
 import { boolean } from "zod";
-import type { ResponseLpListDto } from "../../tpyes/lp";
+import type { ResponseLpListDto } from "../../types/lp";
 
 function useGetLpList({ cursor, search, order, limit }: PaginationDto) {
   return useQuery({

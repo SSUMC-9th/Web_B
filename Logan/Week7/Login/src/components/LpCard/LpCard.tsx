@@ -1,5 +1,5 @@
 import { useNavigate, useNavigation } from "react-router-dom";
-import type { Lp } from "../../tpyes/lp";
+import type { Lp } from "../../types/lp";
 
 interface LpCardProps {
   lp: Lp;

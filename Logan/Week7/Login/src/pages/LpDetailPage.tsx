@@ -4,7 +4,7 @@ import useGetLpDetail from "../hooks/queries/useGetLpDetail";
 import { Heart } from "lucide-react"; // 이 줄을 추
 import { useAuth } from "../context/AuthContext";
 import useGetMyInfo from "../hooks/queries/useGetMyInfo";
-import type { Likes } from "../tpyes/lp";
+import type { Likes } from "../types/lp";
 import { deleteLike, postLike } from "../apis/lp";
 import useDeleteLike from "../hooks/mutations/useDeleteLike";
 import usePostLike from "../hooks/mutations/usePostLike";
@@ -59,7 +59,11 @@ const LpDetailPage = () => {
     <div className={"mt-12"}>
       <h1>{lp?.data.id}</h1>
       <h1>{lp?.data.title}</h1>
-      <img src={lp?.data.thumbnail} alt={lp?.data.title} />
+      <img
+        src={lp?.data.thumbnail}
+        alt={lp?.data.title}
+        className="w-40 h-40 object-cover rounded-md"
+      />
       <p>{lp?.data.content}</p>
 
       <button onClick={isLiked ? handleDislikeLp : handleLikeLp}>

@@ -5,7 +5,7 @@ import type {
   RequestSignupDto,
   ResponseMyInfoDto,
   ResponseSignupDto,
-} from "../tpyes/auth";
+} from "../types/auth";
 import { axiosInstance } from "./axios";
 
 // 회원가입요청

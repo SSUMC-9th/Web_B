@@ -1,10 +1,10 @@
-import type { PaginationDto } from "../tpyes/common";
+import type { PaginationDto } from "../types/common";
 import type {
   RequestLpDto,
   ResponseLikeLpDto,
   ResponseLpDto,
   ResponseLpListDto,
-} from "../tpyes/lp";
+} from "../types/lp";
 import { axiosInstance } from "./axios";
 
 export const getLpList = async (

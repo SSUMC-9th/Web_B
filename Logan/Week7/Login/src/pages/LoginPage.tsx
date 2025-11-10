@@ -6,7 +6,7 @@ import AppHeader from "../components/Appheader";
 import GoogleIcon from "../components/GoogleIcon";
 import Divider from "../components/Divider";
 import { postSignin } from "../apis/auth";
-import type { ReponseSigninDto } from "../tpyes/auth";
+import type { ReponseSigninDto } from "../types/auth";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 import { LOCAL_STORAGE_KEY } from "../constants/key";
 import { useAuth } from "../context/AuthContext";
