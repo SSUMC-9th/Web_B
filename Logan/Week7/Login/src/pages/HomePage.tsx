@@ -1,77 +1,68 @@
-import React, { useEffect, useState } from "react";
-import { Outlet } from "react-router-dom";
-import { boolean } from "zod";
-import useGetLpList from "../hooks/queries/useGetLpList";
+import React, { useEffect, useMemo, useState } from "react";
 import useGetInfiniteLpList from "../hooks/queries/useGetInfiniteLpList";
 import { PAGINATION_ORDER } from "../enums/common";
-import { InView, useInView } from "react-intersection-observer"; // 추가
-import LpCardSkeleton from "../components/LpCard/LpCardSkeleton";
+import { useInView } from "react-intersection-observer";
 import LpCardSkeletonList from "../components/LpCard/LpCardSkeletonList";
 import LpCard from "../components/LpCard/LpCard";
+
+function useDebouncedValue<T>(value: T, delay = 300) {
+  const [v, setV] = useState(value);
+
+  useEffect(() => {
+    const t = setTimeout(() => setV(value), delay);
+    return () => clearTimeout(t);
+  }, [value, delay]);
+  return v;
+}
+
 const HomePage = () => {
   const [search, setSearch] = useState("");
-  // const { data, isPending, isError } = useGetLpList({
-  //   search,
-  //   limit: 50,
-  // });
+  const debouncedSearch = useDebouncedValue(search, 300);
 
-  //console.log(data?.data.data?.map((lp) => lp.id));
-  // if (!isPending) {
-  //   return <div className={"mt-20"}>Loading...</div>;
-  // }
+  const { data, isFetching, hasNextPage, isPending, fetchNextPage, isError } =
+    useGetInfiniteLpList(10, debouncedSearch, PAGINATION_ORDER.desc);
 
-  // 우리가 가져온 데이터
-  const {
-    data: lps,
-    isFetching,
-    hasNextPage,
-    isPending,
-    fetchNextPage,
-    isError,
-  } = useGetInfiniteLpList(10, search, PAGINATION_ORDER.desc);
-
+  // inview 컴포넌트를 읽는게 아니라, 불린값을 읽어오도록
   const { ref, inView } = useInView({
+    root: null,
+    rootMargin: "400px 0px",
     threshold: 0,
   });
 
   useEffect(() => {
-    if (InView) {
-      !isFetching && hasNextPage && fetchNextPage();
+    if (inView && !isFetching && hasNextPage) {
+      fetchNextPage();
     }
   }, [inView, isFetching, hasNextPage, fetchNextPage]);
 
-  if (isPending) {
-    return <div className={"mt-20"}>Loading...</div>;
-  }
+  const items = useMemo(() => {
+    const pages = data?.pages ?? [];
+    return pages.flatMap((p) => p.data.data);
+  }, [data]);
 
-  if (isError) {
-    return <div className={"mt-20"}>Error...</div>;
-  }
-
-  console.log(lps);
+  if (isPending) return <div className="mt-20">Loading...</div>;
+  if (isError) return <div className="mt-20">Error...</div>;
 
   return (
     <div className="container mx-auto px-4 py-6">
-      <input value={search} onChange={(e) => setSearch(e.target.value)} />
-      {/* {data?.map((lp) => (
-        <h1 key={lp.id}>{lp.title}</h1> */}
-      {/* ))} */}
-      {/* {lps?.pages?.map((page) => console.log(page.data.data))} */}
-      <div
-        className={
-          "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
-        }
-      >
-        {isPending && <LpCardSkeletonList count={20} />}
-        {lps?.pages
-          ?.map((page) => page.data.data)
-          ?.flat()
-          ?.map((lp) => (
-            <LpCard key={lp.id} lp={lp} />
-          ))}
-        {isFetching && <LpCardSkeletonList count={20} />}
+      <input
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+        placeholder="인풋창입니다.."
+        className="border rounded px-3 py-2 mb-4 w-full"
+      />
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        {items.map((lp) => (
+          <LpCard key={lp.id} lp={lp} />
+        ))}
+
+        {/* 다음 페이지 준비 중일 때만 스켈레톤 */}
+        {isFetching && hasNextPage && <LpCardSkeletonList count={8} />}
       </div>
-      <div ref={ref} className="h-2"></div>
+
+      {/* sentinel: 다음 페이지가 있을 때만 감시 */}
+      {hasNextPage && <div ref={ref} className="h-4" />}
     </div>
   );
 };
