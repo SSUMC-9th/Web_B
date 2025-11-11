@@ -59,6 +59,7 @@ const HomePage = () => {
           ?.map((page) => page.data.data)
           ?.flat()
           ?.map((lp) => (
+            // 데이터 펼친얘들로 lpcard 만들기
             <LpCard key={lp.id} lp={lp} />
           ))}
         {isFetching && <LpCardSkeletonList count={20} />}

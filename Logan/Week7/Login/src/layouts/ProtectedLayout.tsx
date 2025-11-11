@@ -3,9 +3,13 @@ import { useAuth } from "../context/AuthContext";
 import { Navigate, Outlet, useLocation } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import { useSidebar } from "../hooks/useSidebar";
+import Sidebar from "../components/Sidebar";
 
 // layout은 왜쓰는걸까...
 const ProtectedLayout = () => {
+  const { isOpen, toggle, close } = useSidebar();
+
   const { accessToken } = useAuth();
   const location = useLocation();
 
@@ -19,6 +23,7 @@ const ProtectedLayout = () => {
         <Outlet />
       </main>
       <Footer />
+      <Sidebar isOpen={isOpen} onClose={close} />
     </div>
   );
 };

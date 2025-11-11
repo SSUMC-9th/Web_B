@@ -4,6 +4,7 @@ import { PAGINATION_ORDER } from "../enums/common";
 import { useInView } from "react-intersection-observer";
 import LpCardSkeletonList from "../components/LpCard/LpCardSkeletonList";
 import LpCard from "../components/LpCard/LpCard";
+import FloatingButton from "../components/FloatingButton";
 
 function useDebouncedValue<T>(value: T, delay = 300) {
   const [v, setV] = useState(value);
@@ -63,6 +64,7 @@ const HomePage = () => {
 
       {/* sentinel: 다음 페이지가 있을 때만 감시 */}
       {hasNextPage && <div ref={ref} className="h-4" />}
+      <FloatingButton />
     </div>
   );
 };

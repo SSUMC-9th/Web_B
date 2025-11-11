@@ -130,9 +130,7 @@ import { useLocalStorage } from "../hooks/useLocalStorage";
 import { LOCAL_STORAGE_KEY } from "../constants/key";
 import { postLogout, postSignin, getMyInfo } from "../apis/auth";
 
-// ----------------------------------------------------------
 // 1️⃣ Context 타입 정의
-// ----------------------------------------------------------
 interface AuthContextType {
   accessToken: string | null;
   refreshToken: string | null;
@@ -144,9 +142,6 @@ interface AuthContextType {
   setMe: React.Dispatch<React.SetStateAction<ResponseMyInfoDto["data"] | null>>;
 }
 
-// ----------------------------------------------------------
-// 2️⃣ Context 생성
-// ----------------------------------------------------------
 export const AuthContext = createContext<AuthContextType>({
   accessToken: null,
   refreshToken: null,
@@ -156,9 +151,6 @@ export const AuthContext = createContext<AuthContextType>({
   setMe: () => {},
 });
 
-// ----------------------------------------------------------
-// 3️⃣ Provider 구현
-// ----------------------------------------------------------
 export const AuthProvider = ({ children }: PropsWithChildren) => {
   const {
     getItem: getAccessTokenFromStorage,
@@ -179,10 +171,10 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
     getRefreshTokenFromStorage()
   );
 
-  // ✅ 내 정보 상태
+  // 내 정보 상태
   const [me, setMe] = useState<ResponseMyInfoDto["data"] | null>(null);
 
-  // ✅ accessToken이 생기면 내 정보 자동으로 불러오기
+  // accessToken이 생기면 내 정보 자동으로 불러오기
   useEffect(() => {
     const fetchMyInfo = async () => {
       if (!accessToken) {
@@ -200,7 +192,7 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
     fetchMyInfo();
   }, [accessToken]);
 
-  // ✅ 로그인 함수
+  //
   const login = async (signinData: RequestSigninDto) => {
     try {
       const { data } = await postSignin(signinData);
@@ -216,7 +208,7 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
 
         alert("로그인 성공!");
 
-        // ✅ 로그인 직후 내 정보 즉시 불러오기
+        //
         try {
           const meRes = await getMyInfo();
           setMe(meRes.data);
@@ -232,7 +224,7 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
     }
   };
 
-  // ✅ 로그아웃 함수
+  // 로그아웃
   const logout = async () => {
     try {
       await postLogout();
@@ -253,7 +245,7 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
 
   // ----------------------------------------------------------
   // 4️⃣ Provider로 전역 공급
-  // ----------------------------------------------------------
+
   return (
     <AuthContext.Provider
       value={{
@@ -272,7 +264,6 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
 
 // ----------------------------------------------------------
 // 5️⃣ useAuth 훅 (편하게 꺼내 쓰기용)
-// ----------------------------------------------------------
 export const useAuth = () => {
   const context = useContext(AuthContext);
   if (!context) {
