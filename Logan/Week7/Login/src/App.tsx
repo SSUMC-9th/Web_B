@@ -19,8 +19,6 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import LpDetailPage from "./pages/LpDetailPage";
 
-import { SidebarProvider } from "./context/SidebarContext";
-
 // publicRouter: 인증없이 접근가능한 라우트
 const publicRoutes: RouteObject[] = [
   {
@@ -74,9 +72,7 @@ function App() {
     // tanstack사용
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
-        <SidebarProvider>
-          <RouterProvider router={router} />
-        </SidebarProvider>
+        <RouterProvider router={router} />
       </AuthProvider>
 
       {/* 개발환경일때만 devtools보이게하기 */}

@@ -45,6 +45,7 @@
 
 // Sidebar.tsx
 import { createPortal } from "react-dom";
+import { Link } from "react-router-dom";
 
 interface SidebarProps {
   isOpen: boolean;
@@ -84,9 +85,16 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
                 </button>
               </li>
               <li>
-                <button className="w-full text-left px-2 py-2 rounded hover:bg-gray-100">
+                <Link
+                  to="/my"
+                  className="text-gray-700 dark:text-gray-300 hover:text-blue-500"
+                >
                   마이페이지
-                </button>
+                </Link>
+
+                {/* <button className="w-full text-left px-2 py-2 rounded hover:bg-gray-100">
+                  마이페이지
+                </button> */}
               </li>
             </ul>
           </nav>
