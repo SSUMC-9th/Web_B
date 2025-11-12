@@ -1,4 +1,3 @@
-import React from "react";
 import { useParams } from "react-router-dom";
 import useGetLpDetail from "../hooks/queries/useGetLpDetail";
 import { Heart, Pencil, Trash2 } from "lucide-react"; // ✨ 수정/삭제/좋아요 UI
@@ -7,6 +6,7 @@ import useGetMyInfo from "../hooks/queries/useGetMyInfo";
 import type { Likes } from "../types/lp";
 import useDeleteLike from "../hooks/mutations/useDeleteLike";
 import usePostLike from "../hooks/mutations/usePostLike";
+import CommentSection from "../components/CommentSection";
 
 // 날짜 정보 포맷
 const formatDate = (d?: Date | string) => {
@@ -142,6 +142,8 @@ const LpDetailPage = () => {
             ))}
           </section>
         ) : null}
+
+        <CommentSection lpId={Number(lpId)} />
 
         {/* 좋아요 */}
         <footer className="flex justify-center">
