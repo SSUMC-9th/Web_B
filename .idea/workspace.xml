@@ -67,9 +67,9 @@
     &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;andy/#4&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;andy/main&quot;,
     &quot;javascript.preferred.runtime.type.id&quot;: &quot;bun&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/joonwoo/Developer/Web_B/Andy&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/joonwoo/Developer/Web_B&quot;,
     &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -109,7 +109,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-256f9dae541f-JavaScript-WS-253.25908.30" />
+        <option value="bundled-js-predefined-d6986cc7102b-3aa1da707db6-JavaScript-WS-252.27397.92" />
       </set>
     </attachedChunks>
   </component>
@@ -147,6 +147,8 @@
       <workItem from="1759927169876" duration="30052000" />
       <workItem from="1760368711494" duration="12000" />
       <workItem from="1760368734104" duration="13000" />
+      <workItem from="1762354372160" duration="989000" />
+      <workItem from="1762663716130" duration="4257000" />
     </task>
     <servers />
   </component>
