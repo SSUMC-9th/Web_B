@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 import { LOCAL_STORAGE_KEY } from "../constants/key";
 
@@ -20,7 +20,7 @@ const GoogleLoginPage = () => {
     if (accessToken) {
       setAccessToken(accessToken);
       setRefreshToken(refreshToken);
-      window.location.href = "/user";
+      window.location.href = "/";
     }
 
     console.log(window.location.search, urlParams);

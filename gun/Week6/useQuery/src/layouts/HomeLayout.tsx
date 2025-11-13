@@ -1,8 +1,7 @@
-import { Outlet } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import NavBar from "../components/Navbar";
 
 const HomeLayout = () => {
-  const year = new Date().getFullYear();
 
   return (
     <div className="min-h-dvh">
@@ -12,7 +11,11 @@ const HomeLayout = () => {
         <header className="sticky top-0 z-20 bg-white/80 backdrop-blur border-b">
           <div className="px-6 py-4 flex items-center justify-between">
             <div className="text-2xl font-semibold tracking-tight">
-              <span className="text-[#b2dab1]">Gun</span>Page
+              <Link to="/"> 
+              <div className="text-2xl font-semibold tracking-tight cursor-pointer">
+                <span className="text-[#b2dab1]">Gun</span>Page
+              </div>
+            </Link>
             </div>
             <NavBar />
           </div>
@@ -24,15 +27,15 @@ const HomeLayout = () => {
         </main>
 
         {/* 푸터 */}
-        <footer className="border-t bg-gray-700 text-gray-300">
-          <div className="px-6 py-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-            <p className="text-sm">© {year} Your Company. All rights reserved.</p>
-            <div className="flex items-center gap-4 text-sm">
-              <span className="cursor-default select-none">이용약관</span>
-              <span className="cursor-default select-none">개인정보처리방침</span>
-            </div>
-          </div>
-        </footer>
+        <footer className="bg-gray-800 text-gray-300 border-t border-gray-600">
+  <div className="px-6 py-8 max-w-screen-xl mx-auto flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+    {/* 회사 정보 */}
+    <p className="text-sm">
+      © {new Date().getFullYear()} GUN company. All rights reserved.
+    </p>
+  </div>
+</footer>
+
       </div>
     </div>
   );
