@@ -1,15 +1,17 @@
 import { useState } from "react";
-import { createComment } from "../apis/comment.ts";
+import useCreateComment from "../hooks/mutations/useCreateComment";
 
 interface CommentFormProps {
   lpId: number;
-  onCommentAdded: () => void;
+  onCommentAdded?: () => void;
 }
 
 export default function CommentForm({ lpId, onCommentAdded }: CommentFormProps) {
   const [content, setContent] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
+  const { mutate: createCommentMutate, isPending: isLoading } = useCreateComment({
+    lpId,
+  });
 
   const maxLength = 500;
   const isValid = content.trim().length > 0 && content.length <= maxLength;
@@ -22,17 +24,19 @@ export default function CommentForm({ lpId, onCommentAdded }: CommentFormProps) 
       return;
     }
 
-    try {
-      setIsLoading(true);
-      setError("");
-      await createComment(lpId, content.trim());
-      setContent("");
-      onCommentAdded();
-    } catch (err: any) {
-      setError(err.response?.data?.message || "댓글 작성에 실패했습니다");
-    } finally {
-      setIsLoading(false);
-    }
+    setError("");
+    createCommentMutate(
+      { content: content.trim() },
+      {
+        onSuccess: () => {
+          setContent("");
+          onCommentAdded?.();
+        },
+        onError: (err: any) => {
+          setError(err.response?.data?.message || "댓글 작성에 실패했습니다");
+        },
+      }
+    );
   };
 
   return (
