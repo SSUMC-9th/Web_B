@@ -26,6 +26,18 @@ export type CreateLpResponse = CommonResponse<{
   updatedAt: string;
 }>;
 
+// 좋아요 추가/취소 요청 타입
+export type LikeRequest = {
+  lpId: number;
+};
+
+// 좋아요 응답 타입
+export type LikeResponse = CommonResponse<{
+  id: number;
+  userId: number;
+  lpId: number;
+}>;
+
 export const getLpList = async (
     paginationDto: PaginationDto
 ):Promise<ResponseLpListDto> => {
@@ -56,6 +68,40 @@ export const createLp = async (body: CreateLpRequest): Promise<CreateLpResponse>
     console.error('LP 생성 실패 - 상태 코드:', error.response?.status);
     console.error('LP 생성 실패 - 서버 에러 메시지:', error.response?.data);
     console.error('LP 생성 실패 - 전체 에러 응답:', error.response);
+    throw error;
+  }
+};
+
+/**
+ * 좋아요 추가 API
+ * @param lpId LP ID
+ * @returns 좋아요 정보
+ */
+export const addLike = async (lpId: number): Promise<LikeResponse> => {
+  console.log('좋아요 추가 요청:', lpId);
+  try {
+    const { data } = await axiosInstance.post<LikeResponse>(`/lps/${lpId}/likes`);
+    console.log('좋아요 추가 성공:', data.data);
+    return data;
+  } catch (error: any) {
+    console.error('좋아요 추가 실패:', error.response?.data);
+    throw error;
+  }
+};
+
+/**
+ * 좋아요 취소 API
+ * @param lpId LP ID
+ * @returns 좋아요 정보
+ */
+export const removeLike = async (lpId: number): Promise<LikeResponse> => {
+  console.log('좋아요 취소 요청:', lpId);
+  try {
+    const { data } = await axiosInstance.delete<LikeResponse>(`/lps/${lpId}/likes`);
+    console.log('좋아요 취소 성공:', data.data);
+    return data;
+  } catch (error: any) {
+    console.error('좋아요 취소 실패:', error.response?.data);
     throw error;
   }
 };

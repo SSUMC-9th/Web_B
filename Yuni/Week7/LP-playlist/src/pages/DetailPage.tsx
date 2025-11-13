@@ -1,6 +1,7 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import useGetLpDetail from '../hooks/queries/useGetLpDetail';
 import useGetComments from '../hooks/queries/useGetComments';
+import useLike from '../hooks/mutations/useLike';
 import LoadingState from '../components/LoadingState';
 import ErrorState from '../components/ErrorState';
 import CommentForm from '../components/CommentForm';
@@ -12,8 +13,7 @@ import { useAuth } from '../hooks/useAuth';
 export default function DetailPage() {
   const { lpId } = useParams<{ lpId: string }>();
   const navigate = useNavigate();
-  const { isAuthenticated } = useAuth();
-  const [likeLoading, setLikeLoading] = useState(false);
+  const { isAuthenticated, user } = useAuth();
   const [actionMessage, setActionMessage] = useState('');
   const [commentOrder, setCommentOrder] = useState<"asc" | "desc">("desc");
   const observerTarget = useRef<HTMLDivElement>(null);
@@ -33,6 +33,9 @@ export default function DetailPage() {
   const lpIdNumber = parseInt(lpId, 10);
   const { data, isLoading, error } = useGetLpDetail(lpIdNumber);
   const lp = data?.data;
+
+  // Like mutation hook
+  const { mutate: likeToggle, isPending: isLiking } = useLike({ lpId: lpIdNumber });
 
   // Comments infinite query
   const {
@@ -88,19 +91,27 @@ export default function DetailPage() {
     }
   };
 
-  const handleLike = async () => {
-    try {
-      setLikeLoading(true);
-      setActionMessage('');
-      await axiosInstance.post(`/lps/${lpIdNumber}/likes`);
-    } catch (error: any) {
-      if (error.response?.status === 409) {
-        setActionMessage('⚠️ 이미 좋아요한 LP입니다');
-      } else {
-        setActionMessage('❌ 좋아요 추가 실패');
-      }
-    } finally {
-      setLikeLoading(false);
+  // Check if user has already liked this LP
+  const userHasLiked = lp?.likes?.some((like: any) => like.userId === user?.id) || false;
+
+  const handleLike = () => {
+    setActionMessage('');
+    if (userHasLiked) {
+      likeToggle({ action: 'remove' }, {
+        onError: () => {
+          setActionMessage('❌ 좋아요 취소 실패');
+        },
+      });
+    } else {
+      likeToggle({ action: 'add' }, {
+        onError: (likeError: any) => {
+          if (likeError.response?.status === 409) {
+            setActionMessage('⚠️ 이미 좋아요한 LP입니다');
+          } else {
+            setActionMessage('❌ 좋아요 추가 실패');
+          }
+        },
+      });
     }
   };
 
@@ -186,10 +197,10 @@ export default function DetailPage() {
         <div className="flex justify-center items-center gap-3 mb-8">
           <button
             onClick={handleLike}
-            disabled={likeLoading}
+            disabled={isLiking}
             className="px-6 py-3 disabled:opacity-50 text-white rounded-lg font-medium transition flex items-center gap-2"
           >
-            {likeLoading ? '처리 중...' : '🤍'}
+            {isLiking ? '처리 중...' : (userHasLiked ? '❤️' : '🤍')}
           </button>
           <span className="text-white font-semibold text-lg">{lp.likes?.length || 0}</span>
         </div>
