@@ -56,6 +56,7 @@ import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import CreateLpModal from "../components/CreateLpModal";
 import EditProfileModal from "../components/EditProfileModal";
+import { useMutation } from "@tanstack/react-query";
 
 // --- 스켈레톤 카드 ---
 function LpCardSkeleton() {
@@ -149,9 +150,30 @@ const MyPage = () => {
     })();
   }, []);
 
-  const handleLogout = async () => {
-    await logout();
-    navigate("/");
+  // const handleLogout = async () => {
+  //   await logout();
+  //   navigate("/");
+  // };
+
+  // ✅ 로그아웃 뮤테이션
+  const logoutMut = useMutation({
+    mutationFn: () => logout(), // AuthContext.logout은 Promise여야 합니다.
+    onSuccess: () => {
+      // 필요하면 로컬 상태도 비우기
+      setMe(null);
+      setLps(null);
+
+      // 홈으로 이동 (뒤로가기 시 로그인 페이지로 안 돌아오게 replace)
+      navigate("/", { replace: true });
+    },
+    onError: (e) => {
+      console.error("[logout.error]", e);
+      alert("로그아웃에 실패했습니다. 잠시 후 다시 시도해주세요.");
+    },
+  });
+
+  const handleLogout = () => {
+    logoutMut.mutate();
   };
 
   const name = me?.data?.name ?? "";
