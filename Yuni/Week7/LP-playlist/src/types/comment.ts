@@ -20,3 +20,18 @@ export type CommentListResponse = CursorBasedResponse<{
   nextCursor: number;
   hasNext: boolean;
 }>;
+
+// 댓글 생성 요청 타입
+export type CreateCommentRequest = {
+  content: string;
+};
+
+// 댓글 수정 요청 타입
+export type UpdateCommentRequest = {
+  content: string;
+};
+
+// 댓글 삭제 응답 타입
+export type DeleteCommentResponse = {
+  message: string;
+};

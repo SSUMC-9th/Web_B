@@ -38,6 +38,19 @@ export const createComment = async (
   return data;
 };
 
+export const updateComment = async (
+  lpId: number,
+  commentId: number,
+  content: string
+): Promise<CommonResponse<Comment>> => {
+  const { data } = await axiosInstance.put(`/lps/${lpId}/comments/${commentId}`, {
+    content,
+  });
+
+  return data;
+};
+
+
 export const deleteComment = async (
   lpId: number,
   commentId: number

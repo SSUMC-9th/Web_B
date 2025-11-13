@@ -47,13 +47,15 @@ export const getLpDetail = async (lpId: number): Promise<CommonResponse<Lp>> => 
  * @returns 생성된 LP의 정보
  */
 export const createLp = async (body: CreateLpRequest): Promise<CreateLpResponse> => {
-  console.log('📤 LP 생성 요청:', body);
+  console.log('LP 생성 요청:', body);
   try {
     const { data } = await axiosInstance.post<CreateLpResponse>('/lps', body);
-    console.log('✅ LP 생성 성공:', data.data);
+    console.log('LP 생성 성공:', data.data);
     return data;
   } catch (error: any) {
-    console.error('❌ LP 생성 실패:', error.response?.data);
+    console.error('LP 생성 실패 - 상태 코드:', error.response?.status);
+    console.error('LP 생성 실패 - 서버 에러 메시지:', error.response?.data);
+    console.error('LP 생성 실패 - 전체 에러 응답:', error.response);
     throw error;
   }
 };

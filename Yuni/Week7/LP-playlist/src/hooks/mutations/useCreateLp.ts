@@ -12,10 +12,12 @@ function useCreateLp() {
   const queryClient = useQueryClient();
 
   return useMutation({
+    // LP 생성 API 호출 함수 
     mutationFn: async (lpData: CreateLpRequest) => {
       const response = await createLp(lpData);
       return response;
     },
+    // 성공 시 LP 목록 자동 동기화 (새 LP추가하자마자! 목록화면 자동 갱신)
     onSuccess: (data) => {
       console.log('useCreateLp: LP 생성 성공!', data.data);
 
@@ -25,6 +27,7 @@ function useCreateLp() {
       queryClient.invalidateQueries({ queryKey: ['lps'] });
       console.log('useCreateLp: LP 목록 쿼리 무효화됨');
     },
+    // 요청 실패 시 에러 메시지 출력
     onError: (error: any) => {
       console.error('useCreateLp: LP 생성 실패!', error);
       console.error('에러 상세:', error.response?.data);
