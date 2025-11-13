@@ -1,4 +1,5 @@
 import useGetLpListInfinite from "../hooks/queries/useGetLpListInfinite.ts";
+import useCreateLp from "../hooks/mutations/useCreateLp.ts";
 import { useState, useRef, useCallback, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
@@ -21,6 +22,9 @@ const HomePage = () => {
     order: sortOrder
   });
   const { isAuthenticated, user } = useAuth();
+
+  // LP 생성 Mutation 훅
+  const createLpMutation = useCreateLp();
 
   // data 구조: pages 배열에서 각 페이지의 data.data에 LP 목록이 있음
   const lpList = data?.pages?.flatMap(page => page.data.data) || [];
@@ -273,7 +277,20 @@ const HomePage = () => {
         onClose={() => setIsModalOpen(false)}
         onAddLP={(lp) => {
           console.log('새로운 LP 추가:', lp);
-          // TODO: LP 생성 API 호출 (POST /v1/lps)
+          // useMutation을 사용하여 LP 생성 API 호출
+          createLpMutation.mutate(lp, {
+            onSuccess: () => {
+              // 모달 닫기
+              setIsModalOpen(false);
+              // 성공 알림
+              alert('LP가 성공적으로 추가되었습니다!');
+            },
+            onError: (error: any) => {
+              console.error('LP 생성 실패:', error);
+              // 에러 알림
+              alert(error.response?.data?.message || 'LP 추가 중 오류가 발생했습니다.');
+            },
+          });
         }}
       />
     </div>
