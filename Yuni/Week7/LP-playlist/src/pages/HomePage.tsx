@@ -65,9 +65,77 @@ const HomePage = () => {
   const handleImageError = (lpId: number) => {
     setFailedImages(prev => new Set(prev).add(lpId));
   };
+  console.log(user);
 
   return (
     <div className="flex flex-col min-h-screen">
+      {/* 프로필 헤더 - 로그인한 사용자만 표시 */}
+      {isAuthenticated && user && (
+        <div className="bg-gradient-to-r from-gray-900 to-gray-800 py-8 px-4 border-b border-gray-700">
+          <div className="container mx-auto">
+            <div className="flex items-start gap-6">
+              {/* 프로필 사진 */}
+              <div className="flex-shrink-0">
+                {user.avatar ? (
+                  <img
+                    src={user.avatar}
+                    alt={user.name}
+                    className="w-24 h-24 rounded-full object-cover border-4 border-pink-500 shadow-lg"
+                  />
+                ) : (
+                  <div className="w-24 h-24 rounded-full bg-gradient-to-br from-pink-500 to-pink-600 flex items-center justify-center border-4 border-pink-500 shadow-lg">
+                    <span className="text-white text-3xl font-bold">
+                      {user.name.charAt(0).toUpperCase()}
+                    </span>
+                  </div>
+                )}
+              </div>
+
+              {/* 프로필 정보 */}
+              <div className="flex-1">
+                {/* 이름 + 설정 버튼 */}
+                <div className="flex items-center gap-3 mb-3">
+                  <h2 className="text-2xl font-bold text-white">{user.name}</h2>
+                  <button
+                    onClick={() => navigate("/protected/profile")}
+                    className="text-gray-400 hover:text-pink-500 transition-colors p-2"
+                    title="프로필 설정"
+                  >
+                    <svg
+                      className="w-5 h-5"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
+                      />
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                      />
+                    </svg>
+                  </button>
+                </div>
+
+                {/* 소개 문구 */}
+                <p className="text-gray-300 mb-2">
+                  {user.bio || "아직 소개를 추가하지 않았습니다."}
+                </p>
+
+                {/* 이메일 */}
+                <p className="text-gray-400 text-sm">{user.email}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* 검색 및 정렬 섹션 */}
       <div className="bg-gray-800 py-6 px-4 sticky top-0 z-10 border-b border-gray-700">
         <div className="container mx-auto">

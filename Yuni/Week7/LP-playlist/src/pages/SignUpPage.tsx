@@ -97,6 +97,7 @@ export default function SignUpPage() {
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
+      // 미리보기용 Base64 생성만 진행 (서버 업로드 없음)
       const reader = new FileReader();
       reader.onloadend = () => {
         setProfileImage(reader.result as string);
