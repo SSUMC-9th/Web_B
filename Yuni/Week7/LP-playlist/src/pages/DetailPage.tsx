@@ -174,9 +174,11 @@ export default function DetailPage() {
         {/* LP 이미지 중앙 정렬 */}
         <div className="flex justify-center mb-8">
           <div className="w-full max-w-md aspect-square rounded-lg overflow-hidden shadow-2xl shadow-pink-500/50">
-            <div className="w-full h-full bg-gradient-to-br from-gray-700 to-gray-900 flex items-center justify-center">
-              <span className="text-gray-400 text-9xl">♫</span>
-            </div>
+            <img 
+              src={lp.thumbnail}
+              alt={lp.title}
+              className="w-full h-full bg-gradient-to-br from-gray-700 to-gray-900 flex items-center justify-center">
+            </img>
           </div>
         </div>
 

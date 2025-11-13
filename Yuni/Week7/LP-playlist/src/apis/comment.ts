@@ -1,3 +1,4 @@
+// 댓글 CRUD 작업 
 import type { CommentListResponse, Comment } from "../types/comment.ts";
 import type { CommonResponse } from "../types/common.ts";
 import { axiosInstance } from "./axios.ts";

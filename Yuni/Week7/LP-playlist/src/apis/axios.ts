@@ -1,7 +1,9 @@
+//axios 인스턴스 및 인터셉처 관리 
 import axios from "axios";
 import type { ResponseRefreshTokenDto } from './auth';
 import { STORAGE_KEYS } from '../constants/key';
 
+// 기본 설정 
 const axiosInstance = axios.create({
   baseURL: 'http://localhost:8000/v1',
   headers: {
@@ -13,10 +15,8 @@ const axiosInstance = axios.create({
 let isRefreshing = false;
 let refreshSubscribers: Array<(token: string) => void> = [];
 
-/**
- * Request Interceptor
- * 모든 요청에 accessToken을 자동으로 헤더에 추가합니다
- */
+// Request Interceptor
+// 모든 요청에 accessToken을 자동으로 헤더에 추가
 axiosInstance.interceptors.request.use(
   (config) => {
     const accessToken = localStorage.getItem(STORAGE_KEYS.ACCESS_TOKEN);
@@ -72,8 +72,8 @@ axiosInstance.interceptors.response.use(
             return Promise.reject(error);
           }
 
-          console.log('%c🔄 AccessToken 갱신 중...', 'color: #4ecdc4; font-size: 16px; font-weight: bold;');
-          console.log('%cRefresh Token:', 'color: #ffd93d; font-weight: bold;', refreshToken);
+          console.log('AccessToken 갱신 중...', 'color: #4ecdc4; font-size: 16px; font-weight: bold;');
+          console.log('Refresh Token:', 'color: #ffd93d; font-weight: bold;', refreshToken);
 
           // Refresh Token으로 새로운 Access Token 발급
           const response = await axios.post<ResponseRefreshTokenDto>(
@@ -86,7 +86,7 @@ axiosInstance.interceptors.response.use(
             }
           );
 
-          console.log('%c갱신 응답:', 'color: #ffd93d; font-weight: bold;', response.data);
+          console.log('갱신 응답:', 'color: #ffd93d; font-weight: bold;', response.data);
 
           const { accessToken: newAccessToken, refreshToken: newRefreshToken } = response.data.data;
 
@@ -96,7 +96,7 @@ axiosInstance.interceptors.response.use(
             localStorage.setItem(STORAGE_KEYS.REFRESH_TOKEN, newRefreshToken);
           }
 
-          console.log('%c✅ AccessToken 갱신 성공!', 'color: #6bcf7f; font-size: 16px; font-weight: bold;');
+          console.log('AccessToken 갱신 성공!', 'color: #6bcf7f; font-size: 16px; font-weight: bold;');
 
           // 원래 요청에 새로운 토큰 적용
           originalRequest.headers.Authorization = `Bearer ${newAccessToken}`;
@@ -107,7 +107,7 @@ axiosInstance.interceptors.response.use(
           // 원래 요청 재시도
           return axiosInstance(originalRequest);
         } catch (refreshError) {
-          console.error('%c❌ 토큰 갱신 실패:', 'color: #ff6b6b; font-weight: bold;', refreshError);
+          console.error('토큰 갱신 실패:', 'color: #ff6b6b; font-weight: bold;', refreshError);
           // 토큰 갱신 실패 시 로그아웃
           localStorage.removeItem(STORAGE_KEYS.ACCESS_TOKEN);
           localStorage.removeItem(STORAGE_KEYS.REFRESH_TOKEN);

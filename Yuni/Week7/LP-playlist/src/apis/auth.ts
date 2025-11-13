@@ -1,3 +1,5 @@
+// 인증 관련 API 및 타입 정의
+
 import { axiosInstance } from './axios';
 
 export type CommonResponse<T> = {

@@ -12,6 +12,7 @@ const HomePage = () => {
   const [search, setSearch] = useState("");
   const [sortOrder, setSortOrder] = useState<" asc" | "desc">("desc"); // 최신순(desc)이 기본값
   const observerTarget = useRef<HTMLDivElement>(null);
+  const [failedImages, setFailedImages] = useState<Set<number>>(new Set());
 
   const { data, isLoading, error, isFetchingNextPage, hasNextPage, fetchNextPage } = useGetLpListInfinite({
     search,
@@ -19,7 +20,6 @@ const HomePage = () => {
   });
   const { isAuthenticated, user } = useAuth();
 
-  console.log(data);
   // data 구조: pages 배열에서 각 페이지의 data.data에 LP 목록이 있음
   const lpList = data?.pages?.flatMap(page => page.data.data) || [];
 
@@ -58,6 +58,10 @@ const HomePage = () => {
     } catch {
       return '날짜 미상';
     }
+  };
+
+  const handleImageError = (lpId: number) => {
+    setFailedImages(prev => new Set(prev).add(lpId));
   };
 
   return (
@@ -117,9 +121,19 @@ const HomePage = () => {
                 >
                   {/* 정사각형 카드 - Hover 시 확장 */}
                   <div className="aspect-square relative overflow-hidden rounded-md bg-gradient-to-br from-gray-700 to-gray-900 shadow-lg transition-all duration-300 group-hover:scale-110 group-hover:shadow-2xl group-hover:shadow-pink-500/50">
-                    {/* 앨범 아트 아이콘 */}
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <span className="text-gray-400 text-6xl group-hover:text-gray-300 transition-colors duration-300">♫</span>
+                    {/* 썸네일 배경 이미지 */}
+                    {!failedImages.has(lp.id) && lp.thumbnail ? (
+                      <img
+                        src={lp.thumbnail}
+                        alt={lp.title}
+                        onError={() => handleImageError(lp.id)}
+                        className="absolute inset-0 w-full h-full object-cover"
+                      />
+                    ) : null}
+
+                    {/* 앨범 아트 아이콘 (이미지 없을 때 or 로딩 실패 시) */}
+                    <div className={`absolute inset-0 flex items-center justify-center ${!failedImages.has(lp.id) && lp.thumbnail ? 'bg-black/40' : 'bg-gradient-to-br from-gray-700 to-gray-900'}`}>
+                      {/* <span className="text-gray-400 text-6xl group-hover:text-gray-300 transition-colors duration-300"></span> */}
                     </div>
 
                     {/* 기본 상태: 제목만 표시 (카드 하단) */}

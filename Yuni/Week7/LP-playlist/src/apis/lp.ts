@@ -1,3 +1,4 @@
+// LP 목록 및 상세 조회
 import type { PaginationDto } from "../types/common.ts";
 import type { ResponseLpListDto, Lp } from "../types/lp.ts";
 import type { CommonResponse } from "../types/common.ts";
