@@ -2,6 +2,7 @@ import { useAuth } from '../hooks/useAuth';
 import { axiosInstance } from '../apis/axios';
 import { useState } from 'react';
 import useGetLpList from '../hooks/queries/useGetLpList';
+import useUpdateProfile from '../hooks/mutations/useUpdateProfile';
 import type { Lp } from '../types/lp';
 
 /**
@@ -14,6 +15,15 @@ export default function DashboardPage() {
   const { data, isLoading } = useGetLpList({});
   const lpList = data?.data?.data || [];
 
+  // 프로필 수정 상태
+  const [isEditingProfile, setIsEditingProfile] = useState(false);
+  const [editName, setEditName] = useState(user?.name || '');
+  const [editBio, setEditBio] = useState(user?.bio || '');
+  const [editAvatar, setEditAvatar] = useState(user?.avatar || '');
+  const [editError, setEditError] = useState('');
+
+  const { mutate: updateProfile, isPending: isUpdatingProfile } = useUpdateProfile();
+
   const handlePlayMusic = async () => {
     try {
       setTestResult('음악을 재생하는 중...');
@@ -25,6 +35,40 @@ export default function DashboardPage() {
     }
   };
 
+  // 프로필 수정 핸들러
+  const handleUpdateProfile = () => {
+    if (!editName.trim()) {
+      setEditError('이름은 필수입니다');
+      return;
+    }
+
+    setEditError('');
+    updateProfile(
+      {
+        name: editName.trim(),
+        bio: editBio.trim() || undefined,
+        avatar: editAvatar.trim() || undefined,
+      },
+      {
+        onSuccess: () => {
+          setIsEditingProfile(false);
+        },
+        onError: (err: any) => {
+          setEditError(err.response?.data?.message || '프로필 수정에 실패했습니다');
+        },
+      }
+    );
+  };
+
+  // 프로필 수정 취소
+  const handleCancelEdit = () => {
+    setIsEditingProfile(false);
+    setEditName(user?.name || '');
+    setEditBio(user?.bio || '');
+    setEditAvatar(user?.avatar || '');
+    setEditError('');
+  };
+
   return (
     <div className="min-h-[calc(100vh-80px)] bg-black text-white p-8">
       <div className="max-w-4xl mx-auto">
@@ -33,27 +77,136 @@ export default function DashboardPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
           {/* 사용자 정보 카드 */}
           <div className="bg-gray-900 rounded-lg p-6 border border-gray-700">
-            <h2 className="text-xl font-semibold mb-4">사용자 정보</h2>
-            <div className="space-y-3">
-              <div>
-                <p className="text-gray-400 text-sm">이메일</p>
-                <p className="text-white font-medium">{user?.email}</p>
-              </div>
-              <div>
-                <p className="text-gray-400 text-sm">이름</p>
-                <p className="text-white font-medium">{user?.name}</p>
-              </div>
-              <div>
-                <p className="text-gray-400 text-sm">역할 (Role)</p>
-                <p className="text-white font-medium">
-                  {user?.role === 'admin' ? (
-                    <span className="text-yellow-500">관리자 (Admin)</span>
-                  ) : (
-                    <span className="text-blue-500">일반 사용자 (User)</span>
-                  )}
-                </p>
-              </div>
+            <div className="flex justify-between items-center mb-4">
+              <h2 className="text-xl font-semibold">사용자 정보</h2>
+              {!isEditingProfile && (
+                <button
+                  onClick={() => setIsEditingProfile(true)}
+                  className="text-gray-400 hover:text-white transition"
+                  title="설정"
+                >
+                  ⚙️
+                </button>
+              )}
             </div>
+
+            {!isEditingProfile ? (
+              // 표시 모드
+              <div className="space-y-3">
+                <div>
+                  <p className="text-gray-400 text-sm">이메일</p>
+                  <p className="text-white font-medium">{user?.email}</p>
+                </div>
+                <div>
+                  <p className="text-gray-400 text-sm">이름</p>
+                  <p className="text-white font-medium">{user?.name}</p>
+                </div>
+                {user?.bio && (
+                  <div>
+                    <p className="text-gray-400 text-sm">자기소개</p>
+                    <p className="text-white font-medium text-sm">{user.bio}</p>
+                  </div>
+                )}
+                {user?.avatar && (
+                  <div>
+                    <p className="text-gray-400 text-sm">프로필 사진</p>
+                    <img
+                      src={user.avatar}
+                      alt={user.name}
+                      className="w-12 h-12 rounded-full mt-2"
+                    />
+                  </div>
+                )}
+                <div>
+                  <p className="text-gray-400 text-sm">역할 (Role)</p>
+                  <p className="text-white font-medium">
+                    {user?.role === 'admin' ? (
+                      <span className="text-yellow-500">관리자 (Admin)</span>
+                    ) : (
+                      <span className="text-blue-500">일반 사용자 (User)</span>
+                    )}
+                  </p>
+                </div>
+              </div>
+            ) : (
+              // 수정 모드
+              <div className="space-y-4">
+                <div>
+                  <label className="text-gray-400 text-sm block mb-2">이메일 (변경 불가)</label>
+                  <input
+                    type="email"
+                    value={user?.email || ''}
+                    disabled
+                    className="w-full px-3 py-2 rounded-lg bg-gray-800 text-gray-500 border border-gray-700 cursor-not-allowed"
+                  />
+                </div>
+
+                <div>
+                  <label className="text-gray-400 text-sm block mb-2">이름 (필수)</label>
+                  <input
+                    type="text"
+                    value={editName}
+                    onChange={(e) => {
+                      setEditName(e.target.value);
+                      if (editError) setEditError('');
+                    }}
+                    className="w-full px-3 py-2 rounded-lg bg-gray-800 text-white border border-gray-700 focus:outline-none focus:ring-2 focus:ring-pink-500"
+                    placeholder="이름을 입력하세요"
+                  />
+                </div>
+
+                <div>
+                  <label className="text-gray-400 text-sm block mb-2">자기소개 (선택)</label>
+                  <textarea
+                    value={editBio}
+                    onChange={(e) => {
+                      setEditBio(e.target.value);
+                      if (editError) setEditError('');
+                    }}
+                    className="w-full px-3 py-2 rounded-lg bg-gray-800 text-white border border-gray-700 focus:outline-none focus:ring-2 focus:ring-pink-500 resize-none"
+                    placeholder="자기소개를 입력하세요"
+                    rows={3}
+                  />
+                </div>
+
+                <div>
+                  <label className="text-gray-400 text-sm block mb-2">프로필 사진 URL (선택)</label>
+                  <input
+                    type="text"
+                    value={editAvatar}
+                    onChange={(e) => {
+                      setEditAvatar(e.target.value);
+                      if (editError) setEditError('');
+                    }}
+                    className="w-full px-3 py-2 rounded-lg bg-gray-800 text-white border border-gray-700 focus:outline-none focus:ring-2 focus:ring-pink-500"
+                    placeholder="프로필 사진 URL을 입력하세요"
+                  />
+                </div>
+
+                {editError && (
+                  <div className="bg-red-900/20 border border-red-700 rounded-lg p-3">
+                    <p className="text-sm text-red-400">{editError}</p>
+                  </div>
+                )}
+
+                <div className="flex gap-3 pt-2">
+                  <button
+                    onClick={handleUpdateProfile}
+                    disabled={isUpdatingProfile}
+                    className="flex-1 px-4 py-2 bg-pink-600 hover:bg-pink-700 disabled:bg-pink-600 disabled:opacity-50 text-white rounded-lg font-medium transition"
+                  >
+                    {isUpdatingProfile ? '저장 중...' : '저장'}
+                  </button>
+                  <button
+                    onClick={handleCancelEdit}
+                    disabled={isUpdatingProfile}
+                    className="flex-1 px-4 py-2 bg-gray-700 hover:bg-gray-600 disabled:opacity-50 text-white rounded-lg font-medium transition"
+                  >
+                    취소
+                  </button>
+                </div>
+              </div>
+            )}
           </div>
 
           {/* 인증 상태 카드 */}

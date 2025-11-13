@@ -1,5 +1,6 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
+import useLogout from '../hooks/mutations/useLogout';
 import HamburgerIcon from '../assets/icons/hamburger-button.svg?react';
 
 interface NavbarProps {
@@ -7,13 +8,8 @@ interface NavbarProps {
 }
 
 export default function Navbar({ onToggleSidebar }: NavbarProps) {
-  const navigate = useNavigate();
-  const { isAuthenticated, user, logout } = useAuth();
-
-  const handleLogout = () => {
-    logout();
-    navigate('/login', { replace: true });
-  };
+  const { isAuthenticated, user } = useAuth();
+  const { mutate: logout, isPending: isLoggingOut } = useLogout();
 
   return (
     <header className="flex justify-between items-center px-4 py-3 bg-gray-900 border-b border-gray-800">
@@ -40,10 +36,11 @@ export default function Navbar({ onToggleSidebar }: NavbarProps) {
               {user.role === 'admin' && <span className="ml-2 text-yellow-500">[관리자]</span>}
             </span>
             <button
-              onClick={handleLogout}
-              className="px-4 py-2 rounded hover:text-pink-500 transition text-white"
+              onClick={() => logout()}
+              disabled={isLoggingOut}
+              className="px-4 py-2 rounded hover:text-pink-500 transition text-white disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              로그아웃
+              {isLoggingOut ? '로그아웃 중...' : '로그아웃'}
             </button>
           </>
         ) : (

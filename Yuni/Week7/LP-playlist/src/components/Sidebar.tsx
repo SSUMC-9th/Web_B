@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
+import useWithdraw from '../hooks/mutations/useWithdraw';
+import { useState } from 'react';
 
 interface SidebarProps {
   isOpen: boolean;
@@ -11,13 +13,21 @@ interface SidebarProps {
  * - 데스크톱(lg 이상)에서는 항상 표시
  * - 모바일(lg 미만)에서는 isOpen 상태에 따라 표시/숨김
  * - 외부 클릭 시 onClose 콜백 실행
+ * - 탈퇴하기 버튼으로 회원탈퇴 모달 표시
  */
 export default function Sidebar({ isOpen, onClose }: SidebarProps) {
   const { isAuthenticated } = useAuth();
+  const { mutate: withdraw, isPending: isWithdrawing } = useWithdraw();
+  const [showWithdrawModal, setShowWithdrawModal] = useState(false);
 
   // 배경 클릭 시 사이드바 닫기
   const handleBackdropClick = () => {
     onClose();
+  };
+
+  // 회원탈퇴 확인
+  const handleWithdrawConfirm = () => {
+    withdraw();
   };
 
   return (
@@ -109,6 +119,16 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
             )}
           </nav>
 
+          {/* 탈퇴하기 버튼 (로그인 상태일 때만 표시) */}
+          {isAuthenticated && (
+            <button
+              onClick={() => setShowWithdrawModal(true)}
+              className="w-full px-4 py-2 mt-4 text-red-400 hover:text-red-300 hover:bg-red-900/20 rounded-lg transition text-sm border border-red-400/30"
+            >
+              탈퇴하기
+            </button>
+          )}
+
           {/* 푸터 정보 */}
           <div className="border-t border-gray-800 pt-4 text-xs text-gray-500">
             <p>© 2024 LP판</p>
@@ -116,6 +136,38 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
           </div>
         </nav>
       </aside>
+
+      {/* 회원탈퇴 확인 모달 */}
+      {showWithdrawModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-gray-800 rounded-lg p-6 max-w-sm mx-4 border border-gray-700">
+            <h3 className="text-lg font-semibold text-white mb-2">회원 탈퇴</h3>
+            <p className="text-gray-300 text-sm mb-4">
+              정말 탈퇴하시겠습니까?
+            </p>
+            <p className="text-gray-400 text-xs mb-6">
+              모든 데이터가 삭제되며 복구할 수 없습니다.
+            </p>
+
+            <div className="flex gap-3">
+              <button
+                onClick={() => setShowWithdrawModal(false)}
+                disabled={isWithdrawing}
+                className="flex-1 px-4 py-2 bg-gray-700 hover:bg-gray-600 disabled:bg-gray-700 disabled:opacity-50 text-white rounded-lg transition"
+              >
+                아니오
+              </button>
+              <button
+                onClick={handleWithdrawConfirm}
+                disabled={isWithdrawing}
+                className="flex-1 px-4 py-2 bg-red-600 hover:bg-red-700 disabled:bg-red-600 disabled:opacity-50 text-white rounded-lg transition"
+              >
+                {isWithdrawing ? '처리 중...' : '예'}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 }
