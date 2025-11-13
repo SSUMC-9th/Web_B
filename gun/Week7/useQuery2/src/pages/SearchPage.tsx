@@ -5,17 +5,10 @@ import { useInView } from "react-intersection-observer"; // useInView 사용
 import type { PAGINATION_ORDER } from "../enums/common"; 
 import type { Lp } from '../type/lp'; // Lp 타입 import
 
-// ✅ 경로 대소문자 수정: useGetInfiniteLpList
-
-// ❌ LpCard의 내부 정의를 제거하고 외부 파일에서 Import 합니다.
 import LpCard from "../components/LpCard"; 
 import useGetInfiniteLpList from "../hooks/queries/useGetInfiniteLPlist";
 import LpCardSkeleton from "../components/LpCardSkeleton";
 
-// ✅ 이전 오류 방지를 위해 Named Import로 변경 (export { LpCardSkeleton } from '...')
-
-
-// 🚨 로컬 LpCard 정의는 제거되었습니다.
 
 
 const SearchPage = () => {

@@ -19,9 +19,7 @@ const LpDetailPage = () => {
     const {mutate:likeMutate} = usePostLike();
     const {mutate:disLikeMutate} = useDeleteLike();
 
-    const isLiked = lp?.data.likes
-    .map((like: Likes)=> like.userId)
-    .includes(me?.data.id as number);
+    const isLiked = lp?.data.likes.some((like:Likes)=>like.userId === me?.data.id);
 
     const handleLikeLp = async() => {
         await likeMutate({lpid:Number(lpid)});

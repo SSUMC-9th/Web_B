@@ -19,6 +19,7 @@ const NavBar = () => {
         <>
           <Link to="/login" className="text-gray-500 hover:text-gray-700">로그인</Link>
           <Link to="/signup" className="text-gray-500 hover:text-gray-700">회원가입</Link>
+        <Link to="/search" className="text-gray-500 hover:text-gray-700">🔎</Link>
         </>
        )}
 
