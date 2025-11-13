@@ -273,6 +273,7 @@ const HomePage = () => {
         onClose={() => setIsModalOpen(false)}
         onAddLP={(lp) => {
           console.log('새로운 LP 추가:', lp);
+          // TODO: LP 생성 API 호출 (POST /v1/lps)
         }}
       />
     </div>

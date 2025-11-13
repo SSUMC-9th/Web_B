@@ -63,6 +63,14 @@ export type ResponseRefreshTokenDto = CommonResponse<{
     refreshToken: string;
 }>;
 
+// 이미지 업로드 응답
+export type ResponseUploadImageDto = CommonResponse<{
+    imageUrl: string;
+}>;
+
+// 내 정보 조회 응답 (기존 ResponseMeDto와 동일)
+// ResponseMeDto 재사용
+
 /**
  * 회원가입 API
  * @param body 회원가입 요청 정보
@@ -93,6 +101,46 @@ export const postSignin = async (body: RequestSigninDto): Promise<ResponseSignin
     return data;
   } catch (error: any) {
     console.error('❌ 로그인 요청 실패 - 상세 정보:');
+    throw error;
+  }
+};
+
+/**
+ * 내 정보 조회 API
+ * @returns 현재 로그인한 사용자의 정보
+ */
+export const getMe = async (): Promise<ResponseMeDto> => {
+  console.log('📤 내 정보 조회 중...');
+  try {
+    const { data } = await axiosInstance.get<ResponseMeDto>('/users/me');
+    console.log('✅ 내 정보 조회 성공:', data.data);
+    return data;
+  } catch (error: any) {
+    console.error('❌ 내 정보 조회 실패:', error.response?.data);
+    throw error;
+  }
+};
+
+/**
+ * 이미지 업로드 API (인증)
+ * @param file 업로드할 이미지 파일
+ * @returns 이미지 URL
+ */
+export const uploadImage = async (file: File): Promise<string> => {
+  console.log('📤 이미지 업로드 중:', file.name);
+  try {
+    const formData = new FormData();
+    formData.append('file', file);
+
+    const { data } = await axiosInstance.post<ResponseUploadImageDto>('/uploads', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
+    console.log('✅ 이미지 업로드 성공:', data.data.imageUrl);
+    return data.data.imageUrl;
+  } catch (error: any) {
+    console.error('❌ 이미지 업로드 실패:', error.response?.data);
     throw error;
   }
 };

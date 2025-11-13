@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
+import { uploadImage } from '../apis/auth';
 
 interface LPModalProps {
   isOpen: boolean;
   onClose: () => void;
-  onAddLP: (lp: { name: string; content: string; tags: string[]; image: string | null }) => void;
+  onAddLP: (lp: { title: string; content: string; tags: string[]; thumbnail: string | null; published: boolean }) => void;
 }
 
 export default function LPModal({ isOpen, onClose, onAddLP }: LPModalProps) {
@@ -12,7 +13,9 @@ export default function LPModal({ isOpen, onClose, onAddLP }: LPModalProps) {
   const [lpTag, setLpTag] = useState<string>('');
   const [tags, setTags] = useState<string[]>([]);
   const [imageFile, setImageFile] = useState<File | null>(null);
-  const [imagePreview, setImagePreview] = useState<string | ArrayBuffer | null>(null);
+  const [imagePreview, setImagePreview] = useState<string | null>(null);
+  const [isPublished, setIsPublished] = useState<boolean>(true);
+  const [isUploadingImage, setIsUploadingImage] = useState<boolean>(false);
   const fileInputRef = React.useRef<HTMLInputElement | null>(null);
 
   const handleImageClick = () => {
@@ -25,7 +28,7 @@ export default function LPModal({ isOpen, onClose, onAddLP }: LPModalProps) {
       setImageFile(file);
       const reader = new FileReader();
       reader.onloadend = () => {
-        setImagePreview(reader.result);
+        setImagePreview(reader.result as string);
       };
       reader.readAsDataURL(file);
     } else {
@@ -41,29 +44,48 @@ export default function LPModal({ isOpen, onClose, onAddLP }: LPModalProps) {
     }
   };
 
-  const handleRemoveTag = (indexToRemove) => {
+  const handleRemoveTag = (indexToRemove: number) => {
     setTags(tags.filter((_, index) => index !== indexToRemove));
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (lpName.trim()) {
-      onAddLP({
-        name: lpName,
-        content: lpContent,
-        tags: tags,
-        image: imagePreview
-      });
-      setLpName('');
-      setLpContent('');
-      setLpTag('');
-      setTags([]);
-      setImageFile(null);
-      setImagePreview(null);
-      onClose();
+      try {
+        let thumbnailUrl: string | null = null;
+
+        // 이미지 파일이 있으면 업로드
+        if (imageFile) {
+          setIsUploadingImage(true);
+          thumbnailUrl = await uploadImage(imageFile);
+          setIsUploadingImage(false);
+        }
+
+        onAddLP({
+          title: lpName,
+          content: lpContent,
+          thumbnail: thumbnailUrl,
+          tags: tags,
+          published: isPublished,
+        });
+
+        // 폼 초기화
+        setLpName('');
+        setLpContent('');
+        setLpTag('');
+        setTags([]);
+        setImageFile(null);
+        setImagePreview(null);
+        setIsPublished(true);
+        onClose();
+      } catch (error: any) {
+        setIsUploadingImage(false);
+        console.error('❌ LP 추가 실패:', error);
+        alert(error.response?.data?.message || 'LP 추가 중 오류가 발생했습니다.');
+      }
     }
   };
 
-  const handleKeyPress = (e) => {
+  const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
       handleAddTag();
     }
@@ -226,11 +248,28 @@ export default function LPModal({ isOpen, onClose, onAddLP }: LPModalProps) {
             </div>
           )}
 
+          <div className="flex items-center gap-3">
+            <label className="flex items-center gap-2 cursor-pointer">
+              <input
+                type="checkbox"
+                checked={isPublished}
+                onChange={(e) => setIsPublished(e.target.checked)}
+                className="w-4 h-4 rounded border-gray-600 bg-gray-700 text-pink-500 cursor-pointer"
+              />
+              <span className="text-white text-sm">공개</span>
+            </label>
+          </div>
+
           <button
             onClick={handleSubmit}
-            className="w-full py-3 bg-gray-600 hover:bg-gray-500 text-white rounded-lg transition-colors font-medium"
+            disabled={isUploadingImage}
+            className={`w-full py-3 rounded-lg transition-colors font-medium ${
+              isUploadingImage
+                ? 'bg-gray-600 text-white cursor-not-allowed opacity-50'
+                : 'bg-gray-600 hover:bg-gray-500 text-white'
+            }`}
           >
-            Add LP
+            {isUploadingImage ? '이미지 업로드 중...' : 'Add LP'}
           </button>
         </div>
       </div>

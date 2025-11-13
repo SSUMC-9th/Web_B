@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import type { UserSigninInformation } from '../utils/validate';
 import validateSignin from '../utils/validate';
 import useForm from '../hooks/useForm';
-import { postSignin } from '../apis/auth';
+import { postSignin, getMe } from '../apis/auth';
 import { useAuth } from '../hooks/useAuth';
 import { useState } from 'react';
 import type { User } from '../types/auth.types';
@@ -40,8 +40,13 @@ export default function LoginPage() {
             });
 
             if (response.status) {
-                // 토큰 저장 및 사용자 정보 설정
-                const user: User = {
+                // Refresh Token 저장
+                localStorage.setItem(STORAGE_KEYS.REFRESH_TOKEN, response.data.refreshToken);
+                console.log('✅ 로그인 성공! 토큰 저장됨:', response.data.accessToken);
+                console.log('🔄 Refresh Token 저장됨:', response.data.refreshToken);
+
+                // accessToken으로 임시 로그인 (getMe 호출을 위해 필요)
+                const tempUser: User = {
                     id: response.data.id,
                     email: values.email,
                     name: response.data.name,
@@ -49,12 +54,30 @@ export default function LoginPage() {
                     createdAt: new Date(),
                     updatedAt: new Date(),
                 };
+                login(response.data.accessToken, tempUser);
 
-                login(response.data.accessToken, user);
-                // Refresh Token 저장
-                localStorage.setItem(STORAGE_KEYS.REFRESH_TOKEN, response.data.refreshToken);
-                console.log('✅ 로그인 성공! 토큰 저장됨:', response.data.accessToken);
-                console.log('🔄 Refresh Token 저장됨:', response.data.refreshToken);
+                // getMe API로 완전한 사용자 정보 조회
+                try {
+                    const meResponse = await getMe();
+                    if (meResponse.status) {
+                        // 서버에서 받은 완전한 정보로 user 업데이트
+                        const completeUser: User = {
+                            id: meResponse.data.id,
+                            name: meResponse.data.name,
+                            email: meResponse.data.email,
+                            bio: meResponse.data.bio,
+                            avatar: meResponse.data.avatar,
+                            role: 'user',
+                            createdAt: new Date(meResponse.data.createdAt),
+                            updatedAt: new Date(meResponse.data.updatedAt),
+                        };
+                        login(response.data.accessToken, completeUser);
+                        console.log('✅ 완전한 사용자 정보 조회 성공:', completeUser);
+                    }
+                } catch (meError) {
+                    console.warn('⚠️ getMe 호출 실패, 기본 정보로 진행:', meError);
+                    // getMe 실패해도 이미 로그인된 상태이므로 계속 진행
+                }
 
                 // 로그인 성공 후 홈으로 리다이렉트
                 navigate('/', { replace: true });

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { emailSchema, passwordSchema, nicknameSchema } from "../schemas/signup.schema";
-import { postSignup } from "../apis/auth";
+import { postSignup, uploadImage } from "../apis/auth";
 
 export default function SignUpPage() {
   const navigate = useNavigate();
@@ -12,7 +12,9 @@ export default function SignUpPage() {
   const [password, setPassword] = useState("");
   const [passwordCheck, setPasswordCheck] = useState("");
   const [nickname, setNickname] = useState("");
-  const [profileImage, setProfileImage] = useState<string | null>(null);
+  const [profileImageFile, setProfileImageFile] = useState<File | null>(null);
+  const [profileImagePreview, setProfileImagePreview] = useState<string | null>(null);
+  const [isUploadingImage, setIsUploadingImage] = useState(false);
 
   // 에러 상태
   const [emailError, setEmailError] = useState("");
@@ -74,11 +76,20 @@ export default function SignUpPage() {
     e.preventDefault();
 
     try {
+      let avatarUrl: string | undefined;
+
+      // 이미지 파일이 있으면 업로드
+      if (profileImageFile) {
+        setIsUploadingImage(true);
+        avatarUrl = await uploadImage(profileImageFile);
+        setIsUploadingImage(false);
+      }
+
       const response = await postSignup({
         email,
         password,
         name: nickname,
-        avatar: profileImage || undefined,
+        avatar: avatarUrl,
       });
 
       if (response.status) {
@@ -89,6 +100,7 @@ export default function SignUpPage() {
         alert(response.message || '회원가입에 실패했습니다.');
       }
     } catch (error: any) {
+      setIsUploadingImage(false);
       console.error('❌ 회원가입 실패:', error);
       alert(error.response?.data?.message || '회원가입 중 오류가 발생했습니다.');
     }
@@ -96,11 +108,12 @@ export default function SignUpPage() {
 
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
-    if (file) {
-      // 미리보기용 Base64 생성만 진행 (서버 업로드 없음)
+    if (file && file.type.startsWith('image/')) {
+      // 파일 저장 및 미리보기 생성
+      setProfileImageFile(file);
       const reader = new FileReader();
       reader.onloadend = () => {
-        setProfileImage(reader.result as string);
+        setProfileImagePreview(reader.result as string);
       };
       reader.readAsDataURL(file);
     }
@@ -233,8 +246,8 @@ export default function SignUpPage() {
                 <div className="flex flex-col items-center mb-6">
                   <div className="relative mb-4">
                     <div className="w-32 h-32 rounded-full bg-gray-700 flex items-center justify-center overflow-hidden">
-                      {profileImage ? (
-                        <img src={profileImage} alt="Profile" className="w-full h-full object-cover" />
+                      {profileImagePreview ? (
+                        <img src={profileImagePreview} alt="Profile" className="w-full h-full object-cover" />
                       ) : (
                         <svg className="w-16 h-16 text-gray-500" fill="currentColor" viewBox="0 0 20 20">
                           <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
@@ -272,14 +285,14 @@ export default function SignUpPage() {
 
                 <button
                   type="submit"
-                  disabled={!isStep3Valid}
+                  disabled={!isStep3Valid || isUploadingImage}
                   className={`w-full px-6 py-3 rounded-lg font-medium ${
-                    !isStep3Valid
+                    !isStep3Valid || isUploadingImage
                       ? 'bg-gray-600 text-white cursor-not-allowed opacity-50'
                       : 'bg-pink-500 text-white hover:bg-pink-600 transition'
                   }`}
                 >
-                  회원가입 완료
+                  {isUploadingImage ? '이미지 업로드 중...' : '회원가입 완료'}
                 </button>
               </>
             )}
