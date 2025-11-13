@@ -1,10 +1,11 @@
 import useGetLpListInfinite from "../hooks/queries/useGetLpListInfinite.ts";
 import { useState, useRef, useCallback, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
 import LoadingState from "../components/LoadingState";
 import ErrorState from "../components/ErrorState";
 import SkeletonCard from "../components/SkeletonCard";
+import LPModal from "../components/LPModal";
 import type { Lp } from "../types/lp.ts";
 
 const HomePage = () => {
@@ -13,6 +14,7 @@ const HomePage = () => {
   const [sortOrder, setSortOrder] = useState<" asc" | "desc">("desc"); // 최신순(desc)이 기본값
   const observerTarget = useRef<HTMLDivElement>(null);
   const [failedImages, setFailedImages] = useState<Set<number>>(new Set());
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const { data, isLoading, error, isFetchingNextPage, hasNextPage, fetchNextPage } = useGetLpListInfinite({
     search,
@@ -188,14 +190,23 @@ const HomePage = () => {
 
       {/* 플로팅 버튼 (+) - 우측 하단 */}
       {isAuthenticated && (
-        <Link
-          to="/protected/dashboard"
+        <button
+          onClick={() => setIsModalOpen(true)}
           className="fixed bottom-8 right-8 w-14 h-14 bg-gradient-to-r from-pink-500 to-pink-600 rounded-full flex items-center justify-center text-white text-3xl shadow-lg hover:shadow-pink-500/50 hover:scale-110 transition-all duration-300 z-50"
-          title="마이페이지"
+          title="LP 추가"
         >
           +
-        </Link>
+        </button>
       )}
+
+      {/* LP 추가 모달 */}
+      <LPModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onAddLP={(lp) => {
+          console.log('새로운 LP 추가:', lp);
+        }}
+      />
     </div>
   );
 };
