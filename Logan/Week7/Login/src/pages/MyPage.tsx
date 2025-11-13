@@ -55,6 +55,7 @@ import type { Lp } from "../types/lp";
 import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import CreateLpModal from "../components/CreateLpModal";
+import EditProfileModal from "../components/EditProfileModal";
 
 // --- 스켈레톤 카드 ---
 function LpCardSkeleton() {
@@ -99,6 +100,17 @@ function LpCard({ lp }: { lp: Lp }) {
 const MyPage = () => {
   // 모달 컨트롤하는 상태
   const [open, setOpen] = useState(false);
+
+  // 프로필 수정 모달
+  const [editOpen, setEditOpen] = useState(false); // 프로필 수정 모달
+  // me 상태 갱신용 헬퍼 (patch 성공 시 콜백으로 받음)
+  const applyMe = (next: ResponseMyInfoDto["data"]) => {
+    setMe((prev) =>
+      prev
+        ? { ...prev, data: next }
+        : { status: true, statusCode: 200, message: "", data: next }
+    );
+  };
 
   const navigate = useNavigate();
   const { logout } = useAuth();
@@ -145,6 +157,7 @@ const MyPage = () => {
   const name = me?.data?.name ?? "";
   const email = me?.data?.email ?? "";
   const avatar = (me?.data?.avatar as string) ?? "";
+  const bio = (me?.data?.bio as string) ?? "";
 
   return (
     <div className="min-h-screen bg-black text-white">
@@ -172,6 +185,7 @@ const MyPage = () => {
               <>
                 <h2 className="text-3xl font-bold">{name}</h2>
                 <p className="mt-1 text-zinc-400">{email}</p>
+                <p className="mt-1 text-zinc-200">{bio}</p>
               </>
             )}
           </div>
@@ -181,6 +195,14 @@ const MyPage = () => {
             className="rounded-lg bg-fuchsia-600 px-4 py-2 text-sm font-semibold hover:bg-fuchsia-500"
           >
             로그아웃
+          </button>
+
+          {/* 🔧 설정 버튼 */}
+          <button
+            onClick={() => setEditOpen(true)}
+            className="rounded-lg border border-white/10 px-4 py-2 text-sm hover:bg-white/5"
+          >
+            설정
           </button>
         </div>
 
@@ -247,6 +269,13 @@ const MyPage = () => {
 
       {/* 🔹 모달 컴포넌트 */}
       <CreateLpModal open={open} onClose={() => setOpen(false)} />
+
+      <EditProfileModal
+        open={editOpen}
+        onClose={() => setEditOpen(false)}
+        me={me?.data ?? null}
+        onUpdated={applyMe}
+      />
     </div>
   );
 };
