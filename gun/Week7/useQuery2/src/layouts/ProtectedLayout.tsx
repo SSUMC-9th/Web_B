@@ -6,7 +6,7 @@ const ProtectedLayout = () => {
     const location = useLocation();
 
     if(!accessToken){
-        return <Navigate to = {"/login"} state = {{location}} replace />;
+        return <Navigate to = {"/"} state = {{location}} replace />;
     
     }
     

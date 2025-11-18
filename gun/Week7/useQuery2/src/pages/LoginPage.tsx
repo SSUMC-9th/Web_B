@@ -59,13 +59,13 @@ const LoginPage = () => {
         <button type="button" 
                 onClick={handleSubmit}
                 disabled={false}
-                className="w-full bg-blue-600 text-white py-3 rounded-md 
-                          text-lg font-medium hover:bg-blue-700 transition-colors cursor-pointer disabled:bg-gray-300">로그인</button>
+                className="w-full bg-purple-600 text-white py-3 rounded-md 
+                          text-lg font-medium hover:bg-purple-700 transition-colors cursor-pointer disabled:bg-gray-300">로그인</button>
         <button type="button" 
                 onClick={handleGoogleLogin}
                 disabled={false}
-                className="w-full bg-blue-600 text-white py-3 rounded-md 
-                          text-lg font-medium hover:bg-blue-700 transition-colors cursor-pointer disabled:bg-gray-300">
+                className="w-full bg-purple-600 text-white py-3 rounded-md 
+                          text-lg font-medium hover:bg-purple-700 transition-colors cursor-pointer disabled:bg-gray-300">
                             <div className = "flex items-center justify-center gap-4">
                             <img src={"/images/google.svg"} alt = "Google Logo" className = "w-6 h-6"/>
                             <span>구글 로그인</span>

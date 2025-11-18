@@ -33,10 +33,10 @@ const LpCard = ({lp}:LpCardProps) => {
     <div 
         onClick={() => navigate(`/lps/${lp.id}`)}
         className="relative rounded-lg overflow-hidden shadow-lg hover:shadow-2xl 
-                   transition-shadow duration-300 cursor-pointer"
+                   transition-shadow duration-300 cursor-pointer border-4 border-gray-300"
     >
         {/* 🖼️ 이미지 컨테이너 */}
-        <div className="object-cover w-full h-48 relative bg-gray-200">
+        <div className="object-cover w-full h-48 relative bg-gray-200 ">
             
             {/* 💡 로딩 중일 때만 보이는 플레이스홀더 배경 */}
             {!imageLoaded && (
@@ -58,7 +58,7 @@ const LpCard = ({lp}:LpCardProps) => {
         </div>
 
         {/* 하단 타이틀 오버레이 */}
-        <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-75 p-2">
+        <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-75 p-2 ">
             <h3 className="text-white text-sm font-semibold truncate">{lp.title}</h3>
         </div>
     </div>
