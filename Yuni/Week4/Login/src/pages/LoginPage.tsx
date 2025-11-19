@@ -11,12 +11,14 @@ export default function LoginPage() {
         validate: validateSignin,
     })
 
+    // 폼 제출 함수
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         console.log(values);
         await axios.post('https://example.com/api/login', values);
     }
 
+    // 제출 버튼 활성화 여부 판단
     const isDisable : boolean =
         Object.values(errors ?? {}).some((error) => error !== "") ||
         Object.values(values ?? {}).some((value) => value === "");
