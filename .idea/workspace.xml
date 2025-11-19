@@ -5,43 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b2f400c6-011c-40f3-baf2-11dfa1555932" name="변경" comment="">
-      <change afterPath="$PROJECT_DIR$/Andy/Week7/Tanstack/package-lock.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Andy/Week7/Tanstack/src/apis/auth.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Andy/Week7/Tanstack/src/apis/axios.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Andy/Week7/Tanstack/src/apis/lp.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Andy/Week7/Tanstack/src/components/LpCard/LpCard.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Andy/Week7/Tanstack/src/components/LpCard/LpCardSkeleton.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Andy/Week7/Tanstack/src/components/LpCard/LpCardSkeletonList.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Andy/Week7/Tanstack/src/components/NavBar.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Andy/Week7/Tanstack/src/constants/key.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Andy/Week7/Tanstack/src/context/AuthContext.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Andy/Week7/Tanstack/src/enums/common.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Andy/Week7/Tanstack/src/hooks/queries/useGetLpDetail.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Andy/Week7/Tanstack/src/hooks/queries/useGetMyInfo.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Andy/Week7/Tanstack/src/hooks/useForm.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Andy/Week7/Tanstack/src/hooks/useLocalStorage.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Andy/Week7/Tanstack/src/layouts/HomeLayout.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Andy/Week7/Tanstack/src/layouts/ProtectedLayout.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Andy/Week7/Tanstack/src/pages/GoogleLoginRedirectPage.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Andy/Week7/Tanstack/src/pages/HomePage.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Andy/Week7/Tanstack/src/pages/LoginPage.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Andy/Week7/Tanstack/src/pages/LpDetailPage.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Andy/Week7/Tanstack/src/pages/MyPage.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Andy/Week7/Tanstack/src/pages/NotFoundPage.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Andy/Week7/Tanstack/src/pages/SignupPage.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Andy/Week7/Tanstack/src/types/auth.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Andy/Week7/Tanstack/src/types/common.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Andy/Week7/Tanstack/src/types/lp.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Andy/Week7/Tanstack/src/utils/validate.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Andy/Week7/Tanstack/vite-env.d.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Andy/Week7/Tanstack/bun.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Andy/Week7/Tanstack/bun.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Andy/Week7/Tanstack/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/Andy/Week7/Tanstack/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Andy/Week7/Tanstack/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/Andy/Week7/Tanstack/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Andy/Week7/Tanstack/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/Andy/Week7/Tanstack/src/App.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Andy/Week7/Tanstack/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Andy/Week7/Tanstack/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Andy/Week7/Tanstack/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/Andy/Week7/Tanstack/src/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Andy/Week7/Tanstack/vite.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Andy/Week7/Tanstack/vite.config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Andy/Week7/Tanstack/src/components/CreateLpModal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Andy/Week7/Tanstack/src/components/CreateLpModal.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Andy/Week7/Tanstack/src/hooks/mutations/useDeleteLp.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Andy/Week7/Tanstack/src/hooks/mutations/useDeleteLp.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,6 +22,13 @@
         <option value="TypeScript JSX File" />
         <option value="TypeScript File" />
       </list>
+    </option>
+  </component>
+  <component name="FormatOnSaveOptions">
+    <option name="myRunOnSave" value="false" />
+    <option name="myAllFileTypesSelected" value="true" />
+    <option name="mySelectedFileTypes">
+      <set />
     </option>
   </component>
   <component name="Git.Settings">
@@ -105,15 +78,15 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "andy/#7",
     "javascript.preferred.runtime.type.id": "bun",
-    "last_opened_file_path": "/Users/joonwoo/Developer/Web_B/Andy/Week7",
+    "last_opened_file_path": "/opt/homebrew/opt/node@20/bin/node",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_interpreter_path": "node",
+    "nodejs_interpreter_path": "/opt/homebrew/opt/node@20/bin/node",
     "nodejs_package_manager_path": "/opt/homebrew/bin/bun",
-    "settings.editor.selected.configurable": "terminal",
+    "settings.editor.selected.configurable": "settings.nodejs",
     "ts.external.directory.path": "/Users/joonwoo/Developer/Web_B/Andy/Week1/TodoList/node_modules/typescript/lib",
     "vue.rearranger.settings.migration": "true"
   }
@@ -188,6 +161,8 @@
       <workItem from="1762663716130" duration="4257000" />
       <workItem from="1762956209558" duration="344000" />
       <workItem from="1762956561055" duration="10459000" />
+      <workItem from="1763006872366" duration="20699000" />
+      <workItem from="1763172534844" duration="57000" />
     </task>
     <servers />
   </component>

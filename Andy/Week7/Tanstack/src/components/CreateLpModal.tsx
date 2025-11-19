@@ -123,8 +123,6 @@ export const CreateLpModal = ({ isOpen, onClose }: CreateLpModalProps) => {
       return;
     }
 
-    // TODO: 실제 이미지 업로드 서비스 연결 필요
-    // 현재는 URL 입력 또는 기본 이미지 사용
     const finalThumbnail = thumbnailUrl || DEFAULT_THUMBNAIL;
 
     const lpData = {

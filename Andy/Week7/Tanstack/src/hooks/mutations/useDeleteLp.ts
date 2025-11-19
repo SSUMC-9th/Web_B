@@ -54,7 +54,7 @@ export const useDeleteLp = () => {
      * 이전 상태로 롤백
      */
     onError: (err, lpId, context) => {
-      console.error("LP 삭제 오류:", err);
+      console.error("LP 삭제 오류:", err, lpId);
       // 에러 발생 시 이전 데이터로 복원
       if (context?.previousLpPost) {
         queryClient.setQueryData(
