@@ -56,6 +56,8 @@ function useGetInfiniteLpList(
       return lastPage.data.hasNext ? lastPage.data.nextCursor : undefined;
     },
     // 네트워크/포커스 변경 시 과도한 refetch 방지
+    // options.enabled값을 가져오는데 없으면 true로 해라
+    // false일 때, queryFn이 아예 실행되지 않음
     enabled: options?.enabled ?? true,
     staleTime: 60_000,
     gcTime: 5 * 60_000,
