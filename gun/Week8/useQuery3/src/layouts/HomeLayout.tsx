@@ -3,9 +3,9 @@ import NavBar from "../components/Navbar";
 import useSidebar from "../hooks/useSideBar";
 import HamburgerButton from "../components/hamburgerbar";
 import CustomSidebar from "../components/SideBar";
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Plus } from 'lucide-react'; 
-
+// 안녕티비 
 // 💡 새로 생성된 모달 컴포넌트를 임포트합니다.
 import Modal from '../components/Modal'; 
 import LpPostForm from "../components/LpPostForm";
@@ -61,7 +61,7 @@ const HomeLayout = () => {
                                                 hover:from-gray-300 hover:via-purple-500 hover:to-fuchsia-600
                                                 transition-all duration-300"
                                     >
-                                        SpinList
+                                        SpinLists
                                     </span>
                                 </div>
                             </Link> 
