@@ -1,0 +1,3 @@
+const SEARCH_DEBOUNCE_DELAY = 500;
+
+export default SEARCH_DEBOUNCE_DELAY;
