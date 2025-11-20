@@ -25,9 +25,10 @@ function useGetLpListInfinite({ search = "", order = "desc" }: UseGetLpListInfin
       }
       return undefined;
     },
+    enabled: !!search, // search가 빈 문자열이 아닐 때만 쿼리 활성화
     initialPageParam: 0,
-    staleTime: 1000 * 60, // 1 minute
-    gcTime: 1000 * 60 * 5, // 5 minutes
+    staleTime: 1000 * 60, // 1분
+    gcTime: 1000 * 60 * 5, // 5분
   });
 }
 

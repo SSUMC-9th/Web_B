@@ -8,17 +8,19 @@ import ErrorState from "../components/ErrorState";
 import SkeletonCard from "../components/SkeletonCard";
 import LPModal from "../components/LPModal";
 import type { Lp } from "../types/lp.ts";
+import useDebounce from "../hooks/useDebounce.ts";
 
 const HomePage = () => {
   const navigate = useNavigate();
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState(""); //입력 값
+  const debouncedSearch = useDebounce(search, 300); //지연된 값(300ms)
   const [sortOrder, setSortOrder] = useState<" asc" | "desc">("desc"); // 최신순(desc)이 기본값
   const observerTarget = useRef<HTMLDivElement>(null);
   const [failedImages, setFailedImages] = useState<Set<number>>(new Set());
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const { data, isLoading, error, isFetchingNextPage, hasNextPage, fetchNextPage } = useGetLpListInfinite({
-    search,
+    search: debouncedSearch, // 지연된 검색어 사용
     order: sortOrder
   });
   const { isAuthenticated, user } = useAuth();
@@ -33,7 +35,7 @@ const HomePage = () => {
     setSortOrder(sortOrder === "desc" ? " asc" : "desc");
   };
 
-  // Intersection Observer for infinite scroll
+  // 무한 스크롤
   const handleObserverCallback = useCallback(
     (entries: IntersectionObserverEntry[]) => {
       const target = entries[0];
@@ -44,7 +46,7 @@ const HomePage = () => {
     [fetchNextPage, hasNextPage, isFetchingNextPage]
   );
 
-  // Set up Intersection Observer
+  // Intersection Observer 설정
   useEffect(() => {
     if (!observerTarget.current) return;
 
