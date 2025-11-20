@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
 import useWithdraw from '../hooks/mutations/useWithdraw';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 interface SidebarProps {
   isOpen: boolean;
@@ -13,12 +13,32 @@ interface SidebarProps {
  * - 데스크톱(lg 이상)에서는 항상 표시
  * - 모바일(lg 미만)에서는 isOpen 상태에 따라 표시/숨김
  * - 외부 클릭 시 onClose 콜백 실행
+ * - ESC 키 입력 시 onClose 콜백 실행
  * - 탈퇴하기 버튼으로 회원탈퇴 모달 표시
  */
 export default function Sidebar({ isOpen, onClose }: SidebarProps) {
   const { isAuthenticated } = useAuth();
   const { mutate: withdraw, isPending: isWithdrawing } = useWithdraw();
   const [showWithdrawModal, setShowWithdrawModal] = useState(false);
+
+  // ESC 키로 사이드바 닫기
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const handleEscKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        onClose();
+      }
+    };
+
+    // keydown 이벤트 리스너 등록
+    document.addEventListener('keydown', handleEscKey);
+
+    // 클린업 함수: 컴포넌트 언마운트 또는 isOpen이 false일 때 리스너 제거
+    return () => {
+      document.removeEventListener('keydown', handleEscKey);
+    };
+  }, [isOpen, onClose]);
 
   // 배경 클릭 시 사이드바 닫기
   const handleBackdropClick = () => {

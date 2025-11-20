@@ -1,9 +1,9 @@
-import { useState } from 'react';
 import { Outlet, Navigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Sidebar from '../components/Sidebar';
 import Footer from '../components/Footer';
 import { useAuth } from '../hooks/useAuth';
+import { useSidebar } from '../hooks/useSidebar';
 
 /**
  * ProtectedLayout - 로그인이 필요한 페이지용 레이아웃
@@ -11,23 +11,15 @@ import { useAuth } from '../hooks/useAuth';
  * Navbar와 Footer를 포함하여 모든 보호된 페이지에서 일관된 UI를 제공합니다.
  */
 export default function ProtectedLayout() {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const { isOpen, toggle, close } = useSidebar();
   const { isAuthenticated, isLoading } = useAuth();
-
-  const handleToggleSidebar = () => {
-    setIsSidebarOpen(!isSidebarOpen);
-  };
-
-  const handleCloseSidebar = () => {
-    setIsSidebarOpen(false);
-  };
 
   // 로딩 중일 때
   if (isLoading) {
     return (
       <div className="flex flex-col min-h-screen bg-gray-950 text-white">
-        <Navbar onToggleSidebar={handleToggleSidebar} />
-        <Sidebar isOpen={isSidebarOpen} onClose={handleCloseSidebar} />
+        <Navbar onToggleSidebar={toggle} />
+        <Sidebar isOpen={isOpen} onClose={close} />
         <main className="flex-1 flex items-center justify-center">
           <div className="text-center">
             <div className="inline-block animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-pink-500"></div>
@@ -46,8 +38,8 @@ export default function ProtectedLayout() {
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-950 text-white">
-      <Navbar onToggleSidebar={handleToggleSidebar} />
-      <Sidebar isOpen={isSidebarOpen} onClose={handleCloseSidebar} />
+      <Navbar onToggleSidebar={toggle} />
+      <Sidebar isOpen={isOpen} onClose={close} />
       <main className="flex-1">
         <Outlet />
       </main>
