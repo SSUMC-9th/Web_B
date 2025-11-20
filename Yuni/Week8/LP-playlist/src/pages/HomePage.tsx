@@ -8,19 +8,27 @@ import ErrorState from "../components/ErrorState";
 import SkeletonCard from "../components/SkeletonCard";
 import LPModal from "../components/LPModal";
 import type { Lp } from "../types/lp.ts";
-import useDebounce from "../hooks/useDebounce.ts";
 
 const HomePage = () => {
   const navigate = useNavigate();
   const [search, setSearch] = useState(""); //입력 값
-  const debouncedSearch = useDebounce(search, 300); //지연된 값(300ms)
   const [sortOrder, setSortOrder] = useState<" asc" | "desc">("desc"); // 최신순(desc)이 기본값
+  const [hasSearched, setHasSearched] = useState(false); // 검색 시도 여부
   const observerTarget = useRef<HTMLDivElement>(null);
   const [failedImages, setFailedImages] = useState<Set<number>>(new Set());
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  // 검색어 변경 시 hasSearched를 true로 설정
+  const handleSearchChange = (value: string) => {
+    setSearch(value);
+    if (value.trim() !== "") {
+      setHasSearched(true);
+    }
+  };
+
+  // useGetLpListInfinite에서 내부적으로 debounce 처리
   const { data, isLoading, error, isFetchingNextPage, hasNextPage, fetchNextPage } = useGetLpListInfinite({
-    search: debouncedSearch, // 지연된 검색어 사용
+    search: hasSearched ? search : "", // 검색 시도 후에만 검색어 전달
     order: sortOrder
   });
   const { isAuthenticated, user } = useAuth();
@@ -150,7 +158,7 @@ const HomePage = () => {
             <input
               type="text"
               value={search}
-              onChange={(e) => setSearch(e.target.value)}
+              onChange={(e) => handleSearchChange(e.target.value)}
               placeholder="LP 검색..."
               className="flex-1 px-4 py-3 rounded-lg bg-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-pink-500"
             />
