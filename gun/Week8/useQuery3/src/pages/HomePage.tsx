@@ -24,7 +24,7 @@ const SearchPage = () => {
         isPending, // 초기 로딩 상태
         fetchNextPage,
         isError,
-    } = useGetInfiniteLpList(10, search, order); // order 상태를 훅에 전달
+    } = useGetInfiniteLpList(12, search, order); // order 상태를 훅에 전달
 
     // useInView 훅 설정 (자동 로드를 위한 관찰자)
     const { ref, inView } = useInView({
@@ -92,13 +92,6 @@ const SearchPage = () => {
 
     return (
         <div className="container mx-auto px-4 py-6">
-            <input 
-                type="text"
-                className="p-2 border rounded shadow-sm mb-6 w-full"
-                placeholder="검색어를 입력하세요..."
-                value={search} 
-                onChange={(e) => setSearch(e.target.value)} 
-            />
             
             {/* ⭐ 정렬 버튼 섹션 추가 ⭐ */}
             <div className="flex justify-start space-x-2 mb-6">

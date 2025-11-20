@@ -20,7 +20,6 @@ function useGetInfiniteLpList(
         // 다음 페이지 파라미터를 결정합니다.
         getNextPageParam: (lastPage:ResponseLpListDto, allPages: ResponseLpListDto[]) => {
             // 응답 객체(ResponseLpListDto)에서 nextCursor를 반환하여 다음 요청의 pageParam으로 사용합니다.
-            console.log(lastPage, allPages)
             return lastPage.data.hasNext ? lastPage.data.nextCursor : undefined;
         },
     });

@@ -5,7 +5,7 @@ import { useAuth } from "../context/AutoContext";
 import useGetMyInfo from "../hooks/queries/useGetMyInfo"; 
 // ⭐ 임포트 경로 수정 ⭐
 import { useUpdateUser } from "../hooks/mutations/userMutation"; 
-import { User, Image, AlignLeft, Upload, LogOut, CheckCircle, AlertTriangle, Edit, Save, X } from "lucide-react"; 
+import { User, AlignLeft, Upload, LogOut, CheckCircle, AlertTriangle, Edit, Save, X } from "lucide-react"; 
 
 const MyPage = () => {
     const { logout, accessToken } = useAuth(); 

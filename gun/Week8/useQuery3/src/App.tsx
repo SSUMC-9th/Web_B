@@ -13,11 +13,8 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import SearchPage from './pages/SearchPage';
 import LpDetailPage from './pages/LpDetailPage';
+import ThrottlePage from './pages/ThrottlePage';
 
-
-// 1. 홈 페이지
-// 2. 로그인 페이지
-// 3. 회원가입 페이지
 
 
 const routes: RouteObject[] = [
@@ -32,6 +29,7 @@ const routes: RouteObject[] = [
       { path: "search", element: <SearchPage /> },
       { path: "v1/auth/google/callback", element: <GoogleLoginPage/>},
       { path: "lps/:lpid", element: <LpDetailPage/>},
+      { path: "throttle", element: <ThrottlePage/> },
       
 
       // ✅ MyPage 를 ProtectedLayout 아래에 중첩시킴
