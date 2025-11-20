@@ -7,6 +7,7 @@ import LoadingState from "../components/LoadingState";
 import ErrorState from "../components/ErrorState";
 import SkeletonCard from "../components/SkeletonCard";
 import LPModal from "../components/LPModal";
+import useThrottle from "../hooks/useThrottle.ts";
 import type { Lp } from "../types/lp.ts";
 
 const HomePage = () => {
@@ -43,15 +44,24 @@ const HomePage = () => {
     setSortOrder(sortOrder === "desc" ? " asc" : "desc");
   };
 
+  // fetchNextPage를 3초 간격으로만 호출하도록 throttle 처리
+  const fetchNextPageCallback = useCallback(() => {
+    if (hasNextPage && !isFetchingNextPage) {
+      fetchNextPage();
+    }
+  }, [fetchNextPage, hasNextPage, isFetchingNextPage]);
+
+  const throttledFetchNextPage = useThrottle(fetchNextPageCallback, 3000);
+
   // 무한 스크롤
   const handleObserverCallback = useCallback(
     (entries: IntersectionObserverEntry[]) => {
       const target = entries[0];
-      if (target.isIntersecting && hasNextPage && !isFetchingNextPage) {
-        fetchNextPage();
+      if (target.isIntersecting) {
+        throttledFetchNextPage();
       }
     },
-    [fetchNextPage, hasNextPage, isFetchingNextPage]
+    [throttledFetchNextPage]
   );
 
   // Intersection Observer 설정
