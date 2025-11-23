@@ -1,30 +1,19 @@
-import { useEffect, useState } from "react";
-import { getMyInfo } from "../apis/auth.ts";
-import type { ResponseMyInfoDto } from "../types/auth.ts";
+import { useState } from "react";
 import { useAuth } from "../context/AuthContext.tsx";
 import { useNavigate } from "react-router-dom";
 import { ProfileEditModal } from "../components/ProfileEditModal.tsx";
 import { DeleteAccountModal } from "../components/DeleteAccountModal.tsx";
+import { useGetMyInfo } from "../hooks/queries/useGetMyInfo.ts";
 
 const MyPage = () => {
   const navigate = useNavigate();
-  const { logout } = useAuth();
-  const [data, setData] = useState<ResponseMyInfoDto["data"] | null>(null);
+  const { logout, accessToken } = useAuth();
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
-  const fetchMyInfo = async () => {
-    try {
-      const response = await getMyInfo();
-      setData(response.data);
-    } catch (error) {
-      console.error("Failed to fetch user info:", error);
-    }
-  };
-
-  useEffect(() => {
-    fetchMyInfo();
-  }, []);
+  // React Query로 사용자 정보 조회
+  const { data: response, isPending, isError } = useGetMyInfo(accessToken);
+  const data = response?.data;
 
   const handleLogout = async () => {
     await logout();
@@ -33,8 +22,6 @@ const MyPage = () => {
 
   const handleCloseModal = () => {
     setIsEditModalOpen(false);
-    // 모달 닫을 때 사용자 정보 다시 불러오기
-    fetchMyInfo();
   };
 
   const handleDeleteSuccess = async () => {
@@ -55,7 +42,19 @@ const MyPage = () => {
 
         {/* 프로필 카드 */}
         <div className="max-w-2xl mx-auto">
-          {data ? (
+          {isPending ? (
+            <div className="bg-gradient-to-br from-gray-900/50 to-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-2xl p-8 shadow-2xl">
+              <div className="text-center text-gray-400 py-12 animate-pulse">
+                불러오는 중...
+              </div>
+            </div>
+          ) : isError || !data ? (
+            <div className="bg-gradient-to-br from-gray-900/50 to-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-2xl p-8 shadow-2xl">
+              <div className="text-center text-red-400 py-12">
+                사용자 정보를 불러올 수 없습니다.
+              </div>
+            </div>
+          ) : (
             <div className="bg-gradient-to-br from-gray-900/50 to-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-2xl p-8 shadow-2xl">
               {/* 프로필 이미지 */}
               <div className="flex justify-center mb-6">
@@ -135,12 +134,6 @@ const MyPage = () => {
                     </button>
                   </div>
                 </div>
-              </div>
-            </div>
-          ) : (
-            <div className="bg-gradient-to-br from-gray-900/50 to-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-2xl p-8 shadow-2xl">
-              <div className="text-center text-gray-400 py-12 animate-pulse">
-                불러오는 중...
               </div>
             </div>
           )}

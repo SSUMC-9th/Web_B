@@ -90,3 +90,38 @@ export type ResponseUpdateLpDto = CommonResponse<{
 }>;
 
 export type ResponseDeleteLpDto = CommonResponse<boolean>;
+
+// Comment 관련 타입
+export type Comment = {
+  id: number;
+  content: string;
+  lpId: number;
+  authorId: number;
+  author?: Author;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type CreateCommentDto = {
+  content: string;
+};
+
+export type UpdateCommentDto = {
+  content: string;
+};
+
+export type ResponseCommentDto = CommonResponse<Comment>;
+
+export type CommentListData = {
+  data: Comment[];
+  nextCursor: number;
+  hasNext: boolean;
+};
+
+export type ResponseCommentListDto = CommonResponse<CommentListData>;
+
+export type DeleteCommentData = {
+  message: string;
+};
+
+export type ResponseDeleteCommentDto = CommonResponse<DeleteCommentData>;

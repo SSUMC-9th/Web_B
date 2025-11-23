@@ -1,31 +1,18 @@
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { useState, useEffect } from 'react';
-import { getMyInfo } from '../apis/auth';
+import { useState } from 'react';
 import { useLogout } from '../hooks/mutations/useLogout';
+import { useGetMyInfo } from '../hooks/queries/useGetMyInfo';
 
 export const NavBar = () => {
   const navigate = useNavigate();
   const { accessToken } = useAuth();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [userName, setUserName] = useState<string | null>(null);
   const { mutate: logout, isPending: isLoggingOut } = useLogout();
 
-  useEffect(() => {
-    if (accessToken) {
-      const fetchUserInfo = async () => {
-        try {
-          const response = await getMyInfo();
-          setUserName(response.data.name);
-        } catch (error) {
-          console.error('Failed to fetch user info:', error);
-        }
-      };
-      fetchUserInfo();
-    } else {
-      setUserName(null);
-    }
-  }, [accessToken]);
+  // React Query로 사용자 정보 조회
+  const { data: myInfoResponse } = useGetMyInfo(accessToken);
+  const userName = myInfoResponse?.data?.name;
 
   const handleLogout = () => {
     logout(undefined, {
