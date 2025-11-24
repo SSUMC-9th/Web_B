@@ -1,13 +1,14 @@
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { useState } from 'react';
 import { useLogout } from '../hooks/mutations/useLogout';
 import { useGetMyInfo } from '../hooks/queries/useGetMyInfo';
+import { useSidebar } from '../hooks/useSidebar';
+import { Sidebar } from './Sidebar';
 
 export const NavBar = () => {
   const navigate = useNavigate();
   const { accessToken } = useAuth();
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { isOpen, toggle, close } = useSidebar();
   const { mutate: logout, isPending: isLoggingOut } = useLogout();
 
   // React Query로 사용자 정보 조회
@@ -33,7 +34,7 @@ export const NavBar = () => {
         <div className="flex items-center gap-4">
           {accessToken && (
             <button
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              onClick={toggle}
               className="text-gray-300 hover:text-pink-400 transition-colors p-2"
               aria-label="메뉴"
             >
@@ -110,37 +111,8 @@ export const NavBar = () => {
         </ul>
       </div>
 
-      {/* 햄버거 메뉴 드롭다운 */}
-      {isMenuOpen && accessToken && (
-        <div className="absolute left-8 top-16 bg-[#1f2023] border border-gray-700 rounded-lg shadow-lg overflow-hidden z-50">
-          <NavLink
-            to="/explore"
-            onClick={() => setIsMenuOpen(false)}
-            className={({ isActive }) =>
-              `block px-6 py-3 transition-colors ${
-                isActive
-                  ? 'bg-pink-500/10 text-pink-500'
-                  : 'text-gray-300 hover:bg-gray-800 hover:text-pink-400'
-              }`
-            }
-          >
-            찾기
-          </NavLink>
-          <NavLink
-            to="/mypage"
-            onClick={() => setIsMenuOpen(false)}
-            className={({ isActive }) =>
-              `block px-6 py-3 transition-colors ${
-                isActive
-                  ? 'bg-pink-500/10 text-pink-500'
-                  : 'text-gray-300 hover:bg-gray-800 hover:text-pink-400'
-              }`
-            }
-          >
-            마이페이지
-          </NavLink>
-        </div>
-      )}
+      {/* Sidebar 컴포넌트 */}
+      {accessToken && <Sidebar isOpen={isOpen} onClose={close} />}
     </nav>
   );
 }
