@@ -25,6 +25,15 @@ function reducer(state: IState, action: IAction) {
           : null,
       };
     }
+
+    case "RESET": {
+      console.log("리셋누름");
+      return {
+        ...state,
+        department: state.department, //유지
+        error: null,
+      };
+    }
     default:
       return state;
   }
@@ -70,6 +79,17 @@ export default function UseReducerCompany() {
         }
       >
         직무변경하기
+      </button>
+
+      <button
+        onClick={(): void => {
+          // 버튼에다가 dispatch를 단다.
+          // 사용자가 입력한 값(department)이 reducer에 전달된다.
+          dispatch({ type: "RESET", payload: department });
+          setDepartment("");
+        }}
+      >
+        리셋
       </button>
     </div>
   );
