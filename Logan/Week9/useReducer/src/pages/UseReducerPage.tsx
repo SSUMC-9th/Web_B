@@ -38,8 +38,8 @@ function reducer(state: IState, action: IACtion): IState {
     case "RESET_TO_ZERO": {
       return {
         ...state,
-        // counter: (state.counter = 0),
-        counter: (state.counter = 0), // 새값을 아예 지정해야함
+        // counter: (state.counter = 0),/ 원본state를 건드리지 마라을 아예 지정해야함
+        counter: 0,
       };
     }
 

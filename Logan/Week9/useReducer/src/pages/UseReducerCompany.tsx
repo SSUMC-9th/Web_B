@@ -30,7 +30,7 @@ function reducer(state: IState, action: IAction) {
       console.log("리셋누름");
       return {
         ...state,
-        department: state.department, //유지
+        department: state.department,
         error: null,
       };
     }
