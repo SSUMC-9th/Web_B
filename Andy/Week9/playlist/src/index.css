@@ -1,0 +1,40 @@
+@import "tailwindcss";
+
+:root {
+  --apple-white: #ffffff;
+  --apple-bg: #f9f9f9;
+  --apple-border: #e5e5e7;
+  --apple-text: #1d1d1f;
+  --apple-secondary: #86868b;
+  --apple-red: #fa233b;
+  --apple-red-hover: #d71f33;
+
+  font-family: 'Source Sans 3', -apple-system, BlinkMacSystemFont, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light;
+  color: var(--apple-text);
+  background: var(--apple-bg);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+}
+
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
