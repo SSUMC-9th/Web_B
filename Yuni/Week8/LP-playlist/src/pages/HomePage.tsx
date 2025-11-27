@@ -171,6 +171,7 @@ const HomePage = () => {
               onChange={(e) => handleSearchChange(e.target.value)}
               placeholder="LP 검색..."
               className="flex-1 px-4 py-3 rounded-lg bg-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-pink-500"
+              disabled={isLoading}
             />
 
             {/* 정렬 버튼 */}
