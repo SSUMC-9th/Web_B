@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import type { CounterState, Actions } from "../types/CounterState.ts";
+import type { CounterState } from "../types/CounterState.ts";
 import { devtools } from 'zustand/middleware';
 
 export const useCounterStore = create<CounterState>()(
@@ -20,7 +20,7 @@ export const useCounterStore = create<CounterState>()(
         set(() => ({
           randomNumber: Math.floor(Math.random() * 100),
         }), undefined, 'random'),
-    } as Actions, // TypeScript가 객체 리터럴을 CounterState 타입과 매칭하려 해서 에러 발생.
+    },
     name: 'counter-store',
   }))
 );

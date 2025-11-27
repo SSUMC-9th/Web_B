@@ -50,7 +50,7 @@ const colSlice = createSlice({
     removeItem(state, action) {
       const itemId = action.payload;
       state.items = state.items.filter(item => item.id !== itemId);
-      calculateTotalsHelper(state);
+      // calculateTotalsHelper(state);
     },
     clearCol(state) {
       state.items = [];
