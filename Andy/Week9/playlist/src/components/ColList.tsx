@@ -1,12 +1,14 @@
-import CartItem from "./CartItem.tsx";
-import CartSummary from "./CartSummary.tsx";
-import { useSelector } from "react-redux";
-import type { RootState } from "../store/store.ts";
+import ColItem from "./ColItem.tsx";
+import ColSummary from "./ColSummary.tsx";
+// import { useSelector } from "react-redux";
+// import type { RootState } from "../store/store.ts";
+import { useColInfo } from "../hooks/useColStore.ts";
 
-const CarList = () => {
-  const { items } = useSelector(
-    (state: RootState) => state.cart
-  );
+const ColList = () => {
+  // const { items } = useSelector(
+  //   (state: RootState) => state.cart
+  // );
+  const { items } = useColInfo();
 
   return (
     <div className="min-h-screen py-12 px-6">
@@ -17,7 +19,7 @@ const CarList = () => {
             나의 컬렉션
           </h1>
           <p className="text-lg text-[#86868b]">
-            총 {items.length} 개의 앨범
+            총 {items.length}개의 앨범
           </p>
         </div>
 
@@ -29,20 +31,19 @@ const CarList = () => {
               className="animate-[fadeSlideUp_0.5s_ease-out]"
               style={{ animationDelay: `${index * 0.1}s`, animationFillMode: 'backwards' }}
             >
-              <CartItem
+              <ColItem
                 key={item.id}
                 lp={item}
-
               />
             </div>
           ))}
         </div>
 
         {/* Total Summary */}
-        <CartSummary />
+        <ColSummary />
       </div>
     </div>
   );
 };
 
-export default CarList;
+export default ColList;

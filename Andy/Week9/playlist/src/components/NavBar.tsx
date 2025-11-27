@@ -1,16 +1,23 @@
 import { FaShoppingCart } from "react-icons/fa";
-import { useSelector, useAppDispatch } from "../hooks/useCustomRedux.ts";
-import type { CartState } from "../features/cart/cartSlice.ts";
-import { calculateTotals } from "../features/cart/cartSlice.ts";
+// import { useSelector, useAppDispatch } from "../hooks/useCustomRedux.ts";
+// import type { ColState } from "../features/col/colSlice.ts";
+// import { calculateTotals } from "../features/col/colSlice.ts";
 import { useEffect } from "react";
+import {useColActions, useColInfo} from "../hooks/useColStore.ts";
 
 const NavBar = () => {
-  const { amount } = useSelector((state): CartState => state.cart);
-  const dispatch = useAppDispatch();
+  const { amount } = useColInfo();
+  const { calculateTotals } = useColActions();
+  // const { amount } = useSelector((state): ColState => state.cart);
+  // const dispatch = useAppDispatch();
+
+  // useEffect(() => {
+  //   dispatch(calculateTotals())
+  // }, [dispatch])
 
   useEffect(() => {
-    dispatch(calculateTotals())
-  }, [dispatch])
+    calculateTotals();
+  }, [calculateTotals]);
 
   return (
     <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-2xl border-b border-[#e5e5e7]">
@@ -53,7 +60,7 @@ const NavBar = () => {
             ))}
           </ul>
 
-          {/* Shopping Cart */}
+          {/* Shopping Col */}
           <div className="relative group cursor-pointer">
             <div className="flex items-center space-x-2 px-4 py-2 rounded-full hover:bg-[#f5f5f7] transition-all duration-200">
               <FaShoppingCart className="text-xl text-[#1d1d1f]" />

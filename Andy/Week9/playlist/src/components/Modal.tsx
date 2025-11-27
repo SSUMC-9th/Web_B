@@ -1,18 +1,19 @@
 import { useSelector, useAppDispatch } from "../hooks/useCustomRedux.ts";
 import type { ModalState } from "../features/modal/modalSlice.ts";
 import { closeModal } from "../features/modal/modalSlice.ts";
-import { clearCart } from "../features/cart/cartSlice.ts";
+import { useColActions } from "../hooks/useColStore.ts";
 
 const Modal = () => {
   const { isOpen } = useSelector((state): ModalState => state.modal);
   const dispatch = useAppDispatch();
+  const { clearCol } = useColActions();
 
   const handleClose = () => {
     dispatch(closeModal());
   };
 
   const handleConfirm = () => {
-    dispatch(clearCart());
+    clearCol();
     dispatch(closeModal());
   };
 

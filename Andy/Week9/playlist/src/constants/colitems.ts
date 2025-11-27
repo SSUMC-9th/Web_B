@@ -1,6 +1,6 @@
-import type { Lp } from "../types/cart.ts";
+import type { Lp } from "../types/col.ts";
 
-export const cartItems: Lp[] = [
+export const colitems: Lp[] = [
   {
     id: "1",
     title: "Abbey Road",

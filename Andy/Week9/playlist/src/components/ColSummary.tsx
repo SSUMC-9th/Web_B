@@ -1,9 +1,9 @@
-import { useSelector, useAppDispatch } from "../hooks/useCustomRedux.ts";
-import type { CartState } from "../features/cart/cartSlice.ts";
+import { useColInfo } from "../hooks/useColStore.ts";
+import { useAppDispatch } from "../hooks/useCustomRedux.ts";
 import { openModal } from "../features/modal/modalSlice.ts";
 
-const CartSummary = () => {
-  const { amount, price } = useSelector((state): CartState => state.cart);
+const ColSummary = () => {
+  const { amount, price } = useColInfo();
   const dispatch = useAppDispatch();
 
   const handleOpenModal = () => {
@@ -27,7 +27,7 @@ const CartSummary = () => {
         </div>
       </div>
 
-      {/* Clear Cart Button */}
+      {/* Clear Col Button */}
       <button
         onClick={handleOpenModal}
         disabled={amount === 0}
@@ -39,4 +39,4 @@ const CartSummary = () => {
   );
 };
 
-export default CartSummary;
+export default ColSummary;

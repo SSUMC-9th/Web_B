@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import cartReducer from "../features/cart/cartSlice.ts";
+import cartReducer from "../features/col/colSlice.ts";
 import modalReducer from "../features/modal/modalSlice.ts";
 
 // 1. 저장소를 생성함

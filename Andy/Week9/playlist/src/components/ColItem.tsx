@@ -1,24 +1,29 @@
-import type { Lp } from "../types/cart.ts";
-import { useAppDispatch } from "../hooks/useCustomRedux.ts";
-import { increaseItem, decreaseItem, removeItem } from "../features/cart/cartSlice.ts";
+import type { Lp } from "../types/col.ts";
+// import { useAppDispatch } from "../hooks/useCustomRedux.ts";
+// import { increaseItem, decreaseItem, removeItem } from "../features/col/colSlice.ts";
+import { useColActions } from "../hooks/useColStore.ts";
 
-interface CartItemProps {
+interface ColItemProps {
   lp: Lp;
 }
 
-const CartItem = ({ lp }: CartItemProps) => {
-  const dispatch = useAppDispatch();
+const ColItem = ({ lp }: ColItemProps) => {
+  // const dispatch = useAppDispatch();
+  const { increaseItem, decreaseItem, removeItem } = useColActions();
 
   const handleIncrease = () => {
-    dispatch(increaseItem(lp.id));
+    // dispatch(increaseItem(lp.id));
+    increaseItem(lp.id);
   };
 
   const handleDecrease = () => {
     if (lp.amount === 1) {
-      dispatch(removeItem(lp.id));
+      // dispatch(removeItem(lp.id));
+      removeItem(lp.id);
       return;
     }
-    dispatch(decreaseItem(lp.id));
+    // dispatch(decreaseItem(lp.id));
+    decreaseItem(lp.id);
   };
 
   return (
@@ -105,4 +110,4 @@ const CartItem = ({ lp }: CartItemProps) => {
   );
 };
 
-export default CartItem;
+export default ColItem;

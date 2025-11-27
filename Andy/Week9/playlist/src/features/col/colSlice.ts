@@ -1,20 +1,20 @@
-import type { CartItems } from "../../types/cart.ts";
-import { cartItems } from "../../constants/cartitems.ts";
+import type { ColItems } from "../../types/col.ts";
+import { colitems } from "../../constants/colitems.ts";
 import { createSlice } from "@reduxjs/toolkit";
 
-export interface CartState {
-  items: CartItems;
+export interface ColState {
+  items: ColItems;
   amount: number;
   price: number;
 }
 
-const initialState: CartState = {
-  items: cartItems,
+const initialState: ColState = {
+  items: colitems,
   amount: 0,
   price: 0,
 }
 
-const calculateTotalsHelper = (state: CartState) => {
+const calculateTotalsHelper = (state: ColState) => {
   let totalAmount = 0;
   let totalPrice = 0;
 
@@ -27,8 +27,8 @@ const calculateTotalsHelper = (state: CartState) => {
   state.price = parseFloat(totalPrice.toFixed(2));
 }
 
-const cartSlice = createSlice({
-  name: 'cart',
+const colSlice = createSlice({
+  name: 'col',
   initialState,
   reducers: {
     increaseItem(state, action) {
@@ -52,7 +52,7 @@ const cartSlice = createSlice({
       state.items = state.items.filter(item => item.id !== itemId);
       calculateTotalsHelper(state);
     },
-    clearCart(state) {
+    clearCol(state) {
       state.items = [];
       state.amount = 0;
       state.price = 0;
@@ -63,8 +63,8 @@ const cartSlice = createSlice({
   }
 });
 
-export const { increaseItem, decreaseItem, removeItem, clearCart, calculateTotals } = cartSlice.actions;
+export const { increaseItem, decreaseItem, removeItem, clearCol, calculateTotals } = colSlice.actions;
 
-const cartReducer = cartSlice.reducer;
+const colReducer = colSlice.reducer;
 
-export default cartReducer;
+export default colReducer;
