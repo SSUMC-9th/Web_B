@@ -13,10 +13,28 @@ function App() {
         <Navbar />
         <CartList />
         <PriceBox />
-        <Modal />
       </Provider>
     </>
   );
 }
 
 export default App;
+
+// zustand
+// // src/App.tsx
+// import "./App.css";
+// import CartList from "./components/CartList";
+// import Navbar from "./components/Navbar";
+// import PriceBox from "./components/PriceBox";
+
+// function App() {
+//   return (
+//     <>
+//       <Navbar />
+//       <CartList />
+//       <PriceBox />
+//     </>
+//   );
+// }
+
+// export default App;
