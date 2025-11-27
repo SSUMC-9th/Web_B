@@ -5,43 +5,72 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b2f400c6-011c-40f3-baf2-11dfa1555932" name="변경" comment="">
-      <change afterPath="$PROJECT_DIR$/Andy/Week7/Tanstack/package-lock.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Andy/Week7/Tanstack/src/apis/auth.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Andy/Week7/Tanstack/src/apis/axios.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Andy/Week7/Tanstack/src/apis/lp.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Andy/Week7/Tanstack/src/components/LpCard/LpCard.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Andy/Week7/Tanstack/src/components/LpCard/LpCardSkeleton.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Andy/Week7/Tanstack/src/components/LpCard/LpCardSkeletonList.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Andy/Week7/Tanstack/src/components/NavBar.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Andy/Week7/Tanstack/src/constants/key.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Andy/Week7/Tanstack/src/context/AuthContext.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Andy/Week7/Tanstack/src/enums/common.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Andy/Week7/Tanstack/src/hooks/queries/useGetLpDetail.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Andy/Week7/Tanstack/src/hooks/queries/useGetMyInfo.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Andy/Week7/Tanstack/src/hooks/useForm.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Andy/Week7/Tanstack/src/hooks/useLocalStorage.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Andy/Week7/Tanstack/src/layouts/HomeLayout.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Andy/Week7/Tanstack/src/layouts/ProtectedLayout.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Andy/Week7/Tanstack/src/pages/GoogleLoginRedirectPage.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Andy/Week7/Tanstack/src/pages/HomePage.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Andy/Week7/Tanstack/src/pages/LoginPage.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Andy/Week7/Tanstack/src/pages/LpDetailPage.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Andy/Week7/Tanstack/src/pages/MyPage.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Andy/Week7/Tanstack/src/pages/NotFoundPage.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Andy/Week7/Tanstack/src/pages/SignupPage.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Andy/Week7/Tanstack/src/types/auth.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Andy/Week7/Tanstack/src/types/common.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Andy/Week7/Tanstack/src/types/lp.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Andy/Week7/Tanstack/src/utils/validate.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Andy/Week7/Tanstack/vite-env.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Andy/Week8/DebouncingThrottling/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Andy/Week8/DebouncingThrottling/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Andy/Week8/DebouncingThrottling/bun.lock" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Andy/Week8/DebouncingThrottling/eslint.config.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Andy/Week8/DebouncingThrottling/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Andy/Week8/DebouncingThrottling/package-lock.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Andy/Week8/DebouncingThrottling/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Andy/Week8/DebouncingThrottling/public/vite.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Andy/Week8/DebouncingThrottling/src/App.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Andy/Week8/DebouncingThrottling/src/App.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Andy/Week8/DebouncingThrottling/src/apis/auth.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Andy/Week8/DebouncingThrottling/src/apis/axios.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Andy/Week8/DebouncingThrottling/src/apis/lp.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Andy/Week8/DebouncingThrottling/src/assets/react.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Andy/Week8/DebouncingThrottling/src/components/CreateLpModal.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Andy/Week8/DebouncingThrottling/src/components/DeleteAccountModal.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Andy/Week8/DebouncingThrottling/src/components/EditLpModal.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Andy/Week8/DebouncingThrottling/src/components/LpCard/LpCard.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Andy/Week8/DebouncingThrottling/src/components/LpCard/LpCardSkeleton.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Andy/Week8/DebouncingThrottling/src/components/LpCard/LpCardSkeletonList.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Andy/Week8/DebouncingThrottling/src/components/NavBar.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Andy/Week8/DebouncingThrottling/src/components/ProfileEditModal.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Andy/Week8/DebouncingThrottling/src/constants/key.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Andy/Week8/DebouncingThrottling/src/context/AuthContext.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Andy/Week8/DebouncingThrottling/src/enums/common.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Andy/Week8/DebouncingThrottling/src/hooks/mutations/useCreateLp.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Andy/Week8/DebouncingThrottling/src/hooks/mutations/useDeleteComment.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Andy/Week8/DebouncingThrottling/src/hooks/mutations/useDeleteLike.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Andy/Week8/DebouncingThrottling/src/hooks/mutations/useDeleteLp.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Andy/Week8/DebouncingThrottling/src/hooks/mutations/useDeleteUser.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Andy/Week8/DebouncingThrottling/src/hooks/mutations/useLogin.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Andy/Week8/DebouncingThrottling/src/hooks/mutations/useLogout.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Andy/Week8/DebouncingThrottling/src/hooks/mutations/usePostComment.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Andy/Week8/DebouncingThrottling/src/hooks/mutations/usePostLike.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Andy/Week8/DebouncingThrottling/src/hooks/mutations/useUpdateComment.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Andy/Week8/DebouncingThrottling/src/hooks/mutations/useUpdateLp.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Andy/Week8/DebouncingThrottling/src/hooks/mutations/useUpdateUser.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Andy/Week8/DebouncingThrottling/src/hooks/queries/useGetComments.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Andy/Week8/DebouncingThrottling/src/hooks/queries/useGetLpDetail.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Andy/Week8/DebouncingThrottling/src/hooks/queries/useGetLpList.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Andy/Week8/DebouncingThrottling/src/hooks/queries/useGetMyInfo.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Andy/Week8/DebouncingThrottling/src/hooks/useDebounce.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Andy/Week8/DebouncingThrottling/src/hooks/useForm.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Andy/Week8/DebouncingThrottling/src/hooks/useLocalStorage.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Andy/Week8/DebouncingThrottling/src/index.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Andy/Week8/DebouncingThrottling/src/layouts/HomeLayout.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Andy/Week8/DebouncingThrottling/src/layouts/ProtectedLayout.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Andy/Week8/DebouncingThrottling/src/main.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Andy/Week8/DebouncingThrottling/src/pages/GoogleLoginRedirectPage.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Andy/Week8/DebouncingThrottling/src/pages/HomePage.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Andy/Week8/DebouncingThrottling/src/pages/LandingPage.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Andy/Week8/DebouncingThrottling/src/pages/LoginPage.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Andy/Week8/DebouncingThrottling/src/pages/LpDetailPage.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Andy/Week8/DebouncingThrottling/src/pages/MyPage.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Andy/Week8/DebouncingThrottling/src/pages/NotFoundPage.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Andy/Week8/DebouncingThrottling/src/pages/SignupPage.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Andy/Week8/DebouncingThrottling/src/types/auth.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Andy/Week8/DebouncingThrottling/src/types/common.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Andy/Week8/DebouncingThrottling/src/types/lp.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Andy/Week8/DebouncingThrottling/src/utils/validate.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Andy/Week8/DebouncingThrottling/tsconfig.app.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Andy/Week8/DebouncingThrottling/tsconfig.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Andy/Week8/DebouncingThrottling/tsconfig.node.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Andy/Week8/DebouncingThrottling/vite-env.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Andy/Week8/DebouncingThrottling/vite.config.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Andy/Week7/Tanstack/bun.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Andy/Week7/Tanstack/bun.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Andy/Week7/Tanstack/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/Andy/Week7/Tanstack/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Andy/Week7/Tanstack/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/Andy/Week7/Tanstack/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Andy/Week7/Tanstack/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/Andy/Week7/Tanstack/src/App.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Andy/Week7/Tanstack/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Andy/Week7/Tanstack/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Andy/Week7/Tanstack/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/Andy/Week7/Tanstack/src/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Andy/Week7/Tanstack/vite.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Andy/Week7/Tanstack/vite.config.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,7 +87,19 @@
       </list>
     </option>
   </component>
+  <component name="FormatOnSaveOptions">
+    <option name="myRunOnSave" value="false" />
+    <option name="myAllFileTypesSelected" value="true" />
+    <option name="mySelectedFileTypes">
+      <set />
+    </option>
+  </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="andy/main" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
@@ -87,39 +128,40 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "Bun.array.ts.executor": "Run",
-    "Bun.null.ts.executor": "Run",
-    "Bun.number.ts.executor": "Run",
-    "Bun.string.ts.executor": "Run",
-    "Bun.tuple.ts.executor": "Run",
-    "Bun.type.ts.executor": "Run",
-    "DefaultHtmlFileTemplate": "HTML File",
-    "JavaScript 디버그.localhost:5173.executor": "Debug",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "andy/#7",
-    "javascript.preferred.runtime.type.id": "bun",
-    "last_opened_file_path": "/Users/joonwoo/Developer/Web_B/Andy/Week7",
-    "list.type.of.created.stylesheet": "CSS",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_interpreter_path": "node",
-    "nodejs_package_manager_path": "/opt/homebrew/bin/bun",
-    "settings.editor.selected.configurable": "terminal",
-    "ts.external.directory.path": "/Users/joonwoo/Developer/Web_B/Andy/Week1/TodoList/node_modules/typescript/lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;Bun.array.ts.executor&quot;: &quot;Run&quot;,
+    &quot;Bun.null.ts.executor&quot;: &quot;Run&quot;,
+    &quot;Bun.number.ts.executor&quot;: &quot;Run&quot;,
+    &quot;Bun.string.ts.executor&quot;: &quot;Run&quot;,
+    &quot;Bun.tuple.ts.executor&quot;: &quot;Run&quot;,
+    &quot;Bun.type.ts.executor&quot;: &quot;Run&quot;,
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;JavaScript 디버그.localhost:5173.executor&quot;: &quot;Debug&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;andy/#8에 #53개&quot;,
+    &quot;javascript.preferred.runtime.type.id&quot;: &quot;bun&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/joonwoo/Developer/Web_B/Andy/Week8&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_interpreter_path&quot;: &quot;/opt/homebrew/opt/node@20/bin/node&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;/opt/homebrew/bin/bun&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;settings.nodejs&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/Users/joonwoo/Developer/Web_B/Andy/Week1/TodoList/node_modules/typescript/lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Andy/Week8" />
       <recent name="$PROJECT_DIR$/Andy/Week7" />
       <recent name="$PROJECT_DIR$/Andy" />
       <recent name="$PROJECT_DIR$/Andy/Week3/MovieGrid" />
@@ -146,7 +188,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-3aa1da707db6-JavaScript-WS-252.27397.92" />
+        <option value="bundled-js-predefined-d6986cc7102b-a71380e98a7c-JavaScript-WS-252.28238.10" />
       </set>
     </attachedChunks>
   </component>
@@ -188,6 +230,9 @@
       <workItem from="1762663716130" duration="4257000" />
       <workItem from="1762956209558" duration="344000" />
       <workItem from="1762956561055" duration="10459000" />
+      <workItem from="1763006872366" duration="20699000" />
+      <workItem from="1763172534844" duration="57000" />
+      <workItem from="1763980236834" duration="3429000" />
     </task>
     <servers />
   </component>
@@ -204,5 +249,13 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="github-copilot-workspace">
+    <instructionFileLocations>
+      <option value=".github/instructions" />
+    </instructionFileLocations>
+    <promptFileLocations>
+      <option value=".github/prompts" />
+    </promptFileLocations>
   </component>
 </project>

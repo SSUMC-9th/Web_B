@@ -1,5 +1,5 @@
 import { axiosInstance } from "./axios.ts";
-import type { PaginationDto, CommonResponse } from "../types/common.ts";
+import type { PaginationDto } from "../types/common.ts";
 import type {
   RequestLpDto,
   ResponseLpDto,

@@ -1,27 +1,41 @@
 import { useState, useEffect, useRef } from "react";
 import { X, Upload } from "lucide-react";
-import { useCreateLp } from "../hooks/mutations/useCreateLp.ts";
+import { useUpdateLp } from "../hooks/mutations/useUpdateLp.ts";
+import type { Lp } from "../types/lp.ts";
 
-interface CreateLpModalProps {
+interface EditLpModalProps {
   isOpen: boolean;
   onClose: () => void;
+  lp: Lp;
 }
 
-// 기본 이미지 URL (Unsplash placeholder)
 const DEFAULT_THUMBNAIL = "https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?w=800&h=800&fit=crop";
 
-export const CreateLpModal = ({ isOpen, onClose }: CreateLpModalProps) => {
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
+export const EditLpModal = ({ isOpen, onClose, lp }: EditLpModalProps) => {
+  const [title, setTitle] = useState(lp.title);
+  const [content, setContent] = useState(lp.content);
   const [tagInput, setTagInput] = useState("");
-  const [tags, setTags] = useState<string[]>([]);
-  const [thumbnailUrl, setThumbnailUrl] = useState("");
-  const [previewImage, setPreviewImage] = useState<string>(DEFAULT_THUMBNAIL);
+  const [tags, setTags] = useState<string[]>(lp.tags.map((tag) => tag.name));
+  const [thumbnailUrl, setThumbnailUrl] = useState(lp.thumbnail);
+  const [previewImage, setPreviewImage] = useState<string>(lp.thumbnail || DEFAULT_THUMBNAIL);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const modalRef = useRef<HTMLDivElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  const { mutate: createLp, isPending: isCreating } = useCreateLp();
+  const { mutate: updateLp, isPending: isUpdating } = useUpdateLp();
+
+  // LP 데이터 변경 시 상태 업데이트
+  useEffect(() => {
+    if (isOpen) {
+      setTitle(lp.title);
+      setContent(lp.content);
+      setTags(lp.tags.map((tag) => tag.name));
+      setThumbnailUrl(lp.thumbnail);
+      setPreviewImage(lp.thumbnail || DEFAULT_THUMBNAIL);
+      setSelectedFile(null);
+      setTagInput("");
+    }
+  }, [isOpen, lp]);
 
   // 모달 바깥 클릭 감지
   useEffect(() => {
@@ -33,7 +47,6 @@ export const CreateLpModal = ({ isOpen, onClose }: CreateLpModalProps) => {
 
     if (isOpen) {
       document.addEventListener("mousedown", handleClickOutside);
-      // 모달 열릴 때 body 스크롤 방지
       document.body.style.overflow = "hidden";
     }
 
@@ -64,7 +77,6 @@ export const CreateLpModal = ({ isOpen, onClose }: CreateLpModalProps) => {
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
-      // 이미지 파일인지 확인
       if (!file.type.startsWith("image/")) {
         alert("이미지 파일만 업로드할 수 있습니다.");
         return;
@@ -72,7 +84,6 @@ export const CreateLpModal = ({ isOpen, onClose }: CreateLpModalProps) => {
 
       setSelectedFile(file);
 
-      // 미리보기 생성
       const reader = new FileReader();
       reader.onloadend = () => {
         setPreviewImage(reader.result as string);
@@ -117,7 +128,6 @@ export const CreateLpModal = ({ isOpen, onClose }: CreateLpModalProps) => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    // 태그가 최소 1개 필요
     if (tags.length === 0) {
       alert("태그를 최소 1개 이상 추가해주세요.");
       return;
@@ -133,26 +143,19 @@ export const CreateLpModal = ({ isOpen, onClose }: CreateLpModalProps) => {
       published: true,
     };
 
-    // API 호출
-    createLp(lpData, {
-      onSuccess: () => {
-        alert("LP가 성공적으로 생성되었습니다!");
-
-        // 폼 초기화
-        setTitle("");
-        setContent("");
-        setTags([]);
-        setTagInput("");
-        setThumbnailUrl("");
-        setPreviewImage(DEFAULT_THUMBNAIL);
-        setSelectedFile(null);
-        onClose();
-      },
-      onError: (error: any) => {
-        console.error("LP 생성 오류:", error);
-        alert(`LP 생성에 실패했습니다: ${error.response?.data?.message || error.message}`);
-      },
-    });
+    updateLp(
+      { lpId: lp.id, data: lpData },
+      {
+        onSuccess: () => {
+          alert("LP가 성공적으로 수정되었습니다!");
+          onClose();
+        },
+        onError: (error: any) => {
+          console.error("LP 수정 오류:", error);
+          alert(`LP 수정에 실패했습니다: ${error.response?.data?.message || error.message}`);
+        },
+      }
+    );
   };
 
   if (!isOpen) return null;
@@ -166,7 +169,7 @@ export const CreateLpModal = ({ isOpen, onClose }: CreateLpModalProps) => {
         {/* 헤더 */}
         <div className="flex items-center justify-between p-6 border-b border-gray-700">
           <h2 className="text-2xl font-bold bg-gradient-to-r from-pink-500 to-rose-500 bg-clip-text text-transparent">
-            새 LP 작성
+            LP 수정
           </h2>
           <button
             onClick={onClose}
@@ -185,7 +188,6 @@ export const CreateLpModal = ({ isOpen, onClose }: CreateLpModalProps) => {
               LP 썸네일 이미지
             </label>
 
-            {/* 이미지 미리보기 */}
             <div className="mb-3">
               <div className="aspect-square w-full max-w-xs mx-auto overflow-hidden rounded-lg border-2 border-gray-700">
                 <img
@@ -197,7 +199,6 @@ export const CreateLpModal = ({ isOpen, onClose }: CreateLpModalProps) => {
               </div>
             </div>
 
-            {/* 파일 선택 버튼 */}
             <div className="flex gap-2 mb-2">
               <input
                 ref={fileInputRef}
@@ -216,7 +217,6 @@ export const CreateLpModal = ({ isOpen, onClose }: CreateLpModalProps) => {
               </button>
             </div>
 
-            {/* URL 입력 (대체 옵션) */}
             <div>
               <input
                 type="url"
@@ -228,7 +228,7 @@ export const CreateLpModal = ({ isOpen, onClose }: CreateLpModalProps) => {
               <p className="text-xs text-gray-400 mt-1">
                 {selectedFile
                   ? `선택된 파일: ${selectedFile.name} (URL 입력 시 파일이 무시됩니다)`
-                  : "이미지를 선택하지 않으면 기본 이미지가 사용됩니다"}
+                  : "이미지를 선택하지 않으면 기존 이미지가 유지됩니다"}
               </p>
             </div>
           </div>
@@ -283,7 +283,6 @@ export const CreateLpModal = ({ isOpen, onClose }: CreateLpModalProps) => {
               Enter 키를 눌러 태그를 추가할 수 있습니다
             </p>
 
-            {/* 태그 목록 */}
             {tags.length > 0 && (
               <div className="flex flex-wrap gap-2 mt-3">
                 {tags.map((tag) => (
@@ -311,21 +310,21 @@ export const CreateLpModal = ({ isOpen, onClose }: CreateLpModalProps) => {
             <button
               type="button"
               onClick={onClose}
-              disabled={isCreating}
+              disabled={isUpdating}
               className="flex-1 px-6 py-3 bg-gray-700 text-white rounded-lg hover:bg-gray-600 transition-colors font-medium disabled:opacity-50 disabled:cursor-not-allowed"
             >
               취소
             </button>
             <button
               type="submit"
-              disabled={!title.trim() || !content.trim() || isCreating}
+              disabled={!title.trim() || !content.trim() || isUpdating}
               className={`flex-1 px-6 py-3 rounded-lg font-medium transition-all ${
-                title.trim() && content.trim() && !isCreating
+                title.trim() && content.trim() && !isUpdating
                   ? "bg-gradient-to-r from-pink-500 to-rose-500 text-white hover:from-pink-600 hover:to-rose-600"
                   : "bg-gray-700 text-gray-500 cursor-not-allowed"
               }`}
             >
-              {isCreating ? "작성 중..." : "작성하기"}
+              {isUpdating ? "수정 중..." : "수정하기"}
             </button>
           </div>
         </form>
