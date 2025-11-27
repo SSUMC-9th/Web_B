@@ -1,13 +1,9 @@
-import { useDispatch, useSelector } from 'react-redux';
 import { ShoppingCart, Plus, Minus } from 'lucide-react';
-import { increase, decrease, removeItem } from './features/cart/cartSlice';
-import { openModal } from './features/modal/modalSlice';
+import { useCartStore } from './store/useCartStore';
 import Modal from './components/Modal';
-import type { RootState } from './store/index';
 
 const ShoppingCartApp = () => {
-  const dispatch = useDispatch();
-  const { cartItems, amount, total } = useSelector((state: RootState) => state.cart);
+  const { cartItems, amount, total, increase, decrease, removeItem, openModal } = useCartStore();
 
   return (
     <>
@@ -53,7 +49,7 @@ const ShoppingCartApp = () => {
                     {/* Quantity Controls */}
                     <div className="flex items-center gap-3 bg-gray-100 rounded-lg px-2 py-2">
                       <button
-                        onClick={() => dispatch(decrease(item.id))}
+                        onClick={() => decrease(item.id)}
                         className="w-10 h-10 flex items-center justify-center bg-gray-300 hover:bg-gray-400 rounded transition-colors"
                         aria-label="Decrease quantity"
                       >
@@ -63,7 +59,7 @@ const ShoppingCartApp = () => {
                         {item.quantity}
                       </span>
                       <button
-                        onClick={() => dispatch(increase(item.id))}
+                        onClick={() => increase(item.id)}
                         className="w-10 h-10 flex items-center justify-center bg-gray-300 hover:bg-gray-400 rounded transition-colors"
                         aria-label="Increase quantity"
                       >
@@ -73,7 +69,7 @@ const ShoppingCartApp = () => {
 
                     {/* Remove Button */}
                     <button
-                      onClick={() => dispatch(removeItem(item.id))}
+                      onClick={() => removeItem(item.id)}
                       className="w-10 h-10 flex items-center justify-center bg-red-300 hover:bg-red-400 rounded transition-colors"
                       aria-label="Remove item"
                     >
@@ -97,7 +93,7 @@ const ShoppingCartApp = () => {
                   <span className="text-2xl font-bold text-blue-600">${total.toLocaleString()}</span>
                 </div>
                 <button
-                  onClick={() => dispatch(openModal())}
+                  onClick={() => openModal()}
                   className="w-full bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded transition-colors"
                 >
                   Clear Cart
