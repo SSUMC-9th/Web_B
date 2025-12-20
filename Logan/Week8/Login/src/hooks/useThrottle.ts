@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 
-// useThrottle : 주저진 값 (상태)가 자주 변경될때
+// useThrottle : 주어진 값 (상태)가 자주 변경될때
 // 최소 interval 간격으로만 업데이트해서 성능을 개선한다.
 function useThrottle<T>(value: T, delay: number = 500): T {
   //1. 상태 변수 : throttledValue: 최종적으로 쓰로틀링 적용된 값 저장

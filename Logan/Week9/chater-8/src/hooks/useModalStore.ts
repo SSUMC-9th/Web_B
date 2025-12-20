@@ -1,4 +1,5 @@
 // src/hooks/useModalStore.ts
+// gpt가 만든... ㅅ용안함
 import { create } from "zustand";
 
 interface ModalStoreState {

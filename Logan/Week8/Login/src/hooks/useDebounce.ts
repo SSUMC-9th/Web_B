@@ -13,6 +13,7 @@ function useDebounce<T>(value: T, delay: number) {
     return () => clearTimeout(handler);
   }, [value, delay]);
 
+  // 우리가 설정한 delay이후에 입력이 없으면 최종적으로 value를 업데이트하는 훅이다.
   return debouncedValue;
 }
 
