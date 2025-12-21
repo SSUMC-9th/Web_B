@@ -23,21 +23,21 @@ function useThrottle<T>(value:T, delay:number = 500):T {
             //최신 value를 throttledValue에 저장해서 컴포넌트 리렌더링
             setThrottledValue(value);
         }
-            else{
-                const timeId = setTimeout( () => {
-                    //타이머가 만료되면 , 마지막 업데이트 시간을 현재 시각으로 갱신
-                lastExcuted.current = Date.now();
-                //최신 value를 throttledValue에 저장해서 컴포넌트 리렌더링
-                setThrottledValue(value);
-                }, delay);
+        else{
+            const timeId = setTimeout( () => {
+                //타이머가 만료되면 , 마지막 업데이트 시간을 현재 시각으로 갱신
+            lastExcuted.current = Date.now();
+            //최신 value를 throttledValue에 저장해서 컴포넌트 리렌더링
+            setThrottledValue(value);
+            }, delay);
 
-                //ClearUpFunction 이펙트가 재실행되기전에 타이머가 실행되지 않으면
-                //기존타이머를 clearTimeout을 통해 취소하여 중복 업데이트를 방지
-                return() => clearTimeout(timeId);
-            }
+            //ClearUpFunction 이펙트가 재실행되기전에 타이머가 실행되지 않으면
+            //기존타이머를 clearTimeout을 통해 취소하여 중복 업데이트를 방지
+            return() => clearTimeout(timeId);
+        }
     }, [value, delay]);
 
     return throttledValue;
 }
 
-export default useThrottle;
+export default useThrottle; 
