@@ -3,7 +3,6 @@ import { axiosClient } from "../apis/axiosClient.ts";
 import type { MovieFilters, MovieResponse, Movie } from "../types/movie.ts";
 import MovieList from "../components/MovieList.tsx";
 import MovieFilter from "../components/MovieFilter.tsx";
-import MovieModal from "../components/MovieModal.tsx";
 
 export default function HomePage() {
   const [filters, setFilters] = useState<MovieFilters>({
@@ -17,7 +16,6 @@ export default function HomePage() {
   const [error, setError] = useState<string | null>(null);
   const [hasMore, setHasMore] = useState(false);
   const [totalResults, setTotalResults] = useState(0);
-  const [selectedMovie, setSelectedMovie] = useState<Movie | null>(null);
 
   const observer = useRef<IntersectionObserver | null>(null);
 
@@ -84,14 +82,6 @@ export default function HomePage() {
     }
   };
 
-  const handleMovieClick = (movie: Movie) => {
-    setSelectedMovie(movie);
-  };
-
-  const closeModal = () => {
-    setSelectedMovie(null);
-  };
-
   return (
     <div className="min-h-screen">
       <MovieFilter onSearch={handleSearch} />
@@ -125,7 +115,7 @@ export default function HomePage() {
                   <span className="text-primary-pink ml-2">{totalResults}개</span>
                 </h2>
               </div>
-              <MovieList movies={movies} onMovieClick={handleMovieClick} />
+              <MovieList movies={movies} />
 
               <div ref={lastMovieElementRef} className="h-20 flex justify-center items-center">
                  {isLoading && page > 1 && (
@@ -148,10 +138,6 @@ export default function HomePage() {
             )
           )}
         </>
-      )}
-
-      {selectedMovie && (
-        <MovieModal movie={selectedMovie} onClose={closeModal} />
       )}
     </div>
   );

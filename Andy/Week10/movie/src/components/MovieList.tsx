@@ -3,7 +3,7 @@ import MovieCard from "./MovieCard.tsx";
 
 interface MovieListProps {
   movies: Movie[];
-  onMovieClick: (movie: Movie) => void;
+  onMovieClick?: (movie: Movie) => void;
 }
 
 const MovieList = ({ movies, onMovieClick }: MovieListProps) => {
@@ -14,7 +14,7 @@ const MovieList = ({ movies, onMovieClick }: MovieListProps) => {
           <MovieCard 
             key={movie.id} 
             movie={movie} 
-            onClick={() => onMovieClick(movie)}
+            onClick={onMovieClick ? () => onMovieClick(movie) : undefined}
           />
         ))}
       </div>

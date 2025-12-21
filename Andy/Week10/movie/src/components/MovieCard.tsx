@@ -1,17 +1,19 @@
+import { Link } from "react-router-dom";
 import type { Movie } from "../types/movie.ts";
 
 interface MovieCardProps {
   movie: Movie;
-  onClick: () => void;
+  onClick?: () => void;
 }
 
 const MovieCard = ({ movie, onClick }: MovieCardProps) => {
   const TMDB_IMAGE_BASE_URL = "https://image.tmdb.org/t/p/w500";
 
   return (
-    <div 
+    <Link 
+      to={`/movie/${movie.id}`}
       onClick={onClick}
-      className="group bg-bg-secondary rounded-2xl overflow-hidden transition-all duration-300 cursor-pointer border border-border-color hover:-translate-y-2 hover:shadow-card hover:border-primary-pink"
+      className="group bg-bg-secondary rounded-2xl overflow-hidden transition-all duration-300 cursor-pointer border border-border-color hover:-translate-y-2 hover:shadow-card hover:border-primary-pink block"
     >
       <div className="relative w-full pt-[150%] bg-bg-tertiary overflow-hidden">
         {movie.poster_path ? (
@@ -54,7 +56,7 @@ const MovieCard = ({ movie, onClick }: MovieCardProps) => {
             : "줄거리 정보가 없습니다."}
         </p>
       </div>
-    </div>
+    </Link>
   );
 };
 
