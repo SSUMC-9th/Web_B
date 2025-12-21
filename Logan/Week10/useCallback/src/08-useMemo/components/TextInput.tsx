@@ -15,4 +15,4 @@ const TextInput = ({ onChange }: ITextInput) => {
     />
   );
 };
-export default memo(TextInput); // 컴포넌트를 캐시한다.
+export default TextInput; // 컴포넌트를 캐시한다.
