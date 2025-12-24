@@ -1,12 +1,12 @@
 import { type Movie } from "../types/movie";
-import { useState } from "react";
+import { useState, memo } from "react";
 import MovieModal from "./MovieModal";
 
 interface MovieCardProps {
     movie: Movie;
 }
 
-export default function MovieCard({ movie }: MovieCardProps) {
+function MovieCard({ movie }: MovieCardProps) {
     const [isHovered, setIsHovered] = useState(false);
     const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -41,3 +41,5 @@ export default function MovieCard({ movie }: MovieCardProps) {
         </>
     );
 }
+
+export default memo(MovieCard);

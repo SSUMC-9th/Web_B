@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import type { Movie } from "../types/movie";
@@ -25,10 +25,32 @@ export default function MoviePage() {
     }>();
 
     // 검색 제출 핸들러
-    const handleSearchSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSearchSubmit = useCallback((e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setPage(1); // 검색 시 페이지를 1로 리셋
-    };
+    }, []);
+
+    // 입력 핸들러들
+    const handleSearchQueryChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+        setSearchQuery(e.target.value);
+    }, []);
+
+    const handleIncludeAdultChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+        setIncludeAdult(e.target.checked);
+    }, []);
+
+    const handleLanguageChange = useCallback((e: React.ChangeEvent<HTMLSelectElement>) => {
+        setLanguage(e.target.value);
+    }, []);
+
+    // 페이지네이션 핸들러
+    const handlePrevPage = useCallback(() => {
+        setPage((prev) => prev - 1);
+    }, []);
+
+    const handleNextPage = useCallback(() => {
+        setPage((prev) => prev + 1);
+    }, []);
 
     useEffect(() : void => {
         const fetchMovies = async () : Promise<void> => {
@@ -84,7 +106,7 @@ export default function MoviePage() {
                         id="searchQuery"
                         type="text"
                         value={searchQuery}
-                        onChange={(e) => setSearchQuery(e.target.value)}
+                        onChange={handleSearchQueryChange}
                         placeholder="영화 제목을 입력하세요"
                         className="w-full px-4 py-2 rounded-md bg-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500"
                     />
@@ -96,7 +118,7 @@ export default function MoviePage() {
                         id="includeAdult"
                         type="checkbox"
                         checked={includeAdult}
-                        onChange={(e) => setIncludeAdult(e.target.checked)}
+                        onChange={handleIncludeAdultChange}
                         className="w-4 h-4 text-purple-600 bg-gray-700 border-gray-600 rounded focus:ring-purple-500"
                     />
                     <label htmlFor="includeAdult" className="text-white">
@@ -112,7 +134,7 @@ export default function MoviePage() {
                     <select
                         id="language"
                         value={language}
-                        onChange={(e) => setLanguage(e.target.value)}
+                        onChange={handleLanguageChange}
                         className="w-full px-4 py-2 rounded-md bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
                     >
                         <option value="ko-KR">한국어</option>
@@ -134,13 +156,13 @@ export default function MoviePage() {
         <div className='flex justify-center items-center gap-6 mt-5'>
         <button
             className = "bg-[#dda5e3] text-white px-6 py-3 rounded-lg shadow-md hover:bg-[#b2dab1] transition-all duration-200 disabled:bg-gray-300 cursor-pointer disabled:cursor-not-allowed"
-            onClick={() : void => setPage((prev) => prev - 1)}
+            onClick={handlePrevPage}
             disabled={page === 1}
         >{`<`}</button>
         <span>{page}</span>
         <button
             className = "bg-[#dda5e3] text-white px-6 py-3 rounded-lg shadow-md hover:bg-[#b2dab1] transition-all duration-200 disabled:bg-gray-300 cursor-pointer disabled:cursor-not-allowed"
-            onClick={() : void => setPage((prev) => prev + 1)}
+            onClick={handleNextPage}
             disabled={page === 500}
         >{`>`}</button>
         </div>
