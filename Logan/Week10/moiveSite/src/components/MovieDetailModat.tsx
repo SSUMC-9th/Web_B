@@ -61,9 +61,9 @@ export default function MovieDetailModal({
       />
 
       {/* Modal box */}
-      <div className="relative z-10 w-[92vw] max-w-5xl overflow-hidden rounded-2xl bg-white shadow-2xl">
+      <div className="relative z-10 w-[92vw] max-w-5xl max-h-[90vh] overflow-hidden rounded-2xl bg-white shadow-2xl">
         {/* Top poster/backdrop */}
-        <div className="relative h-56 w-full bg-black">
+        <div className="relative h-[360px] w-full bg-black">
           {backdropUrl ? (
             <img
               src={backdropUrl}
