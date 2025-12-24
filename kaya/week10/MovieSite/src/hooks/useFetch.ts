@@ -12,7 +12,7 @@ const useFetch = <T>(url: string, options?: AxiosRequestConfig) => {
             setIsLoading(true);
             try{
                 const {data} = await axiosClient.get(url, {
-                    ...options,
+                    ...options, // 설정 객체를 풀어서 전달
                 });
 
                 setData(data);
@@ -24,7 +24,7 @@ const useFetch = <T>(url: string, options?: AxiosRequestConfig) => {
         };
 
         fetchData();
-    }, []);
+    }, [url, options]);
     // [url, options] 무한히 렌더링
 
     return {

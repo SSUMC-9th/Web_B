@@ -19,15 +19,15 @@ export default function HomePage() {
         [filters]
     )
 
-    // useCallback으로 감싸서 참조값이 바뀌지 않도록
+    // useCallback으로 감싸서 참조값이 바뀌지 않도록(함수 캐싱)
     // props를 memo로 감싸서 props가 변경된 경우만 리렌더링
     const handleMovieFilters = useCallback((filters: MovieFilters) => {
         setFilters(filters);
     }, [setFilters])
 
-    const {data, error, isLoading} = useFetch<MovieResponse>('/search/movie', {
-        params: filters,
-    });
+    const {data, error, isLoading} = useFetch<MovieResponse>('/search/movie', 
+        axiosRequestConfig
+    );
 
     if (error) {
         return <div>{error}</div>;
