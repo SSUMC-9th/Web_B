@@ -2,13 +2,15 @@ import type { Movie } from "../types/movie";
 
 interface MovieCardProps {
   movie: Movie;
+  onClick: (movie: Movie) => void;
 }
 
-const MovieCard = ({ movie }: MovieCardProps) => {
+const MovieCard = ({ movie, onClick }: MovieCardProps) => {
   const imageBaseUrl = "https://image.tmdb.org/t/p/w500";
   const fallbackImage = "http://via.placeholder.com/640x480";
   return (
     <div
+      onClick={() => onClick(movie)}
       className="cursor-pointer overflow-hidden rounded bg-white shadow-md
   transition-all hover:shadow-lg"
     >
