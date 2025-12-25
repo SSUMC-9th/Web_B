@@ -24,14 +24,14 @@ function CartList() {
         ))}
       </ul>
 
-      <button
+      {/* <button
         className="text-2xl flex items-center space-x-2 hover:cursor-pointer"
         onClick={() => dispatch(openModal())}
       >
         <FaTrashAlt />
       </button>
-
-      <Modal />
+      
+      <Modal /> */}
     </div>
   );
 }

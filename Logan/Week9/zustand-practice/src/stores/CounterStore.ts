@@ -24,7 +24,7 @@ export interface CounterState {
 // 소괄호 중괄호  ( { })로 하면, return 안붙여도 됨
 // zustand의 set을 활용하기
 export const useCounterStore = create<CounterState>()(
-  devtools((set) => ({
+  devtools( (set) => ({
     count: 0,
     randomNumber: 0,
 

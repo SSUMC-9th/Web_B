@@ -10,15 +10,22 @@ interface CartItemProps {
 
 const CartItem = ({ lp }: CartItemProps) => {
   const dispatch = useDispatch();
-  //const { increase, decrease, removeItem } = useCartActions();
 
   const handleIncreaseCount = (): void => {
     dispatch(increase({ id: lp.id }));
   };
 
-  // zustand 이런식으로 활용..
+  //zustand 이런식으로 활용..
+  //const { increase, decrease, removeItem } = useCartActions();
   // const handleIncreaseCount = (): void => {
-  //   increase({ lp.id });
+  //   increase(lp.id);
+  // };
+  // const handleDecreaseCount = (): void => {
+  //   if (lp.amount === 1) {
+  //     removeItem(lp.id);
+  //     return;
+  //   }
+  //   decrease(lp.id);
   // };
 
   const handleDecreaseCount = (): void => {

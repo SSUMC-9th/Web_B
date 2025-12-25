@@ -55,6 +55,9 @@ export default function UseReducerPage() {
     setCount(count + 1);
   };
 
+  // useState처럼, 상태와 함수를 반환하는데
+  // dispatch: 이 액션을 리듀서에게 보내서 상태를 업데이트해줘
+  // reducer와 초기상태를 처음 넘긴다.
   const [state, dispatch] = useReducer(reducer, {
     counter: 0,
     error: null,

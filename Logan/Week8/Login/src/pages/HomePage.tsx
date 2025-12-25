@@ -26,6 +26,7 @@ const HomePage = () => {
   });
 
   // 3) 검색 쿼리
+  // 검색어가 들어가는 순간은 searchQeury요청이 처리돼지.
   const searchQuery = useGetInfiniteLpList(10, trimmed, PAGINATION_ORDER.desc, {
     enabled: isSearchActive, // 공백이 아닌 검색어 있을 때만 요청 나감
   });

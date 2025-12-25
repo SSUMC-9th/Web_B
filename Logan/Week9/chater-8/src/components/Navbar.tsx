@@ -10,11 +10,10 @@ const Navbar = () => {
   // const { amount, cartItems } = useCartInfo();
   // const { calculateTotals } = useCartActions();
 
-  const { amount, cartItems } = useSelector((state) => state.cart);
-
   // navbar에서 사용안하긴함
   const dispatch = useDispatch();
 
+  const { amount, cartItems } = useSelector((state) => state.cart);
   useEffect((): void => {
     dispatch(calculateTotals());
   }, [dispatch, cartItems]);
@@ -42,14 +41,14 @@ const Navbar = () => {
         <span className="text-xl font-medium">{amount}</span>
       </div>
 
-      {/* <button
+      <button
         className="text-2xl flex items-center space-x-2 hover:cursor-pointer"
         onClick={() => dispatch(openModal())}
       >
         <FaTrashAlt />
       </button>
 
-      <Modal /> */}
+      <Modal />
     </div>
   );
 };

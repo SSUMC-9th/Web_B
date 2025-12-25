@@ -6,6 +6,8 @@ export default function Modal() {
   const dispatch = useDispatch();
   const isOpen = useSelector((state) => state.modal.isOpen);
 
+  //const { clearCart } = useCartActions();
+
   // 모달이 닫혀 있으면 아무것도 렌더링하지 않음
   if (!isOpen) return null;
 
